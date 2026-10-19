@@ -1,0 +1,13 @@
+.git
+.runtime
+**/.env*
+**/target
+**/node_modules
+**/dist
+**/.planning-cache
+**/.idea
+docs
+*.zip
+*.log
+test-results
+playwright-report

@@ -1,0 +1,31 @@
+{
+  admin off
+  skip_install_trust
+  auto_https disable_redirects
+}
+
+http://:8080 {
+  handle /ping {
+    respond "ok" 200
+  }
+  handle {
+    redir https://localhost:{$HTTPS_PORT:8443}{uri} 308
+  }
+}
+
+https://localhost:8443 {
+  tls internal
+  encode zstd gzip
+  handle /api/* {
+    reverse_proxy backend:3200 {
+      flush_interval -1
+    }
+  }
+  handle {
+    root * /srv
+    try_files {path} /index.html
+    file_server
+  }
+  header X-Content-Type-Options nosniff
+  header Referrer-Policy same-origin
+}

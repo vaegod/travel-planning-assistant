@@ -1,0 +1,18 @@
+name: travel-ai-ci-db
+services:
+  mysql:
+    image: mysql:8.4
+    environment:
+      MYSQL_DATABASE: travel_ai_test
+      MYSQL_USER: travel_ci
+      MYSQL_PASSWORD: ci-ephemeral-test-only
+      MYSQL_ROOT_PASSWORD: ci-ephemeral-root-only
+    ports:
+      - "127.0.0.1:33306:3306"
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 --silent"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+      start_period: 30s
+    mem_limit: 768m

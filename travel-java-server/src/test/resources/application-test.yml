@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    url: ${DB_TEST_URL:jdbc:mysql://127.0.0.1:3306/travel_ai_test?serverTimezone=UTC&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&useSSL=false}
+
+planning:
+  cache-dir: ""

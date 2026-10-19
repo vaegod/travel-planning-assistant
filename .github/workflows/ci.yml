@@ -1,0 +1,110 @@
+name: Build, evaluate and verify deployment
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  quality:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    services:
+      mysql:
+        image: mysql:8.4
+        env:
+          MYSQL_DATABASE: travel_ai_test
+          MYSQL_USER: travel_ci
+          MYSQL_PASSWORD: ci-ephemeral-test-only
+          MYSQL_ROOT_PASSWORD: ci-ephemeral-root-only
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h 127.0.0.1 --silent"
+          --health-interval=5s --health-timeout=3s --health-retries=30
+    env:
+      DB_TEST_URL: jdbc:mysql://127.0.0.1:3306/travel_ai_test?serverTimezone=UTC&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&useSSL=false
+      DB_USERNAME: travel_ci
+      DB_PASSWORD: ci-ephemeral-test-only
+      LLM_API_KEY: fixture-only-key
+      LLM_MODEL: fixture-model
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+          cache-dependency-path: travel-java-server/pom.xml
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: travel-h5-java/package-lock.json
+      - name: Frontend test, typecheck and build
+        working-directory: travel-h5-java
+        run: |
+          npm ci
+          npm test
+          npm run build
+      - name: Backend test and package
+        working-directory: travel-java-server
+        run: |
+          chmod +x mvnw
+          ./mvnw verify -B -ntp
+      - name: Archived map experiment regression (fixtures only)
+        run: node scripts/evaluate.mjs
+      - name: Upload explicit test and evaluation results
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: quality-results
+          retention-days: 7
+          include-hidden-files: true
+          path: |
+            travel-java-server/target/surefire-reports/*.xml
+            .runtime/eval-fixture-all.json
+  deployment:
+    runs-on: ubuntu-24.04
+    needs: quality
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+      - name: Prepare ephemeral integration configuration
+        run: |
+          mkdir -p .runtime
+          cat > .runtime/integration.env <<'ENV'
+          DB_PASSWORD=ci-compose-app-test-only
+          MYSQL_ROOT_PASSWORD=ci-compose-root-test-only
+          LLM_API_KEY=fixture-only-key
+          HTTP_PORT=9080
+          HTTPS_PORT=9443
+          ENV
+      - name: Build images and wait for healthy services
+        run: docker compose --env-file .runtime/integration.env -p travel-ai-ci -f compose.yaml -f compose.test.yaml up -d --build --wait --wait-timeout 240
+      - name: Verify TLS, login, pure-model planning, SSE and disabled knowledge extension
+        run: |
+          docker compose --env-file .runtime/integration.env -p travel-ai-ci -f compose.yaml -f compose.test.yaml cp web:/data/caddy/pki/authorities/local/root.crt .runtime/integration-root.crt
+          NODE_EXTRA_CA_CERTS=.runtime/integration-root.crt DEPLOY_URL=https://localhost:9443 node scripts/verify-deployment.mjs
+      - name: Verify persistence after database and backend restart
+        run: |
+          docker compose --env-file .runtime/integration.env -p travel-ai-ci -f compose.yaml -f compose.test.yaml restart db backend
+          docker compose --env-file .runtime/integration.env -p travel-ai-ci -f compose.yaml -f compose.test.yaml up -d --wait --wait-timeout 120
+          NODE_EXTRA_CA_CERTS=.runtime/integration-root.crt DEPLOY_URL=https://localhost:9443 node scripts/verify-deployment.mjs --restore
+      - name: Upload explicit integration result
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: deployment-result
+          retention-days: 7
+          include-hidden-files: true
+          path: .runtime/deployment-smoke.json
+      - name: Stop test containers without deleting volumes
+        if: always()
+        run: docker compose --env-file .runtime/integration.env -p travel-ai-ci -f compose.yaml -f compose.test.yaml down

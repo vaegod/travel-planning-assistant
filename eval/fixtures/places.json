@@ -1,0 +1,186 @@
+{
+  "fixtureNotice": "Recorded OpenStreetMap public snapshot. Evaluation replay is not a new live map query.",
+  "source": "https://maps.mail.ru/osm/tools/overpass/api/interpreter",
+  "originalFetchedAt": "2026-10-18T00:54:47.2515322Z",
+  "elements": [
+    {
+      "id": 1254131772,
+      "lat": 30.2610806,
+      "type": "node",
+      "lon": 120.1529085,
+      "tags": {
+        "name": "马可波罗像",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "id": 1256828035,
+      "lat": 30.2560855,
+      "type": "node",
+      "lon": 120.1557357,
+      "tags": {
+        "name": "西湖音乐喷泉",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "id": 1468743794,
+      "lat": 30.261531,
+      "type": "node",
+      "lon": 120.147367,
+      "tags": {
+        "name": "断桥残雪",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "id": 4427428614,
+      "lat": 30.263308,
+      "type": "node",
+      "lon": 120.1514897,
+      "tags": {
+        "name": "品图美术馆",
+        "tourism": "museum",
+        "name:zh": "品图美术馆"
+      }
+    },
+    {
+      "id": 4427428641,
+      "lat": 30.2455032,
+      "type": "node",
+      "lon": 120.1526568,
+      "tags": {
+        "name": "澄明湖绿",
+        "tourism": "viewpoint",
+        "name:zh": "澄明湖绿"
+      }
+    },
+    {
+      "id": 4690596590,
+      "lat": 30.2452364,
+      "type": "node",
+      "lon": 120.1550644,
+      "tags": {
+        "name": "中國美術學院美術館",
+        "tourism": "museum"
+      }
+    },
+    {
+      "id": 5311554022,
+      "lat": 30.253142,
+      "type": "node",
+      "lon": 120.1569882,
+      "tags": {
+        "name": "集贤亭",
+        "tourism": "attraction",
+        "name:zh": "集贤亭"
+      }
+    },
+    {
+      "id": 5311564121,
+      "lat": 30.2482803,
+      "type": "node",
+      "lon": 120.1545803,
+      "tags": {
+        "name": "涌金桥",
+        "tourism": "attraction",
+        "name:zh": "涌金桥"
+      }
+    },
+    {
+      "id": 6791988405,
+      "lat": 30.2641509,
+      "type": "node",
+      "lon": 120.1622405,
+      "tags": {
+        "name": "陆游纪念馆",
+        "tourism": "museum"
+      }
+    },
+    {
+      "id": 13616023583,
+      "lat": 30.2486493,
+      "type": "node",
+      "lon": 120.1643259,
+      "tags": {
+        "name": "禹廷美术馆",
+        "tourism": "gallery"
+      }
+    },
+    {
+      "id": 547795579,
+      "center": {
+        "lat": 30.2458986,
+        "lon": 120.1602926
+      },
+      "type": "way",
+      "tags": {
+        "name": "紫薇园城市原点",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "id": 979207106,
+      "center": {
+        "lat": 30.2452532,
+        "lon": 120.1532553
+      },
+      "type": "way",
+      "tags": {
+        "name": "钱王祠",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "id": 985786364,
+      "center": {
+        "lat": 30.2648735,
+        "lon": 120.1551719
+      },
+      "type": "way",
+      "tags": {
+        "name": "都锦生织锦博物馆",
+        "tourism": "museum"
+      }
+    },
+    {
+      "id": 985786388,
+      "center": {
+        "lat": 30.2640176,
+        "lon": 120.1538475
+      },
+      "type": "way",
+      "tags": {
+        "name": "沙孟海旧居",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "id": 1432228423,
+      "center": {
+        "lat": 30.2489934,
+        "lon": 120.156301
+      },
+      "type": "way",
+      "tags": {
+        "name": "武林书画院美术馆",
+        "tourism": "museum",
+        "name:zh": "武林書畫院美術館"
+      }
+    },
+    {
+      "id": 19614387,
+      "center": {
+        "lat": 30.2464123,
+        "lon": 120.1345865
+      },
+      "type": "relation",
+      "tags": {
+        "name": "西湖十景",
+        "tourism": "attraction",
+        "name:zh": "西湖十景"
+      }
+    }
+  ],
+  "attribution": "© OpenStreetMap contributors / ODbL"
+}

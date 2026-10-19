@@ -1,0 +1,27 @@
+{
+  "name": "travel-h5",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "dev": "vite",
+    "build": "npm run typecheck && vite build",
+    "preview": "vite preview",
+    "typecheck": "vue-tsc --noEmit"
+  },
+  "dependencies": {
+    "@vant/area-data": "2.2.0",
+    "axios": "^1.15.2",
+    "vant": "^4.9.24",
+    "vue": "^3.5.32",
+    "vue-router": "^4.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.19.2",
+    "@vitejs/plugin-vue": "^6.0.6",
+    "typescript": "~5.9.3",
+    "vite": "^8.0.10",
+    "vue-tsc": "^3.3.13"
+  }
+}

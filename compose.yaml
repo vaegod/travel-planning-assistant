@@ -1,0 +1,92 @@
+name: travel-ai
+services:
+  db:
+    image: mysql:8.4
+    environment:
+      MYSQL_DATABASE: travel_ai
+      MYSQL_USER: travel_app
+      MYSQL_PASSWORD: ${DB_PASSWORD:?Set DB_PASSWORD in the Compose env file}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Set MYSQL_ROOT_PASSWORD in the Compose env file}
+    command:
+      [
+        "--character-set-server=utf8mb4",
+        "--collation-server=utf8mb4_unicode_ci",
+        "--default-time-zone=+00:00",
+        "--innodb-buffer-pool-size=134217728",
+        "--max-connections=50",
+      ]
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 --silent"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+      start_period: 30s
+    restart: unless-stopped
+    mem_limit: 768m
+    logging: &logs
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+  backend:
+    build:
+      context: .
+      dockerfile: deploy/backend.Dockerfile
+    image: travel-ai-backend:local
+    environment:
+      SERVER_ADDRESS: 0.0.0.0
+      SERVER_PORT: 3200
+      FORWARD_HEADERS_STRATEGY: framework
+      SERVER_SERVLET_SESSION_COOKIE_SECURE: "true"
+      DB_URL: jdbc:mysql://db:3306/travel_ai?serverTimezone=UTC&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&useSSL=false
+      DB_USERNAME: travel_app
+      DB_PASSWORD: ${DB_PASSWORD:?Set DB_PASSWORD}
+      LLM_API_KEY: ${LLM_API_KEY:?Set LLM_API_KEY or use the integration override}
+      LLM_BASE_URL: ${LLM_BASE_URL:-https://api.siliconflow.cn/v1}
+      LLM_MODEL: ${LLM_MODEL:-Qwen/Qwen3.5-35B-A3B}
+      LLM_ENABLE_THINKING: "false"
+      LLM_MAX_OUTPUT_TOKENS: ${LLM_MAX_OUTPUT_TOKENS:-16384}
+      KNOWLEDGE_ENABLED: ${KNOWLEDGE_ENABLED:-false}
+      EMBEDDING_BASE_URL: ${EMBEDDING_BASE_URL:-${LLM_BASE_URL:-https://api.siliconflow.cn/v1}}
+      EMBEDDING_MODEL: ${EMBEDDING_MODEL:-BAAI/bge-m3}
+      EMBEDDING_DIMENSIONS: ${EMBEDDING_DIMENSIONS:-1024}
+      RAG_MIN_SCORE: ${RAG_MIN_SCORE:-0.55}
+      PLANNING_CACHE_DIR: /app/cache
+      PLANNING_EXTERNAL_ENABLED: "false"
+      OVERPASS_URL: ${OVERPASS_URL:-https://overpass-api.de/api/interpreter,https://maps.mail.ru/osm/tools/overpass/api/interpreter}
+    volumes:
+      - places_cache:/app/cache
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+    mem_limit: 640m
+    security_opt: ["no-new-privileges:true"]
+    logging: *logs
+  web:
+    build:
+      context: .
+      dockerfile: deploy/web.Dockerfile
+    image: travel-ai-web:local
+    environment:
+      HTTPS_PORT: ${HTTPS_PORT:-8443}
+    ports:
+      - "127.0.0.1:${HTTPS_PORT:-8443}:8443"
+      - "127.0.0.1:${HTTP_PORT:-8080}:8080"
+    volumes:
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+    mem_limit: 128m
+    security_opt: ["no-new-privileges:true"]
+    logging: *logs
+volumes:
+  mysql_data:
+  places_cache:
+  caddy_data:
+  caddy_config:

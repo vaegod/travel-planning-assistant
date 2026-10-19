@@ -1,0 +1,3 @@
+ALTER TABLE knowledge_documents MODIFY COLUMN city VARCHAR(50) NOT NULL;
+ALTER TABLE rag_questions MODIFY COLUMN city VARCHAR(50) NOT NULL;
+ALTER TABLE messages ADD COLUMN evidence_json JSON NULL;

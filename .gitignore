@@ -1,0 +1,25 @@
+**/node_modules/
+**/target/
+**/dist/
+**/.idea/
+**/.vscode/
+**/.env
+**/.env.local
+**/.env.*.local
+*.log
+.runtime/
+.playwright-cli/
+**/.planning-cache/
+playwright-report/
+test-results/
+deploy/compose.env
+
+# Local delivery records and browser snapshots
+docs/*
+!docs/screenshots/
+!docs/RUNNING.md
+output/
+**/*.zip
+**/*.db
+**/*.db-wal
+**/*.db-shm

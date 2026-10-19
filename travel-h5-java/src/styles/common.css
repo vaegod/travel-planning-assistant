@@ -1,0 +1,106 @@
+:root {
+  font-family: "Segoe UI", "Microsoft YaHei", "PingFang SC", sans-serif;
+  color: #203348;
+  background: #f3f6fa;
+  font-synthesis: none;
+  --ink: #203348;
+  --muted: #6b7e91;
+  --primary: #2763dc;
+  --line: #e5ebf2;
+  --surface: #fff;
+  --canvas: #f3f6fa;
+  --van-base-font: "Segoe UI", "Microsoft YaHei", "PingFang SC", sans-serif;
+  --van-primary-color: var(--primary);
+  --van-blue: var(--primary);
+  --van-text-color: var(--ink);
+  --van-text-color-2: #617489;
+  --van-text-color-3: #738397;
+  --van-border-color: var(--line);
+  --van-button-border-radius: 10px;
+  --van-button-default-height: 44px;
+  --van-button-large-height: 48px;
+  --van-button-small-height: 34px;
+  --van-button-mini-height: 28px;
+  --van-nav-bar-title-font-size: 16px;
+  --van-nav-bar-height: 56px;
+  --van-cell-line-height: 24px;
+  --van-cell-vertical-padding: 14px;
+  --van-notice-bar-background: #edf3ff;
+  --van-notice-bar-text-color: #526c98;
+  --van-tabbar-item-active-color: var(--primary);
+  --van-tabs-bottom-bar-color: var(--primary);
+}
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 0; font-size: 14px; line-height: 1.6; }
+button, input, textarea, select { font: inherit; }
+button, a, summary { -webkit-tap-highlight-color: transparent; }
+button { cursor: pointer; }
+a { color: var(--primary); text-decoration: none; }
+button:focus-visible, a:focus-visible, summary:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible { outline: 3px solid #96b6ff; outline-offset: 3px; }
+.app-container { min-height: 100dvh; }
+.desktop-header { display: none; }
+.page-container, .account-page { min-height: 100dvh; background: var(--canvas); padding-bottom: calc(88px + env(safe-area-inset-bottom)); }
+.page-header { position: sticky; top: 0; z-index: 100; background: #fff; }
+.page-content, .account-content { width: 100%; max-width: 1088px; padding: 24px; margin: 0 auto; }
+.van-nav-bar { background: #ffffffed; }
+.van-nav-bar__title { font-weight: 600; }
+.van-nav-bar__text { font-size: 13px; }
+.van-button { font-weight: 500; transition: background .15s, box-shadow .15s; }
+.van-button--round { border-radius: 10px; }
+.van-button--primary:not(.van-button--plain) { box-shadow: 0 3px 8px #2763dc14; }
+.van-button--primary.van-button--plain { background: #f8faff; }
+.van-notice-bar { border-radius: 10px; margin-bottom: 16px; font-size: 12px; }
+.van-cell-group--inset { border: 1px solid var(--line); border-radius: 14px; }
+.van-cell__label { font-size: 12px; margin-top: 3px; }
+.van-empty { padding: 32px 16px; }
+.van-empty__description { line-height: 1.7; color: var(--muted); }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 24px; margin-bottom: 18px; box-shadow: 0 4px 18px #213b5b04; }
+.section-title { font-size: 18px; font-weight: 650; line-height: 1.5; color: var(--ink); margin: 0 0 16px; }
+.common-button { width: 100%; height: 44px; font-size: 15px; border-radius: 10px; }
+.primary-button { background: var(--primary) !important; border: none !important; }
+.secondary-button { background: white !important; color: var(--primary) !important; border: 1px solid var(--primary) !important; }
+.loading-container { display: flex; justify-content: center; align-items: center; min-height: 280px; padding: 40px 0; }
+/* All sheets stay readable on a wide screen and edge-to-edge on phones. */
+.van-popup--bottom { max-height: 88dvh; }
+.van-overlay { background: #14253e66; backdrop-filter: blur(3px); }
+.van-popup--bottom.van-popup--round { border-radius: 22px 22px 0 0; }
+.source-popup { height: 82dvh; }
+@media (min-width: 900px) {
+  .desktop-header { display: block; position: sticky; top: 0; z-index: 110; height: 76px; background: #fffffff5; border-bottom: 1px solid var(--line); backdrop-filter: blur(14px); }
+  .desktop-header-inner { height: 100%; max-width: 1120px; margin: auto; padding: 0 24px; display: flex; align-items: center; gap: 38px; }
+  .brand { display: flex; align-items: center; gap: 10px; color: var(--ink); font-size: 16px; font-weight: 700; white-space: nowrap; }
+  .brand small { display: block; font-size: 9px; letter-spacing: 1.7px; color: #8091a5; font-weight: 500; margin-top: 1px; }
+  .brand-mark { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; color: white; background: var(--primary); font-size: 25px; }
+  .desktop-nav { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+  .desktop-nav a { color: #6a7b8e; padding: 9px 14px; border-radius: 9px; font-size: 14px; white-space: nowrap; }
+  .desktop-nav a:hover, .desktop-nav a.selected { color: var(--primary); background: #edf3ff; }
+  .desktop-nav a.selected { font-weight: 600; }
+  .nav-account { display: flex; gap: 8px; align-items: center; color: var(--ink); border-left: 1px solid var(--line); padding-left: 24px; min-width: 65px; }
+  .nav-account .van-icon { padding: 9px; background: #f1f5fb; border-radius: 50%; font-size: 18px; }
+  .nav-account span { max-width: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .nav-account.selected { color: var(--primary); }
+  .page-container, .account-page { min-height: calc(100dvh - 76px); padding-bottom: 40px; }
+  .page-header { top: 76px; }
+  .page-header .van-nav-bar, .account-page > .van-nav-bar { max-width: 1088px; margin: auto; background: transparent; }
+  .page-header { background: var(--canvas); }
+  .van-nav-bar:after { border: none; }
+  .app-container > .van-tabbar { display: none; }
+  .van-popup--bottom { width: min(680px, calc(100vw - 48px)); left: max(24px, calc((100vw - 680px) / 2)); bottom: 24px; box-shadow: 0 24px 90px #14253e33; }
+  .van-popup--bottom.van-popup--round { border-radius: 22px; }
+}
+@media (max-width: 599px) {
+  .page-content, .account-content { padding: 18px 16px; }
+  .card { padding: 20px; border-radius: 16px; margin-bottom: 14px; }
+  .section-title { font-size: 17px; margin-bottom: 14px; }
+  .van-tabbar { height: calc(58px + env(safe-area-inset-bottom)); padding-bottom: env(safe-area-inset-bottom); }
+  .van-tabbar-item__icon { font-size: 22px; margin-bottom: 5px; }
+}
+@media (min-width: 600px) and (max-width: 899px) {
+  .van-tabbar { height: calc(58px + env(safe-area-inset-bottom)); padding-bottom: env(safe-area-inset-bottom); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *:before, *:after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+
+.streaming-cursor { display: inline-block; animation: blink 1s infinite; }
+@keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
