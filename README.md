@@ -59,7 +59,7 @@ cp deploy/compose.env.example deploy/compose.env
 docker compose --env-file deploy/compose.env up -d --build --wait
 ```
 
-打开 **https://localhost:8443**，注册账号后开始规划。首次访问需要信任项目 Caddy 本地 CA，导出方法与 Windows 启动步骤见 [运行说明](docs/RUNNING.md)。
+打开 [https://localhost:8443](https://localhost:8443)，注册账号后开始规划。首次访问需要信任项目 Caddy 本地 CA，导出方法与 Windows 启动步骤见 [运行说明](docs/RUNNING.md)。
 
 应用和数据库在本机运行，Qwen 通过外部 API 调用。AI 行程中的地点、交通和价格为参考建议，出行前请核实。
 
