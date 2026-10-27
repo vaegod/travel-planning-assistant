@@ -1,0 +1,1997 @@
+{
+  "baseline": "full-live-v3",
+  "current": "full-live-v5-routes",
+  "pairedCasesVerified": 40,
+  "pairedAttemptsVerified": 80,
+  "unchangedScorer": true,
+  "unchangedDataset": true,
+  "scope": "same-case regression, not unseen holdout generalization",
+  "agent": {
+    "before": {
+      "all": {
+        "caseCount": 40,
+        "positiveCases": 38,
+        "negativeCases": 2,
+        "completedPositive": 25,
+        "positivePassed": 13,
+        "positiveSuccessRate": 0.34210526315789475,
+        "correctRefusals": 0,
+        "correctRefusalRate": 0,
+        "safeNoPlanOnNegative": 1,
+        "hiddenRefusals": 2,
+        "infrastructureErrors": 1,
+        "latencyAllAttempts": {
+          "n": 40,
+          "p50Ms": 51426,
+          "p95Ms": 122856
+        },
+        "modelCalls": 177,
+        "attemptedModelRounds": 177,
+        "meanModelCalls": 4.425,
+        "toolCalls": 149,
+        "queuedModelCalls": 109,
+        "totalQueueWaitMs": 658250,
+        "forwardedLatencyExcludingQueue": {
+          "n": 177,
+          "p50Ms": 7339
+        },
+        "truncatedModelResponses": 0,
+        "usageKnownCalls": 176,
+        "totalUsageCalls": 177,
+        "knownInputTokens": 859381,
+        "knownOutputTokens": 59042,
+        "groundingRate": 0.9903846153846154,
+        "reportedRouteCoverage": 0.03571428571428571,
+        "checks": {
+          "deliveredPlan": {
+            "passed": 25,
+            "total": 38,
+            "rate": 0.6578947368421053
+          },
+          "identity": {
+            "passed": 25,
+            "total": 38,
+            "rate": 0.6578947368421053
+          },
+          "travelMode": {
+            "passed": 25,
+            "total": 38,
+            "rate": 0.6578947368421053
+          },
+          "completeSchedule": {
+            "passed": 25,
+            "total": 38,
+            "rate": 0.6578947368421053
+          },
+          "groundedPlaces": {
+            "passed": 24,
+            "total": 38,
+            "rate": 0.631578947368421
+          },
+          "distinctPlaces": {
+            "passed": 25,
+            "total": 38,
+            "rate": 0.6578947368421053
+          },
+          "attractionsPerDay": {
+            "passed": 25,
+            "total": 38,
+            "rate": 0.6578947368421053
+          },
+          "visitAndTravelValues": {
+            "passed": 23,
+            "total": 38,
+            "rate": 0.6052631578947368
+          },
+          "dailyTimeUsingReferenceRoutes": {
+            "passed": 25,
+            "total": 38,
+            "rate": 0.6578947368421053
+          },
+          "routeAvailable": {
+            "passed": 25,
+            "total": 38,
+            "rate": 0.6578947368421053
+          },
+          "reportedRouteConsistent": {
+            "passed": 25,
+            "total": 38,
+            "rate": 0.6578947368421053
+          },
+          "travelNotUnderestimated": {
+            "passed": 15,
+            "total": 38,
+            "rate": 0.39473684210526316
+          },
+          "ticketReferenceCoverage": {
+            "passed": 25,
+            "total": 38,
+            "rate": 0.6578947368421053
+          },
+          "budgetValid": {
+            "passed": 25,
+            "total": 38,
+            "rate": 0.6578947368421053
+          },
+          "ticketSum": {
+            "passed": 25,
+            "total": 38,
+            "rate": 0.6578947368421053
+          },
+          "minimumExpenses": {
+            "passed": 25,
+            "total": 38,
+            "rate": 0.6578947368421053
+          },
+          "transportReferenceCoverage": {
+            "passed": 25,
+            "total": 38,
+            "rate": 0.6578947368421053
+          },
+          "requiredCategory": {
+            "passed": 15,
+            "total": 20,
+            "rate": 0.75
+          },
+          "requiredPlace": {
+            "passed": 2,
+            "total": 8,
+            "rate": 0.25
+          },
+          "revisionScope": {
+            "passed": 2,
+            "total": 8,
+            "rate": 0.25
+          }
+        },
+        "failureCounts": {
+          "travelNotUnderestimated": 23,
+          "visitAndTravelValues": 15,
+          "groundedPlaces": 14,
+          "deliveredPlan": 13,
+          "identity": 13,
+          "travelMode": 13,
+          "completeSchedule": 13,
+          "distinctPlaces": 13,
+          "attractionsPerDay": 13,
+          "dailyTimeUsingReferenceRoutes": 13,
+          "routeAvailable": 13,
+          "reportedRouteConsistent": 13,
+          "ticketReferenceCoverage": 13,
+          "budgetValid": 13,
+          "ticketSum": 13,
+          "minimumExpenses": 13,
+          "transportReferenceCoverage": 13,
+          "requiredPlace": 6,
+          "revisionScope": 6,
+          "requiredCategory": 5,
+          "expected_explicit_refusal": 2
+        },
+        "failureCountsOnDelivered": {
+          "groundedPlaces": 1,
+          "travelNotUnderestimated": 10,
+          "visitAndTravelValues": 2,
+          "expected_explicit_refusal": 1
+        },
+        "workflowFailureCounts": {
+          "MODEL_UNAVAILABLE": 1,
+          "AGENT_REPAIR_LIMIT": 12,
+          "AGENT_NO_VALID_DRAFT": 1
+        }
+      },
+      "development": {
+        "caseCount": 30,
+        "positiveCases": 30,
+        "negativeCases": 0,
+        "completedPositive": 20,
+        "positivePassed": 10,
+        "positiveSuccessRate": 0.3333333333333333,
+        "correctRefusals": 0,
+        "correctRefusalRate": null,
+        "safeNoPlanOnNegative": 0,
+        "hiddenRefusals": 0,
+        "infrastructureErrors": 1,
+        "latencyAllAttempts": {
+          "n": 30,
+          "p50Ms": 47865,
+          "p95Ms": 122856
+        },
+        "modelCalls": 133,
+        "attemptedModelRounds": 133,
+        "meanModelCalls": 4.433333333333334,
+        "toolCalls": 112,
+        "queuedModelCalls": 82,
+        "totalQueueWaitMs": 528375,
+        "forwardedLatencyExcludingQueue": {
+          "n": 133,
+          "p50Ms": 6899
+        },
+        "truncatedModelResponses": 0,
+        "usageKnownCalls": 132,
+        "totalUsageCalls": 133,
+        "knownInputTokens": 645394,
+        "knownOutputTokens": 41157,
+        "groundingRate": 0.9864864864864865,
+        "reportedRouteCoverage": 0.025,
+        "checks": {
+          "deliveredPlan": {
+            "passed": 20,
+            "total": 30,
+            "rate": 0.6666666666666666
+          },
+          "identity": {
+            "passed": 20,
+            "total": 30,
+            "rate": 0.6666666666666666
+          },
+          "travelMode": {
+            "passed": 20,
+            "total": 30,
+            "rate": 0.6666666666666666
+          },
+          "completeSchedule": {
+            "passed": 20,
+            "total": 30,
+            "rate": 0.6666666666666666
+          },
+          "groundedPlaces": {
+            "passed": 19,
+            "total": 30,
+            "rate": 0.6333333333333333
+          },
+          "distinctPlaces": {
+            "passed": 20,
+            "total": 30,
+            "rate": 0.6666666666666666
+          },
+          "attractionsPerDay": {
+            "passed": 20,
+            "total": 30,
+            "rate": 0.6666666666666666
+          },
+          "visitAndTravelValues": {
+            "passed": 18,
+            "total": 30,
+            "rate": 0.6
+          },
+          "dailyTimeUsingReferenceRoutes": {
+            "passed": 20,
+            "total": 30,
+            "rate": 0.6666666666666666
+          },
+          "routeAvailable": {
+            "passed": 20,
+            "total": 30,
+            "rate": 0.6666666666666666
+          },
+          "reportedRouteConsistent": {
+            "passed": 20,
+            "total": 30,
+            "rate": 0.6666666666666666
+          },
+          "travelNotUnderestimated": {
+            "passed": 12,
+            "total": 30,
+            "rate": 0.4
+          },
+          "ticketReferenceCoverage": {
+            "passed": 20,
+            "total": 30,
+            "rate": 0.6666666666666666
+          },
+          "budgetValid": {
+            "passed": 20,
+            "total": 30,
+            "rate": 0.6666666666666666
+          },
+          "ticketSum": {
+            "passed": 20,
+            "total": 30,
+            "rate": 0.6666666666666666
+          },
+          "minimumExpenses": {
+            "passed": 20,
+            "total": 30,
+            "rate": 0.6666666666666666
+          },
+          "transportReferenceCoverage": {
+            "passed": 20,
+            "total": 30,
+            "rate": 0.6666666666666666
+          },
+          "requiredCategory": {
+            "passed": 11,
+            "total": 14,
+            "rate": 0.7857142857142857
+          },
+          "requiredPlace": {
+            "passed": 1,
+            "total": 6,
+            "rate": 0.16666666666666666
+          },
+          "revisionScope": {
+            "passed": 1,
+            "total": 6,
+            "rate": 0.16666666666666666
+          }
+        },
+        "failureCounts": {
+          "travelNotUnderestimated": 18,
+          "visitAndTravelValues": 12,
+          "groundedPlaces": 11,
+          "deliveredPlan": 10,
+          "identity": 10,
+          "travelMode": 10,
+          "completeSchedule": 10,
+          "distinctPlaces": 10,
+          "attractionsPerDay": 10,
+          "dailyTimeUsingReferenceRoutes": 10,
+          "routeAvailable": 10,
+          "reportedRouteConsistent": 10,
+          "ticketReferenceCoverage": 10,
+          "budgetValid": 10,
+          "ticketSum": 10,
+          "minimumExpenses": 10,
+          "transportReferenceCoverage": 10,
+          "requiredPlace": 5,
+          "revisionScope": 5,
+          "requiredCategory": 3
+        },
+        "failureCountsOnDelivered": {
+          "groundedPlaces": 1,
+          "travelNotUnderestimated": 8,
+          "visitAndTravelValues": 2
+        },
+        "workflowFailureCounts": {
+          "MODEL_UNAVAILABLE": 1,
+          "AGENT_REPAIR_LIMIT": 9
+        }
+      },
+      "holdout": {
+        "caseCount": 10,
+        "positiveCases": 8,
+        "negativeCases": 2,
+        "completedPositive": 5,
+        "positivePassed": 3,
+        "positiveSuccessRate": 0.375,
+        "correctRefusals": 0,
+        "correctRefusalRate": 0,
+        "safeNoPlanOnNegative": 1,
+        "hiddenRefusals": 2,
+        "infrastructureErrors": 0,
+        "latencyAllAttempts": {
+          "n": 10,
+          "p50Ms": 53536,
+          "p95Ms": 125389
+        },
+        "modelCalls": 44,
+        "attemptedModelRounds": 44,
+        "meanModelCalls": 4.4,
+        "toolCalls": 37,
+        "queuedModelCalls": 27,
+        "totalQueueWaitMs": 129875,
+        "forwardedLatencyExcludingQueue": {
+          "n": 44,
+          "p50Ms": 9624
+        },
+        "truncatedModelResponses": 0,
+        "usageKnownCalls": 44,
+        "totalUsageCalls": 44,
+        "knownInputTokens": 213987,
+        "knownOutputTokens": 17885,
+        "groundingRate": 1,
+        "reportedRouteCoverage": 0.0625,
+        "checks": {
+          "deliveredPlan": {
+            "passed": 5,
+            "total": 8,
+            "rate": 0.625
+          },
+          "identity": {
+            "passed": 5,
+            "total": 8,
+            "rate": 0.625
+          },
+          "travelMode": {
+            "passed": 5,
+            "total": 8,
+            "rate": 0.625
+          },
+          "completeSchedule": {
+            "passed": 5,
+            "total": 8,
+            "rate": 0.625
+          },
+          "groundedPlaces": {
+            "passed": 5,
+            "total": 8,
+            "rate": 0.625
+          },
+          "distinctPlaces": {
+            "passed": 5,
+            "total": 8,
+            "rate": 0.625
+          },
+          "attractionsPerDay": {
+            "passed": 5,
+            "total": 8,
+            "rate": 0.625
+          },
+          "visitAndTravelValues": {
+            "passed": 5,
+            "total": 8,
+            "rate": 0.625
+          },
+          "dailyTimeUsingReferenceRoutes": {
+            "passed": 5,
+            "total": 8,
+            "rate": 0.625
+          },
+          "routeAvailable": {
+            "passed": 5,
+            "total": 8,
+            "rate": 0.625
+          },
+          "reportedRouteConsistent": {
+            "passed": 5,
+            "total": 8,
+            "rate": 0.625
+          },
+          "travelNotUnderestimated": {
+            "passed": 3,
+            "total": 8,
+            "rate": 0.375
+          },
+          "ticketReferenceCoverage": {
+            "passed": 5,
+            "total": 8,
+            "rate": 0.625
+          },
+          "budgetValid": {
+            "passed": 5,
+            "total": 8,
+            "rate": 0.625
+          },
+          "ticketSum": {
+            "passed": 5,
+            "total": 8,
+            "rate": 0.625
+          },
+          "minimumExpenses": {
+            "passed": 5,
+            "total": 8,
+            "rate": 0.625
+          },
+          "transportReferenceCoverage": {
+            "passed": 5,
+            "total": 8,
+            "rate": 0.625
+          },
+          "requiredCategory": {
+            "passed": 4,
+            "total": 6,
+            "rate": 0.6666666666666666
+          },
+          "requiredPlace": {
+            "passed": 1,
+            "total": 2,
+            "rate": 0.5
+          },
+          "revisionScope": {
+            "passed": 1,
+            "total": 2,
+            "rate": 0.5
+          }
+        },
+        "failureCounts": {
+          "travelNotUnderestimated": 5,
+          "deliveredPlan": 3,
+          "identity": 3,
+          "travelMode": 3,
+          "completeSchedule": 3,
+          "groundedPlaces": 3,
+          "distinctPlaces": 3,
+          "attractionsPerDay": 3,
+          "visitAndTravelValues": 3,
+          "dailyTimeUsingReferenceRoutes": 3,
+          "routeAvailable": 3,
+          "reportedRouteConsistent": 3,
+          "ticketReferenceCoverage": 3,
+          "budgetValid": 3,
+          "ticketSum": 3,
+          "minimumExpenses": 3,
+          "transportReferenceCoverage": 3,
+          "requiredCategory": 2,
+          "expected_explicit_refusal": 2,
+          "requiredPlace": 1,
+          "revisionScope": 1
+        },
+        "failureCountsOnDelivered": {
+          "travelNotUnderestimated": 2,
+          "expected_explicit_refusal": 1
+        },
+        "workflowFailureCounts": {
+          "AGENT_REPAIR_LIMIT": 3,
+          "AGENT_NO_VALID_DRAFT": 1
+        }
+      }
+    },
+    "after": {
+      "all": {
+        "caseCount": 40,
+        "positiveCases": 38,
+        "negativeCases": 2,
+        "completedPositive": 23,
+        "positivePassed": 23,
+        "positiveSuccessRate": 0.6052631578947368,
+        "correctRefusals": 2,
+        "correctRefusalRate": 1,
+        "safeNoPlanOnNegative": 2,
+        "hiddenRefusals": 0,
+        "infrastructureErrors": 3,
+        "latencyAllAttempts": {
+          "n": 40,
+          "p50Ms": 83805,
+          "p95Ms": 175873
+        },
+        "modelCalls": 229,
+        "attemptedModelRounds": 229,
+        "meanModelCalls": 5.725,
+        "toolCalls": 226,
+        "mapHttpRequests": 99,
+        "queuedModelCalls": 171,
+        "totalQueueWaitMs": 1218420,
+        "forwardedLatencyExcludingQueue": {
+          "n": 229,
+          "p50Ms": 3853
+        },
+        "truncatedModelResponses": 0,
+        "usageKnownCalls": 225,
+        "totalUsageCalls": 229,
+        "knownInputTokens": 1195719,
+        "knownOutputTokens": 57200,
+        "groundingRate": 1,
+        "reportedRouteCoverage": 1,
+        "checks": {
+          "deliveredPlan": {
+            "passed": 23,
+            "total": 38,
+            "rate": 0.6052631578947368
+          },
+          "identity": {
+            "passed": 23,
+            "total": 38,
+            "rate": 0.6052631578947368
+          },
+          "travelMode": {
+            "passed": 23,
+            "total": 38,
+            "rate": 0.6052631578947368
+          },
+          "completeSchedule": {
+            "passed": 23,
+            "total": 38,
+            "rate": 0.6052631578947368
+          },
+          "groundedPlaces": {
+            "passed": 23,
+            "total": 38,
+            "rate": 0.6052631578947368
+          },
+          "distinctPlaces": {
+            "passed": 23,
+            "total": 38,
+            "rate": 0.6052631578947368
+          },
+          "attractionsPerDay": {
+            "passed": 23,
+            "total": 38,
+            "rate": 0.6052631578947368
+          },
+          "visitAndTravelValues": {
+            "passed": 23,
+            "total": 38,
+            "rate": 0.6052631578947368
+          },
+          "dailyTimeUsingReferenceRoutes": {
+            "passed": 23,
+            "total": 38,
+            "rate": 0.6052631578947368
+          },
+          "routeAvailable": {
+            "passed": 23,
+            "total": 38,
+            "rate": 0.6052631578947368
+          },
+          "reportedRouteConsistent": {
+            "passed": 23,
+            "total": 38,
+            "rate": 0.6052631578947368
+          },
+          "travelNotUnderestimated": {
+            "passed": 23,
+            "total": 38,
+            "rate": 0.6052631578947368
+          },
+          "ticketReferenceCoverage": {
+            "passed": 23,
+            "total": 38,
+            "rate": 0.6052631578947368
+          },
+          "budgetValid": {
+            "passed": 23,
+            "total": 38,
+            "rate": 0.6052631578947368
+          },
+          "ticketSum": {
+            "passed": 23,
+            "total": 38,
+            "rate": 0.6052631578947368
+          },
+          "minimumExpenses": {
+            "passed": 23,
+            "total": 38,
+            "rate": 0.6052631578947368
+          },
+          "transportReferenceCoverage": {
+            "passed": 23,
+            "total": 38,
+            "rate": 0.6052631578947368
+          },
+          "requiredCategory": {
+            "passed": 8,
+            "total": 20,
+            "rate": 0.4
+          },
+          "requiredPlace": {
+            "passed": 8,
+            "total": 8,
+            "rate": 1
+          },
+          "revisionScope": {
+            "passed": 8,
+            "total": 8,
+            "rate": 1
+          }
+        },
+        "failureCounts": {
+          "deliveredPlan": 15,
+          "identity": 15,
+          "travelMode": 15,
+          "completeSchedule": 15,
+          "groundedPlaces": 15,
+          "distinctPlaces": 15,
+          "attractionsPerDay": 15,
+          "visitAndTravelValues": 15,
+          "dailyTimeUsingReferenceRoutes": 15,
+          "routeAvailable": 15,
+          "reportedRouteConsistent": 15,
+          "travelNotUnderestimated": 15,
+          "ticketReferenceCoverage": 15,
+          "budgetValid": 15,
+          "ticketSum": 15,
+          "minimumExpenses": 15,
+          "transportReferenceCoverage": 15,
+          "requiredCategory": 12
+        },
+        "failureCountsOnDelivered": {},
+        "workflowFailureCounts": {
+          "AGENT_ROUND_LIMIT": 8,
+          "AGENT_REPAIR_LIMIT": 2,
+          "MAP_SERVICE_UNAVAILABLE": 1,
+          "MODEL_TIMEOUT": 3,
+          "AGENT_TIMEOUT": 1
+        }
+      },
+      "development": {
+        "caseCount": 30,
+        "positiveCases": 30,
+        "negativeCases": 0,
+        "completedPositive": 20,
+        "positivePassed": 20,
+        "positiveSuccessRate": 0.6666666666666666,
+        "correctRefusals": 0,
+        "correctRefusalRate": null,
+        "safeNoPlanOnNegative": 0,
+        "hiddenRefusals": 0,
+        "infrastructureErrors": 1,
+        "latencyAllAttempts": {
+          "n": 30,
+          "p50Ms": 83805,
+          "p95Ms": 111980
+        },
+        "modelCalls": 183,
+        "attemptedModelRounds": 183,
+        "meanModelCalls": 6.1,
+        "toolCalls": 183,
+        "mapHttpRequests": 79,
+        "queuedModelCalls": 134,
+        "totalQueueWaitMs": 944080,
+        "forwardedLatencyExcludingQueue": {
+          "n": 183,
+          "p50Ms": 4124
+        },
+        "truncatedModelResponses": 0,
+        "usageKnownCalls": 182,
+        "totalUsageCalls": 183,
+        "knownInputTokens": 966067,
+        "knownOutputTokens": 46512,
+        "groundingRate": 1,
+        "reportedRouteCoverage": 1,
+        "checks": {
+          "deliveredPlan": {
+            "passed": 20,
+            "total": 30,
+            "rate": 0.6666666666666666
+          },
+          "identity": {
+            "passed": 20,
+            "total": 30,
+            "rate": 0.6666666666666666
+          },
+          "travelMode": {
+            "passed": 20,
+            "total": 30,
+            "rate": 0.6666666666666666
+          },
+          "completeSchedule": {
+            "passed": 20,
+            "total": 30,
+            "rate": 0.6666666666666666
+          },
+          "groundedPlaces": {
+            "passed": 20,
+            "total": 30,
+            "rate": 0.6666666666666666
+          },
+          "distinctPlaces": {
+            "passed": 20,
+            "total": 30,
+            "rate": 0.6666666666666666
+          },
+          "attractionsPerDay": {
+            "passed": 20,
+            "total": 30,
+            "rate": 0.6666666666666666
+          },
+          "visitAndTravelValues": {
+            "passed": 20,
+            "total": 30,
+            "rate": 0.6666666666666666
+          },
+          "dailyTimeUsingReferenceRoutes": {
+            "passed": 20,
+            "total": 30,
+            "rate": 0.6666666666666666
+          },
+          "routeAvailable": {
+            "passed": 20,
+            "total": 30,
+            "rate": 0.6666666666666666
+          },
+          "reportedRouteConsistent": {
+            "passed": 20,
+            "total": 30,
+            "rate": 0.6666666666666666
+          },
+          "travelNotUnderestimated": {
+            "passed": 20,
+            "total": 30,
+            "rate": 0.6666666666666666
+          },
+          "ticketReferenceCoverage": {
+            "passed": 20,
+            "total": 30,
+            "rate": 0.6666666666666666
+          },
+          "budgetValid": {
+            "passed": 20,
+            "total": 30,
+            "rate": 0.6666666666666666
+          },
+          "ticketSum": {
+            "passed": 20,
+            "total": 30,
+            "rate": 0.6666666666666666
+          },
+          "minimumExpenses": {
+            "passed": 20,
+            "total": 30,
+            "rate": 0.6666666666666666
+          },
+          "transportReferenceCoverage": {
+            "passed": 20,
+            "total": 30,
+            "rate": 0.6666666666666666
+          },
+          "requiredCategory": {
+            "passed": 7,
+            "total": 14,
+            "rate": 0.5
+          },
+          "requiredPlace": {
+            "passed": 6,
+            "total": 6,
+            "rate": 1
+          },
+          "revisionScope": {
+            "passed": 6,
+            "total": 6,
+            "rate": 1
+          }
+        },
+        "failureCounts": {
+          "deliveredPlan": 10,
+          "identity": 10,
+          "travelMode": 10,
+          "completeSchedule": 10,
+          "groundedPlaces": 10,
+          "distinctPlaces": 10,
+          "attractionsPerDay": 10,
+          "visitAndTravelValues": 10,
+          "dailyTimeUsingReferenceRoutes": 10,
+          "routeAvailable": 10,
+          "reportedRouteConsistent": 10,
+          "travelNotUnderestimated": 10,
+          "ticketReferenceCoverage": 10,
+          "budgetValid": 10,
+          "ticketSum": 10,
+          "minimumExpenses": 10,
+          "transportReferenceCoverage": 10,
+          "requiredCategory": 7
+        },
+        "failureCountsOnDelivered": {},
+        "workflowFailureCounts": {
+          "AGENT_ROUND_LIMIT": 6,
+          "AGENT_REPAIR_LIMIT": 2,
+          "MAP_SERVICE_UNAVAILABLE": 1,
+          "MODEL_TIMEOUT": 1
+        }
+      },
+      "holdout": {
+        "caseCount": 10,
+        "positiveCases": 8,
+        "negativeCases": 2,
+        "completedPositive": 3,
+        "positivePassed": 3,
+        "positiveSuccessRate": 0.375,
+        "correctRefusals": 2,
+        "correctRefusalRate": 1,
+        "safeNoPlanOnNegative": 2,
+        "hiddenRefusals": 0,
+        "infrastructureErrors": 2,
+        "latencyAllAttempts": {
+          "n": 10,
+          "p50Ms": 82749,
+          "p95Ms": 240020
+        },
+        "modelCalls": 46,
+        "attemptedModelRounds": 46,
+        "meanModelCalls": 4.6,
+        "toolCalls": 43,
+        "mapHttpRequests": 20,
+        "queuedModelCalls": 37,
+        "totalQueueWaitMs": 274340,
+        "forwardedLatencyExcludingQueue": {
+          "n": 46,
+          "p50Ms": 2920
+        },
+        "truncatedModelResponses": 0,
+        "usageKnownCalls": 43,
+        "totalUsageCalls": 46,
+        "knownInputTokens": 229652,
+        "knownOutputTokens": 10688,
+        "groundingRate": 1,
+        "reportedRouteCoverage": 1,
+        "checks": {
+          "deliveredPlan": {
+            "passed": 3,
+            "total": 8,
+            "rate": 0.375
+          },
+          "identity": {
+            "passed": 3,
+            "total": 8,
+            "rate": 0.375
+          },
+          "travelMode": {
+            "passed": 3,
+            "total": 8,
+            "rate": 0.375
+          },
+          "completeSchedule": {
+            "passed": 3,
+            "total": 8,
+            "rate": 0.375
+          },
+          "groundedPlaces": {
+            "passed": 3,
+            "total": 8,
+            "rate": 0.375
+          },
+          "distinctPlaces": {
+            "passed": 3,
+            "total": 8,
+            "rate": 0.375
+          },
+          "attractionsPerDay": {
+            "passed": 3,
+            "total": 8,
+            "rate": 0.375
+          },
+          "visitAndTravelValues": {
+            "passed": 3,
+            "total": 8,
+            "rate": 0.375
+          },
+          "dailyTimeUsingReferenceRoutes": {
+            "passed": 3,
+            "total": 8,
+            "rate": 0.375
+          },
+          "routeAvailable": {
+            "passed": 3,
+            "total": 8,
+            "rate": 0.375
+          },
+          "reportedRouteConsistent": {
+            "passed": 3,
+            "total": 8,
+            "rate": 0.375
+          },
+          "travelNotUnderestimated": {
+            "passed": 3,
+            "total": 8,
+            "rate": 0.375
+          },
+          "ticketReferenceCoverage": {
+            "passed": 3,
+            "total": 8,
+            "rate": 0.375
+          },
+          "budgetValid": {
+            "passed": 3,
+            "total": 8,
+            "rate": 0.375
+          },
+          "ticketSum": {
+            "passed": 3,
+            "total": 8,
+            "rate": 0.375
+          },
+          "minimumExpenses": {
+            "passed": 3,
+            "total": 8,
+            "rate": 0.375
+          },
+          "transportReferenceCoverage": {
+            "passed": 3,
+            "total": 8,
+            "rate": 0.375
+          },
+          "requiredCategory": {
+            "passed": 1,
+            "total": 6,
+            "rate": 0.16666666666666666
+          },
+          "requiredPlace": {
+            "passed": 2,
+            "total": 2,
+            "rate": 1
+          },
+          "revisionScope": {
+            "passed": 2,
+            "total": 2,
+            "rate": 1
+          }
+        },
+        "failureCounts": {
+          "deliveredPlan": 5,
+          "identity": 5,
+          "travelMode": 5,
+          "completeSchedule": 5,
+          "groundedPlaces": 5,
+          "distinctPlaces": 5,
+          "attractionsPerDay": 5,
+          "visitAndTravelValues": 5,
+          "dailyTimeUsingReferenceRoutes": 5,
+          "routeAvailable": 5,
+          "reportedRouteConsistent": 5,
+          "travelNotUnderestimated": 5,
+          "ticketReferenceCoverage": 5,
+          "budgetValid": 5,
+          "ticketSum": 5,
+          "minimumExpenses": 5,
+          "transportReferenceCoverage": 5,
+          "requiredCategory": 5
+        },
+        "failureCountsOnDelivered": {},
+        "workflowFailureCounts": {
+          "AGENT_TIMEOUT": 1,
+          "MODEL_TIMEOUT": 2,
+          "AGENT_ROUND_LIMIT": 2
+        }
+      }
+    }
+  },
+  "oneShot": {
+    "before": {
+      "all": {
+        "caseCount": 40,
+        "positiveCases": 38,
+        "negativeCases": 2,
+        "completedPositive": 37,
+        "positivePassed": 13,
+        "positiveSuccessRate": 0.34210526315789475,
+        "correctRefusals": 2,
+        "correctRefusalRate": 1,
+        "safeNoPlanOnNegative": 2,
+        "hiddenRefusals": 0,
+        "infrastructureErrors": 0,
+        "latencyAllAttempts": {
+          "n": 40,
+          "p50Ms": 17842,
+          "p95Ms": 29154
+        },
+        "modelCalls": 40,
+        "attemptedModelRounds": 40,
+        "meanModelCalls": 1,
+        "toolCalls": 0,
+        "queuedModelCalls": 20,
+        "totalQueueWaitMs": 58553,
+        "forwardedLatencyExcludingQueue": {
+          "n": 40,
+          "p50Ms": 17033
+        },
+        "truncatedModelResponses": 0,
+        "usageKnownCalls": 40,
+        "totalUsageCalls": 40,
+        "knownInputTokens": 112683,
+        "knownOutputTokens": 25272,
+        "groundingRate": 1,
+        "reportedRouteCoverage": 0.10810810810810811,
+        "checks": {
+          "deliveredPlan": {
+            "passed": 37,
+            "total": 38,
+            "rate": 0.9736842105263158
+          },
+          "identity": {
+            "passed": 37,
+            "total": 38,
+            "rate": 0.9736842105263158
+          },
+          "travelMode": {
+            "passed": 37,
+            "total": 38,
+            "rate": 0.9736842105263158
+          },
+          "completeSchedule": {
+            "passed": 37,
+            "total": 38,
+            "rate": 0.9736842105263158
+          },
+          "groundedPlaces": {
+            "passed": 37,
+            "total": 38,
+            "rate": 0.9736842105263158
+          },
+          "distinctPlaces": {
+            "passed": 37,
+            "total": 38,
+            "rate": 0.9736842105263158
+          },
+          "attractionsPerDay": {
+            "passed": 37,
+            "total": 38,
+            "rate": 0.9736842105263158
+          },
+          "visitAndTravelValues": {
+            "passed": 36,
+            "total": 38,
+            "rate": 0.9473684210526315
+          },
+          "dailyTimeUsingReferenceRoutes": {
+            "passed": 37,
+            "total": 38,
+            "rate": 0.9736842105263158
+          },
+          "routeAvailable": {
+            "passed": 37,
+            "total": 38,
+            "rate": 0.9736842105263158
+          },
+          "reportedRouteConsistent": {
+            "passed": 34,
+            "total": 38,
+            "rate": 0.8947368421052632
+          },
+          "travelNotUnderestimated": {
+            "passed": 25,
+            "total": 38,
+            "rate": 0.6578947368421053
+          },
+          "ticketReferenceCoverage": {
+            "passed": 37,
+            "total": 38,
+            "rate": 0.9736842105263158
+          },
+          "budgetValid": {
+            "passed": 37,
+            "total": 38,
+            "rate": 0.9736842105263158
+          },
+          "ticketSum": {
+            "passed": 33,
+            "total": 38,
+            "rate": 0.868421052631579
+          },
+          "minimumExpenses": {
+            "passed": 28,
+            "total": 38,
+            "rate": 0.7368421052631579
+          },
+          "transportReferenceCoverage": {
+            "passed": 36,
+            "total": 38,
+            "rate": 0.9473684210526315
+          },
+          "requiredCategory": {
+            "passed": 20,
+            "total": 20,
+            "rate": 1
+          },
+          "requiredPlace": {
+            "passed": 7,
+            "total": 8,
+            "rate": 0.875
+          },
+          "revisionScope": {
+            "passed": 5,
+            "total": 8,
+            "rate": 0.625
+          }
+        },
+        "failureCounts": {
+          "travelNotUnderestimated": 13,
+          "minimumExpenses": 10,
+          "ticketSum": 5,
+          "reportedRouteConsistent": 4,
+          "revisionScope": 3,
+          "visitAndTravelValues": 2,
+          "transportReferenceCoverage": 2,
+          "deliveredPlan": 1,
+          "identity": 1,
+          "travelMode": 1,
+          "completeSchedule": 1,
+          "groundedPlaces": 1,
+          "distinctPlaces": 1,
+          "attractionsPerDay": 1,
+          "dailyTimeUsingReferenceRoutes": 1,
+          "routeAvailable": 1,
+          "ticketReferenceCoverage": 1,
+          "budgetValid": 1,
+          "requiredPlace": 1
+        },
+        "failureCountsOnDelivered": {
+          "travelNotUnderestimated": 12,
+          "minimumExpenses": 9,
+          "visitAndTravelValues": 1,
+          "transportReferenceCoverage": 1,
+          "ticketSum": 4,
+          "reportedRouteConsistent": 3,
+          "revisionScope": 2
+        },
+        "workflowFailureCounts": {}
+      },
+      "development": {
+        "caseCount": 30,
+        "positiveCases": 30,
+        "negativeCases": 0,
+        "completedPositive": 29,
+        "positivePassed": 10,
+        "positiveSuccessRate": 0.3333333333333333,
+        "correctRefusals": 0,
+        "correctRefusalRate": null,
+        "safeNoPlanOnNegative": 0,
+        "hiddenRefusals": 0,
+        "infrastructureErrors": 0,
+        "latencyAllAttempts": {
+          "n": 30,
+          "p50Ms": 17809,
+          "p95Ms": 32848
+        },
+        "modelCalls": 30,
+        "attemptedModelRounds": 30,
+        "meanModelCalls": 1,
+        "toolCalls": 0,
+        "queuedModelCalls": 16,
+        "totalQueueWaitMs": 51302,
+        "forwardedLatencyExcludingQueue": {
+          "n": 30,
+          "p50Ms": 17033
+        },
+        "truncatedModelResponses": 0,
+        "usageKnownCalls": 30,
+        "totalUsageCalls": 30,
+        "knownInputTokens": 85798,
+        "knownOutputTokens": 18227,
+        "groundingRate": 1,
+        "reportedRouteCoverage": 0.11538461538461539,
+        "checks": {
+          "deliveredPlan": {
+            "passed": 29,
+            "total": 30,
+            "rate": 0.9666666666666667
+          },
+          "identity": {
+            "passed": 29,
+            "total": 30,
+            "rate": 0.9666666666666667
+          },
+          "travelMode": {
+            "passed": 29,
+            "total": 30,
+            "rate": 0.9666666666666667
+          },
+          "completeSchedule": {
+            "passed": 29,
+            "total": 30,
+            "rate": 0.9666666666666667
+          },
+          "groundedPlaces": {
+            "passed": 29,
+            "total": 30,
+            "rate": 0.9666666666666667
+          },
+          "distinctPlaces": {
+            "passed": 29,
+            "total": 30,
+            "rate": 0.9666666666666667
+          },
+          "attractionsPerDay": {
+            "passed": 29,
+            "total": 30,
+            "rate": 0.9666666666666667
+          },
+          "visitAndTravelValues": {
+            "passed": 28,
+            "total": 30,
+            "rate": 0.9333333333333333
+          },
+          "dailyTimeUsingReferenceRoutes": {
+            "passed": 29,
+            "total": 30,
+            "rate": 0.9666666666666667
+          },
+          "routeAvailable": {
+            "passed": 29,
+            "total": 30,
+            "rate": 0.9666666666666667
+          },
+          "reportedRouteConsistent": {
+            "passed": 27,
+            "total": 30,
+            "rate": 0.9
+          },
+          "travelNotUnderestimated": {
+            "passed": 21,
+            "total": 30,
+            "rate": 0.7
+          },
+          "ticketReferenceCoverage": {
+            "passed": 29,
+            "total": 30,
+            "rate": 0.9666666666666667
+          },
+          "budgetValid": {
+            "passed": 29,
+            "total": 30,
+            "rate": 0.9666666666666667
+          },
+          "ticketSum": {
+            "passed": 27,
+            "total": 30,
+            "rate": 0.9
+          },
+          "minimumExpenses": {
+            "passed": 22,
+            "total": 30,
+            "rate": 0.7333333333333333
+          },
+          "transportReferenceCoverage": {
+            "passed": 28,
+            "total": 30,
+            "rate": 0.9333333333333333
+          },
+          "requiredCategory": {
+            "passed": 14,
+            "total": 14,
+            "rate": 1
+          },
+          "requiredPlace": {
+            "passed": 5,
+            "total": 6,
+            "rate": 0.8333333333333334
+          },
+          "revisionScope": {
+            "passed": 3,
+            "total": 6,
+            "rate": 0.5
+          }
+        },
+        "failureCounts": {
+          "travelNotUnderestimated": 9,
+          "minimumExpenses": 8,
+          "reportedRouteConsistent": 3,
+          "ticketSum": 3,
+          "revisionScope": 3,
+          "visitAndTravelValues": 2,
+          "transportReferenceCoverage": 2,
+          "deliveredPlan": 1,
+          "identity": 1,
+          "travelMode": 1,
+          "completeSchedule": 1,
+          "groundedPlaces": 1,
+          "distinctPlaces": 1,
+          "attractionsPerDay": 1,
+          "dailyTimeUsingReferenceRoutes": 1,
+          "routeAvailable": 1,
+          "ticketReferenceCoverage": 1,
+          "budgetValid": 1,
+          "requiredPlace": 1
+        },
+        "failureCountsOnDelivered": {
+          "travelNotUnderestimated": 8,
+          "minimumExpenses": 7,
+          "visitAndTravelValues": 1,
+          "transportReferenceCoverage": 1,
+          "reportedRouteConsistent": 2,
+          "ticketSum": 2,
+          "revisionScope": 2
+        },
+        "workflowFailureCounts": {}
+      },
+      "holdout": {
+        "caseCount": 10,
+        "positiveCases": 8,
+        "negativeCases": 2,
+        "completedPositive": 8,
+        "positivePassed": 3,
+        "positiveSuccessRate": 0.375,
+        "correctRefusals": 2,
+        "correctRefusalRate": 1,
+        "safeNoPlanOnNegative": 2,
+        "hiddenRefusals": 0,
+        "infrastructureErrors": 0,
+        "latencyAllAttempts": {
+          "n": 10,
+          "p50Ms": 19578,
+          "p95Ms": 29154
+        },
+        "modelCalls": 10,
+        "attemptedModelRounds": 10,
+        "meanModelCalls": 1,
+        "toolCalls": 0,
+        "queuedModelCalls": 4,
+        "totalQueueWaitMs": 7251,
+        "forwardedLatencyExcludingQueue": {
+          "n": 10,
+          "p50Ms": 16996
+        },
+        "truncatedModelResponses": 0,
+        "usageKnownCalls": 10,
+        "totalUsageCalls": 10,
+        "knownInputTokens": 26885,
+        "knownOutputTokens": 7045,
+        "groundingRate": 1,
+        "reportedRouteCoverage": 0.09090909090909091,
+        "checks": {
+          "deliveredPlan": {
+            "passed": 8,
+            "total": 8,
+            "rate": 1
+          },
+          "identity": {
+            "passed": 8,
+            "total": 8,
+            "rate": 1
+          },
+          "travelMode": {
+            "passed": 8,
+            "total": 8,
+            "rate": 1
+          },
+          "completeSchedule": {
+            "passed": 8,
+            "total": 8,
+            "rate": 1
+          },
+          "groundedPlaces": {
+            "passed": 8,
+            "total": 8,
+            "rate": 1
+          },
+          "distinctPlaces": {
+            "passed": 8,
+            "total": 8,
+            "rate": 1
+          },
+          "attractionsPerDay": {
+            "passed": 8,
+            "total": 8,
+            "rate": 1
+          },
+          "visitAndTravelValues": {
+            "passed": 8,
+            "total": 8,
+            "rate": 1
+          },
+          "dailyTimeUsingReferenceRoutes": {
+            "passed": 8,
+            "total": 8,
+            "rate": 1
+          },
+          "routeAvailable": {
+            "passed": 8,
+            "total": 8,
+            "rate": 1
+          },
+          "reportedRouteConsistent": {
+            "passed": 7,
+            "total": 8,
+            "rate": 0.875
+          },
+          "travelNotUnderestimated": {
+            "passed": 4,
+            "total": 8,
+            "rate": 0.5
+          },
+          "ticketReferenceCoverage": {
+            "passed": 8,
+            "total": 8,
+            "rate": 1
+          },
+          "budgetValid": {
+            "passed": 8,
+            "total": 8,
+            "rate": 1
+          },
+          "ticketSum": {
+            "passed": 6,
+            "total": 8,
+            "rate": 0.75
+          },
+          "minimumExpenses": {
+            "passed": 6,
+            "total": 8,
+            "rate": 0.75
+          },
+          "transportReferenceCoverage": {
+            "passed": 8,
+            "total": 8,
+            "rate": 1
+          },
+          "requiredCategory": {
+            "passed": 6,
+            "total": 6,
+            "rate": 1
+          },
+          "requiredPlace": {
+            "passed": 2,
+            "total": 2,
+            "rate": 1
+          },
+          "revisionScope": {
+            "passed": 2,
+            "total": 2,
+            "rate": 1
+          }
+        },
+        "failureCounts": {
+          "travelNotUnderestimated": 4,
+          "minimumExpenses": 2,
+          "ticketSum": 2,
+          "reportedRouteConsistent": 1
+        },
+        "failureCountsOnDelivered": {
+          "travelNotUnderestimated": 4,
+          "minimumExpenses": 2,
+          "ticketSum": 2,
+          "reportedRouteConsistent": 1
+        },
+        "workflowFailureCounts": {}
+      }
+    },
+    "after": {
+      "all": {
+        "caseCount": 40,
+        "positiveCases": 38,
+        "negativeCases": 2,
+        "completedPositive": 35,
+        "positivePassed": 15,
+        "positiveSuccessRate": 0.39473684210526316,
+        "correctRefusals": 2,
+        "correctRefusalRate": 1,
+        "safeNoPlanOnNegative": 2,
+        "hiddenRefusals": 0,
+        "infrastructureErrors": 0,
+        "latencyAllAttempts": {
+          "n": 40,
+          "p50Ms": 17578,
+          "p95Ms": 43406
+        },
+        "modelCalls": 40,
+        "attemptedModelRounds": 40,
+        "meanModelCalls": 1,
+        "toolCalls": 0,
+        "mapHttpRequests": 0,
+        "queuedModelCalls": 9,
+        "totalQueueWaitMs": 25398,
+        "forwardedLatencyExcludingQueue": {
+          "n": 40,
+          "p50Ms": 17574
+        },
+        "truncatedModelResponses": 0,
+        "usageKnownCalls": 40,
+        "totalUsageCalls": 40,
+        "knownInputTokens": 112683,
+        "knownOutputTokens": 24636,
+        "groundingRate": 1,
+        "reportedRouteCoverage": 0.07142857142857142,
+        "checks": {
+          "deliveredPlan": {
+            "passed": 35,
+            "total": 38,
+            "rate": 0.9210526315789473
+          },
+          "identity": {
+            "passed": 35,
+            "total": 38,
+            "rate": 0.9210526315789473
+          },
+          "travelMode": {
+            "passed": 35,
+            "total": 38,
+            "rate": 0.9210526315789473
+          },
+          "completeSchedule": {
+            "passed": 35,
+            "total": 38,
+            "rate": 0.9210526315789473
+          },
+          "groundedPlaces": {
+            "passed": 35,
+            "total": 38,
+            "rate": 0.9210526315789473
+          },
+          "distinctPlaces": {
+            "passed": 35,
+            "total": 38,
+            "rate": 0.9210526315789473
+          },
+          "attractionsPerDay": {
+            "passed": 35,
+            "total": 38,
+            "rate": 0.9210526315789473
+          },
+          "visitAndTravelValues": {
+            "passed": 34,
+            "total": 38,
+            "rate": 0.8947368421052632
+          },
+          "dailyTimeUsingReferenceRoutes": {
+            "passed": 35,
+            "total": 38,
+            "rate": 0.9210526315789473
+          },
+          "routeAvailable": {
+            "passed": 35,
+            "total": 38,
+            "rate": 0.9210526315789473
+          },
+          "reportedRouteConsistent": {
+            "passed": 32,
+            "total": 38,
+            "rate": 0.8421052631578947
+          },
+          "travelNotUnderestimated": {
+            "passed": 24,
+            "total": 38,
+            "rate": 0.631578947368421
+          },
+          "ticketReferenceCoverage": {
+            "passed": 35,
+            "total": 38,
+            "rate": 0.9210526315789473
+          },
+          "budgetValid": {
+            "passed": 35,
+            "total": 38,
+            "rate": 0.9210526315789473
+          },
+          "ticketSum": {
+            "passed": 32,
+            "total": 38,
+            "rate": 0.8421052631578947
+          },
+          "minimumExpenses": {
+            "passed": 27,
+            "total": 38,
+            "rate": 0.7105263157894737
+          },
+          "transportReferenceCoverage": {
+            "passed": 34,
+            "total": 38,
+            "rate": 0.8947368421052632
+          },
+          "requiredCategory": {
+            "passed": 20,
+            "total": 20,
+            "rate": 1
+          },
+          "requiredPlace": {
+            "passed": 5,
+            "total": 8,
+            "rate": 0.625
+          },
+          "revisionScope": {
+            "passed": 4,
+            "total": 8,
+            "rate": 0.5
+          }
+        },
+        "failureCounts": {
+          "travelNotUnderestimated": 14,
+          "minimumExpenses": 11,
+          "ticketSum": 6,
+          "reportedRouteConsistent": 6,
+          "visitAndTravelValues": 4,
+          "transportReferenceCoverage": 4,
+          "revisionScope": 4,
+          "deliveredPlan": 3,
+          "identity": 3,
+          "travelMode": 3,
+          "completeSchedule": 3,
+          "groundedPlaces": 3,
+          "distinctPlaces": 3,
+          "attractionsPerDay": 3,
+          "dailyTimeUsingReferenceRoutes": 3,
+          "routeAvailable": 3,
+          "ticketReferenceCoverage": 3,
+          "budgetValid": 3,
+          "requiredPlace": 3
+        },
+        "failureCountsOnDelivered": {
+          "minimumExpenses": 8,
+          "travelNotUnderestimated": 11,
+          "visitAndTravelValues": 1,
+          "ticketSum": 3,
+          "transportReferenceCoverage": 1,
+          "reportedRouteConsistent": 3,
+          "revisionScope": 1
+        },
+        "workflowFailureCounts": {}
+      },
+      "development": {
+        "caseCount": 30,
+        "positiveCases": 30,
+        "negativeCases": 0,
+        "completedPositive": 27,
+        "positivePassed": 12,
+        "positiveSuccessRate": 0.4,
+        "correctRefusals": 0,
+        "correctRefusalRate": null,
+        "safeNoPlanOnNegative": 0,
+        "hiddenRefusals": 0,
+        "infrastructureErrors": 0,
+        "latencyAllAttempts": {
+          "n": 30,
+          "p50Ms": 17578,
+          "p95Ms": 34301
+        },
+        "modelCalls": 30,
+        "attemptedModelRounds": 30,
+        "meanModelCalls": 1,
+        "toolCalls": 0,
+        "mapHttpRequests": 0,
+        "queuedModelCalls": 6,
+        "totalQueueWaitMs": 20566,
+        "forwardedLatencyExcludingQueue": {
+          "n": 30,
+          "p50Ms": 17574
+        },
+        "truncatedModelResponses": 0,
+        "usageKnownCalls": 30,
+        "totalUsageCalls": 30,
+        "knownInputTokens": 85798,
+        "knownOutputTokens": 17626,
+        "groundingRate": 1,
+        "reportedRouteCoverage": 0.0625,
+        "checks": {
+          "deliveredPlan": {
+            "passed": 27,
+            "total": 30,
+            "rate": 0.9
+          },
+          "identity": {
+            "passed": 27,
+            "total": 30,
+            "rate": 0.9
+          },
+          "travelMode": {
+            "passed": 27,
+            "total": 30,
+            "rate": 0.9
+          },
+          "completeSchedule": {
+            "passed": 27,
+            "total": 30,
+            "rate": 0.9
+          },
+          "groundedPlaces": {
+            "passed": 27,
+            "total": 30,
+            "rate": 0.9
+          },
+          "distinctPlaces": {
+            "passed": 27,
+            "total": 30,
+            "rate": 0.9
+          },
+          "attractionsPerDay": {
+            "passed": 27,
+            "total": 30,
+            "rate": 0.9
+          },
+          "visitAndTravelValues": {
+            "passed": 26,
+            "total": 30,
+            "rate": 0.8666666666666667
+          },
+          "dailyTimeUsingReferenceRoutes": {
+            "passed": 27,
+            "total": 30,
+            "rate": 0.9
+          },
+          "routeAvailable": {
+            "passed": 27,
+            "total": 30,
+            "rate": 0.9
+          },
+          "reportedRouteConsistent": {
+            "passed": 25,
+            "total": 30,
+            "rate": 0.8333333333333334
+          },
+          "travelNotUnderestimated": {
+            "passed": 20,
+            "total": 30,
+            "rate": 0.6666666666666666
+          },
+          "ticketReferenceCoverage": {
+            "passed": 27,
+            "total": 30,
+            "rate": 0.9
+          },
+          "budgetValid": {
+            "passed": 27,
+            "total": 30,
+            "rate": 0.9
+          },
+          "ticketSum": {
+            "passed": 26,
+            "total": 30,
+            "rate": 0.8666666666666667
+          },
+          "minimumExpenses": {
+            "passed": 19,
+            "total": 30,
+            "rate": 0.6333333333333333
+          },
+          "transportReferenceCoverage": {
+            "passed": 27,
+            "total": 30,
+            "rate": 0.9
+          },
+          "requiredCategory": {
+            "passed": 14,
+            "total": 14,
+            "rate": 1
+          },
+          "requiredPlace": {
+            "passed": 3,
+            "total": 6,
+            "rate": 0.5
+          },
+          "revisionScope": {
+            "passed": 2,
+            "total": 6,
+            "rate": 0.3333333333333333
+          }
+        },
+        "failureCounts": {
+          "minimumExpenses": 11,
+          "travelNotUnderestimated": 10,
+          "reportedRouteConsistent": 5,
+          "visitAndTravelValues": 4,
+          "ticketSum": 4,
+          "revisionScope": 4,
+          "deliveredPlan": 3,
+          "identity": 3,
+          "travelMode": 3,
+          "completeSchedule": 3,
+          "groundedPlaces": 3,
+          "distinctPlaces": 3,
+          "attractionsPerDay": 3,
+          "dailyTimeUsingReferenceRoutes": 3,
+          "routeAvailable": 3,
+          "ticketReferenceCoverage": 3,
+          "budgetValid": 3,
+          "transportReferenceCoverage": 3,
+          "requiredPlace": 3
+        },
+        "failureCountsOnDelivered": {
+          "minimumExpenses": 8,
+          "travelNotUnderestimated": 7,
+          "visitAndTravelValues": 1,
+          "reportedRouteConsistent": 2,
+          "revisionScope": 1,
+          "ticketSum": 1
+        },
+        "workflowFailureCounts": {}
+      },
+      "holdout": {
+        "caseCount": 10,
+        "positiveCases": 8,
+        "negativeCases": 2,
+        "completedPositive": 8,
+        "positivePassed": 3,
+        "positiveSuccessRate": 0.375,
+        "correctRefusals": 2,
+        "correctRefusalRate": 1,
+        "safeNoPlanOnNegative": 2,
+        "hiddenRefusals": 0,
+        "infrastructureErrors": 0,
+        "latencyAllAttempts": {
+          "n": 10,
+          "p50Ms": 17372,
+          "p95Ms": 47601
+        },
+        "modelCalls": 10,
+        "attemptedModelRounds": 10,
+        "meanModelCalls": 1,
+        "toolCalls": 0,
+        "mapHttpRequests": 0,
+        "queuedModelCalls": 3,
+        "totalQueueWaitMs": 4832,
+        "forwardedLatencyExcludingQueue": {
+          "n": 10,
+          "p50Ms": 17370
+        },
+        "truncatedModelResponses": 0,
+        "usageKnownCalls": 10,
+        "totalUsageCalls": 10,
+        "knownInputTokens": 26885,
+        "knownOutputTokens": 7010,
+        "groundingRate": 1,
+        "reportedRouteCoverage": 0.09090909090909091,
+        "checks": {
+          "deliveredPlan": {
+            "passed": 8,
+            "total": 8,
+            "rate": 1
+          },
+          "identity": {
+            "passed": 8,
+            "total": 8,
+            "rate": 1
+          },
+          "travelMode": {
+            "passed": 8,
+            "total": 8,
+            "rate": 1
+          },
+          "completeSchedule": {
+            "passed": 8,
+            "total": 8,
+            "rate": 1
+          },
+          "groundedPlaces": {
+            "passed": 8,
+            "total": 8,
+            "rate": 1
+          },
+          "distinctPlaces": {
+            "passed": 8,
+            "total": 8,
+            "rate": 1
+          },
+          "attractionsPerDay": {
+            "passed": 8,
+            "total": 8,
+            "rate": 1
+          },
+          "visitAndTravelValues": {
+            "passed": 8,
+            "total": 8,
+            "rate": 1
+          },
+          "dailyTimeUsingReferenceRoutes": {
+            "passed": 8,
+            "total": 8,
+            "rate": 1
+          },
+          "routeAvailable": {
+            "passed": 8,
+            "total": 8,
+            "rate": 1
+          },
+          "reportedRouteConsistent": {
+            "passed": 7,
+            "total": 8,
+            "rate": 0.875
+          },
+          "travelNotUnderestimated": {
+            "passed": 4,
+            "total": 8,
+            "rate": 0.5
+          },
+          "ticketReferenceCoverage": {
+            "passed": 8,
+            "total": 8,
+            "rate": 1
+          },
+          "budgetValid": {
+            "passed": 8,
+            "total": 8,
+            "rate": 1
+          },
+          "ticketSum": {
+            "passed": 6,
+            "total": 8,
+            "rate": 0.75
+          },
+          "minimumExpenses": {
+            "passed": 8,
+            "total": 8,
+            "rate": 1
+          },
+          "transportReferenceCoverage": {
+            "passed": 7,
+            "total": 8,
+            "rate": 0.875
+          },
+          "requiredCategory": {
+            "passed": 6,
+            "total": 6,
+            "rate": 1
+          },
+          "requiredPlace": {
+            "passed": 2,
+            "total": 2,
+            "rate": 1
+          },
+          "revisionScope": {
+            "passed": 2,
+            "total": 2,
+            "rate": 1
+          }
+        },
+        "failureCounts": {
+          "travelNotUnderestimated": 4,
+          "ticketSum": 2,
+          "transportReferenceCoverage": 1,
+          "reportedRouteConsistent": 1
+        },
+        "failureCountsOnDelivered": {
+          "ticketSum": 2,
+          "travelNotUnderestimated": 4,
+          "transportReferenceCoverage": 1,
+          "reportedRouteConsistent": 1
+        },
+        "workflowFailureCounts": {}
+      }
+    }
+  }
+}

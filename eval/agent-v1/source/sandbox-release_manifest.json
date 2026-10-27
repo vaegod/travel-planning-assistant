@@ -1,0 +1,137 @@
+{
+  "schema_version": 1,
+  "release_version": "2026.08.2",
+  "languages": [
+    "zh",
+    "en"
+  ],
+  "source_file_count": {
+    "zh": 132,
+    "en": 132
+  },
+  "table_row_counts": {
+    "zh": {
+      "attractions": 3413,
+      "restaurants": 4655,
+      "accommodations": 3866,
+      "trains": 5345,
+      "flights": 720,
+      "poi": 12172,
+      "subway_stations": 3635
+    },
+    "en": {
+      "attractions": 3413,
+      "restaurants": 4655,
+      "accommodations": 3866,
+      "trains": 5345,
+      "flights": 720,
+      "poi": 12172,
+      "subway_stations": 3635
+    }
+  },
+  "raw_archives": {
+    "zh": "raw/ChinaTravel_sandbox_zh.zip",
+    "en": "raw/ChinaTravel_sandbox_en.zip"
+  },
+  "validation": {
+    "parallel_source_layout": "passed",
+    "canonical_english_concepts": "passed",
+    "parquet_roundtrip": "passed",
+    "bilingual_row_counts": "passed",
+    "data_quality_repairs": "passed"
+  },
+  "files": {
+    "README.md": {
+      "size": 5422,
+      "sha256": "4ee1dc80a8be07827baf650185615f2789620801f8d344a62fbefa1ed3bdd5d9"
+    },
+    "data/en/accommodations.parquet": {
+      "size": 210185,
+      "sha256": "8e1b61f647e9a0ec8b7ef9695fb8eecbda8ffa421a890bbc8cf3331b6bb1a113"
+    },
+    "data/en/attractions.parquet": {
+      "size": 125736,
+      "sha256": "413ddc7a9d9c6e4b41f16faf506e61b86d295fd602ded350a2d4388bdcd71079"
+    },
+    "data/en/flights.parquet": {
+      "size": 15461,
+      "sha256": "34118a14d5b4615002f61ed46b0a49700fd79fa689f1e9f21bb95f8debec508b"
+    },
+    "data/en/poi.parquet": {
+      "size": 426301,
+      "sha256": "c22de285f79c636369f5cc1d3c7df4ca1595c34d2674cfe3e87fc63af7420663"
+    },
+    "data/en/restaurants.parquet": {
+      "size": 331613,
+      "sha256": "538c51244abb35054c905742de0efb974390062bd1f51c8ec1107f046cc11c24"
+    },
+    "data/en/subway_stations.parquet": {
+      "size": 83186,
+      "sha256": "fe37a47e771806bb4f7f13f5da73f018590fa6af4dc4665d1670a836822e6b02"
+    },
+    "data/en/trains.parquet": {
+      "size": 58373,
+      "sha256": "e144dbf4f0119f759891dc688f2627f89b42a4efb5a87c16083236d31ba22b93"
+    },
+    "data/zh/accommodations.parquet": {
+      "size": 208340,
+      "sha256": "e316a06aa94107d6e535cb02f120fcdbef6120c5ee00c21862c25460c4d742d7"
+    },
+    "data/zh/attractions.parquet": {
+      "size": 121679,
+      "sha256": "aa6ebb96f4f31b47fc90f1cb8b95d2d164202f99c1f0dac3398058cbb0e9ee7b"
+    },
+    "data/zh/flights.parquet": {
+      "size": 15301,
+      "sha256": "e965e5db07cc0070460fc5fbbe400d7fa25bc028911d906faae329346743a987"
+    },
+    "data/zh/poi.parquet": {
+      "size": 426387,
+      "sha256": "2c0cde306e15add7462fc0991ced1b133ca87277f842937a561538e1d101ecfd"
+    },
+    "data/zh/restaurants.parquet": {
+      "size": 306558,
+      "sha256": "781893f1f8ae74af3dae2176b60665d12be41990163b25c579eff2ad84f3aaa9"
+    },
+    "data/zh/subway_stations.parquet": {
+      "size": 82081,
+      "sha256": "5259215b88ed360a050262cda6ffaf1a1e84912abd36942108525d734e16f42e"
+    },
+    "data/zh/trains.parquet": {
+      "size": 58119,
+      "sha256": "e3be634fd1751b7bcc0df2d33345d0ffccd212871cf3f86c07c56d1a57af396f"
+    },
+    "manifests/DATA_QUALITY_FIXES_2026_08.md": {
+      "size": 1442,
+      "sha256": "4aea863fdbaf4db79547453fa4ed97dc3b9811c08a062c3384708e0c90615423"
+    },
+    "manifests/ENGLISH_FIXES.md": {
+      "size": 3339,
+      "sha256": "364952d26be05059b3c1f62fff5ea766dc816369a5b155922aa0f13abfc26931"
+    },
+    "manifests/SHA256SUMS.en": {
+      "size": 14995,
+      "sha256": "10284aa8ffea9973a38465a418ccddef0af11d00b922583cc2e4ca60e970a154"
+    },
+    "manifests/SHA256SUMS.zh": {
+      "size": 14995,
+      "sha256": "43fe164ea607708e1d3bf1663a73b321ef00eff429a04d5a2edb03bea1d949e3"
+    },
+    "manifests/data_quality_repairs_2026_08.json": {
+      "size": 1328,
+      "sha256": "70f2e1d5ad8a52aedebf959ea8a3c84835d162f2c44893e825f676b363bdbb83"
+    },
+    "manifests/english_manifest.json": {
+      "size": 6860,
+      "sha256": "f82dd016c38644a030f9a290776451a4b61695bb0d22e05dec2e27076b6b2a5e"
+    },
+    "raw/ChinaTravel_sandbox_en.zip": {
+      "size": 1034319,
+      "sha256": "311e8beb69efeed032d5651b3e597e97c8b2120f6858b788bfa37658cc966c77"
+    },
+    "raw/ChinaTravel_sandbox_zh.zip": {
+      "size": 1027737,
+      "sha256": "42d95ff7b8f96574d0ee972ca77599258e4854a219617868caeb462b79c715bd"
+    }
+  }
+}

@@ -8,6 +8,7 @@ public class TravelRecommendVO {
   private Boolean success;
   private String city;
   private Integer days;
+  private String travelMode;
   private java.math.BigDecimal totalBudget;
   private List<DailyItinerary> dailyItinerary;
   private BudgetBreakdown budgetBreakdown;
@@ -18,6 +19,7 @@ public class TravelRecommendVO {
   private java.math.BigDecimal estimatedTotal;
   private java.math.BigDecimal remainingBudget;
   private org.example.traveljavaserver.planning.PlanTypes.Evidence evidence;
+  private org.example.traveljavaserver.agent.AgentTypes.Evidence agentEvidence;
 
   @Data
   public static class DailyItinerary {
@@ -43,6 +45,7 @@ public class TravelRecommendVO {
     private String sourceUrl;
     private String queriedAt;
     private Integer visitMinutes;
+    private Integer travelMinutes;
     private java.math.BigDecimal estimatedCost;
     private org.example.traveljavaserver.planning.PlanTypes.Leg route;
     private Boolean rest;

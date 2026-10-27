@@ -1,0 +1,193 @@
+{
+  "kind": "offline socket fault injection; no real model calls; never included in model-quality scores",
+  "transportTestCount": 8,
+  "transportTestsPassed": true,
+  "recoveredScenarios": [
+    {
+      "scenario": "concurrent-test",
+      "physicalAttempts": 2,
+      "extraAttempts": 1,
+      "failedWaitMs": 16,
+      "recoveryDurationMs": 5,
+      "requests": [
+        {
+          "round": 1,
+          "status": "MODEL_UNAVAILABLE",
+          "phase": "response_body",
+          "exceptionType": null,
+          "connectionReused": false,
+          "requestSent": true,
+          "responseStarted": true,
+          "recovery": false,
+          "durationMs": 16
+        },
+        {
+          "round": 2,
+          "status": "success",
+          "phase": "response_body",
+          "exceptionType": null,
+          "connectionReused": false,
+          "requestSent": true,
+          "responseStarted": true,
+          "recovery": true,
+          "durationMs": 5
+        }
+      ]
+    },
+    {
+      "scenario": "concurrent-test",
+      "physicalAttempts": 2,
+      "extraAttempts": 1,
+      "failedWaitMs": 18,
+      "recoveryDurationMs": 3,
+      "requests": [
+        {
+          "round": 1,
+          "status": "MODEL_UNAVAILABLE",
+          "phase": "response_body",
+          "exceptionType": null,
+          "connectionReused": false,
+          "requestSent": true,
+          "responseStarted": true,
+          "recovery": false,
+          "durationMs": 18
+        },
+        {
+          "round": 2,
+          "status": "success",
+          "phase": "response_body",
+          "exceptionType": null,
+          "connectionReused": false,
+          "requestSent": true,
+          "responseStarted": true,
+          "recovery": true,
+          "durationMs": 3
+        }
+      ]
+    },
+    {
+      "scenario": "transport-test",
+      "physicalAttempts": 2,
+      "extraAttempts": 1,
+      "failedWaitMs": 251,
+      "recoveryDurationMs": 1,
+      "requests": [
+        {
+          "round": 1,
+          "status": "MODEL_TIMEOUT",
+          "phase": "awaiting_response",
+          "exceptionType": "SocketException",
+          "connectionReused": false,
+          "requestSent": true,
+          "responseStarted": false,
+          "recovery": false,
+          "durationMs": 251
+        },
+        {
+          "round": 2,
+          "status": "success",
+          "phase": "response_body",
+          "exceptionType": null,
+          "connectionReused": false,
+          "requestSent": true,
+          "responseStarted": true,
+          "recovery": true,
+          "durationMs": 1
+        }
+      ]
+    },
+    {
+      "scenario": "body-loss-test",
+      "physicalAttempts": 2,
+      "extraAttempts": 1,
+      "failedWaitMs": 1,
+      "recoveryDurationMs": 1,
+      "requests": [
+        {
+          "round": 1,
+          "status": "MODEL_CONNECTION_ERROR",
+          "phase": "response_body",
+          "exceptionType": "ProtocolException",
+          "connectionReused": false,
+          "requestSent": true,
+          "responseStarted": true,
+          "recovery": false,
+          "durationMs": 1
+        },
+        {
+          "round": 2,
+          "status": "success",
+          "phase": "response_body",
+          "exceptionType": null,
+          "connectionReused": false,
+          "requestSent": true,
+          "responseStarted": true,
+          "recovery": true,
+          "durationMs": 1
+        }
+      ]
+    },
+    {
+      "scenario": "travel-agent-v7-recovery-ticket-constraints",
+      "physicalAttempts": 3,
+      "extraAttempts": 1,
+      "failedWaitMs": 1,
+      "recoveryDurationMs": 1,
+      "requests": [
+        {
+          "round": 1,
+          "status": "success",
+          "phase": "response_body",
+          "exceptionType": null,
+          "connectionReused": false,
+          "requestSent": true,
+          "responseStarted": true,
+          "recovery": false,
+          "durationMs": 2
+        },
+        {
+          "round": 2,
+          "status": "MODEL_CONNECTION_ERROR",
+          "phase": "awaiting_response",
+          "exceptionType": "EOFException",
+          "connectionReused": true,
+          "requestSent": true,
+          "responseStarted": false,
+          "recovery": false,
+          "durationMs": 1
+        },
+        {
+          "round": 3,
+          "status": "success",
+          "phase": "response_body",
+          "exceptionType": null,
+          "connectionReused": false,
+          "requestSent": true,
+          "responseStarted": true,
+          "recovery": true,
+          "durationMs": 1
+        }
+      ]
+    }
+  ],
+  "oldPoolCounterexample": {
+    "recoveryRequests": [
+      {
+        "status": "MODEL_CONNECTION_ERROR",
+        "connectionReused": false,
+        "phase": "response_body"
+      },
+      {
+        "status": "MODEL_CONNECTION_ERROR",
+        "connectionReused": true,
+        "phase": "response_body"
+      }
+    ],
+    "expectedFailure": true
+  },
+  "evidenceSha256": {
+    "currentLog": "9b4a79c07d8f9d1901f3776bcefc448f3c16b331b3926a7b7fec38442b7d5f21",
+    "counterexampleLog": "51efc2fb4fb9b91dba0682b0f1173f7fd44b865d7a1e73b95c7fa2590d327cbf",
+    "currentLLMutils": "6ca55425002744955d87af0520a31565411483f72f0c51daa019f5a07b2ca53e"
+  }
+}

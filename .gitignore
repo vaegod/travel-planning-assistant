@@ -18,8 +18,14 @@ deploy/compose.env
 docs/*
 !docs/screenshots/
 !docs/RUNNING.md
+!docs/AGENT.md
 output/
 **/*.zip
 **/*.db
 **/*.db-wal
 **/*.db-shm
+
+# Locally generated Python caches and non-final evaluation fixtures
+**/__pycache__/
+eval/agent-v1/results/*fixture*/
+eval/agent-v1/results/full-live-v10-reliability/

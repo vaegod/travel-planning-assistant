@@ -1,0 +1,8 @@
+# Preserve measured JSON bytes exactly, including the source dataset's CRLF.
+*.json -text
+*.mjs text eol=lf
+*.md text eol=lf
+# Snapshot hashes cover the exact upstream bytes, including original CRLF.
+source/** -text
+# Preserve byte hashes of archived Java/YAML/JS as originally measured.
+baselines/** -text

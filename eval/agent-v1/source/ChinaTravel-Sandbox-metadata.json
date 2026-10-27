@@ -1,0 +1,215 @@
+{
+  "_id": "6a82b9279a10ec9cac9b3bd3",
+  "id": "LAMDA-NeSy/ChinaTravel-Sandbox",
+  "author": "LAMDA-NeSy",
+  "sha": "885c7dad143bf040238ddca263f4788d582ee0f4",
+  "lastModified": "2026-09-15T13:07:03.000Z",
+  "private": false,
+  "gated": false,
+  "disabled": false,
+  "tags": [
+    "language:zh",
+    "language:en",
+    "license:cc-by-4.0",
+    "size_categories:10K<n<100K",
+    "format:parquet",
+    "modality:tabular",
+    "modality:text",
+    "library:datasets",
+    "library:pandas",
+    "library:polars",
+    "library:mlcroissant",
+    "arxiv:2412.13682",
+    "region:us",
+    "travel-planning",
+    "language-agents",
+    "benchmark"
+  ],
+  "description": "\n\t\n\t\t\n\t\n\t\n\t\tChinaTravel Sandbox Environment Database\n\t\n\nThis dataset is licensed under Creative Commons Attribution 4.0 International (CC BY 4.0).\nEnglish | 简体中文\nRelease version: 2026.08.2\n\n\t\n\t\t\n\t\n\t\n\t\tEnglish\n\t\n\nThis dataset contains the bilingual static sandbox used by\nChinaTravel. It is a companion to\nthe ChinaTravel query dataset\nand an artifact of the\nChinaTravel paper.\nThe raw ZIP snapshots preserve the exact directory layout expected by the\nChinaTravel evaluator. Viewer-friendly Parquet… See the full description on the dataset page: https://huggingface.co/datasets/LAMDA-NeSy/ChinaTravel-Sandbox.",
+  "downloads": 625,
+  "likes": 0,
+  "cardData": {
+    "license": "cc-by-4.0",
+    "language": [
+      "zh",
+      "en"
+    ],
+    "tags": [
+      "travel-planning",
+      "language-agents",
+      "benchmark"
+    ],
+    "configs": [
+      {
+        "config_name": "attractions",
+        "data_files": [
+          {
+            "split": "zh",
+            "path": "data/zh/attractions.parquet"
+          },
+          {
+            "split": "en",
+            "path": "data/en/attractions.parquet"
+          }
+        ]
+      },
+      {
+        "config_name": "restaurants",
+        "data_files": [
+          {
+            "split": "zh",
+            "path": "data/zh/restaurants.parquet"
+          },
+          {
+            "split": "en",
+            "path": "data/en/restaurants.parquet"
+          }
+        ]
+      },
+      {
+        "config_name": "accommodations",
+        "data_files": [
+          {
+            "split": "zh",
+            "path": "data/zh/accommodations.parquet"
+          },
+          {
+            "split": "en",
+            "path": "data/en/accommodations.parquet"
+          }
+        ]
+      },
+      {
+        "config_name": "trains",
+        "data_files": [
+          {
+            "split": "zh",
+            "path": "data/zh/trains.parquet"
+          },
+          {
+            "split": "en",
+            "path": "data/en/trains.parquet"
+          }
+        ]
+      },
+      {
+        "config_name": "flights",
+        "data_files": [
+          {
+            "split": "zh",
+            "path": "data/zh/flights.parquet"
+          },
+          {
+            "split": "en",
+            "path": "data/en/flights.parquet"
+          }
+        ]
+      },
+      {
+        "config_name": "poi",
+        "data_files": [
+          {
+            "split": "zh",
+            "path": "data/zh/poi.parquet"
+          },
+          {
+            "split": "en",
+            "path": "data/en/poi.parquet"
+          }
+        ]
+      },
+      {
+        "config_name": "subway_stations",
+        "data_files": [
+          {
+            "split": "zh",
+            "path": "data/zh/subway_stations.parquet"
+          },
+          {
+            "split": "en",
+            "path": "data/en/subway_stations.parquet"
+          }
+        ]
+      }
+    ]
+  },
+  "siblings": [
+    {
+      "rfilename": ".gitattributes"
+    },
+    {
+      "rfilename": "README.md"
+    },
+    {
+      "rfilename": "data/en/accommodations.parquet"
+    },
+    {
+      "rfilename": "data/en/attractions.parquet"
+    },
+    {
+      "rfilename": "data/en/flights.parquet"
+    },
+    {
+      "rfilename": "data/en/poi.parquet"
+    },
+    {
+      "rfilename": "data/en/restaurants.parquet"
+    },
+    {
+      "rfilename": "data/en/subway_stations.parquet"
+    },
+    {
+      "rfilename": "data/en/trains.parquet"
+    },
+    {
+      "rfilename": "data/zh/accommodations.parquet"
+    },
+    {
+      "rfilename": "data/zh/attractions.parquet"
+    },
+    {
+      "rfilename": "data/zh/flights.parquet"
+    },
+    {
+      "rfilename": "data/zh/poi.parquet"
+    },
+    {
+      "rfilename": "data/zh/restaurants.parquet"
+    },
+    {
+      "rfilename": "data/zh/subway_stations.parquet"
+    },
+    {
+      "rfilename": "data/zh/trains.parquet"
+    },
+    {
+      "rfilename": "manifests/DATA_QUALITY_FIXES_2026_08.md"
+    },
+    {
+      "rfilename": "manifests/ENGLISH_FIXES.md"
+    },
+    {
+      "rfilename": "manifests/SHA256SUMS.en"
+    },
+    {
+      "rfilename": "manifests/SHA256SUMS.zh"
+    },
+    {
+      "rfilename": "manifests/data_quality_repairs_2026_08.json"
+    },
+    {
+      "rfilename": "manifests/english_manifest.json"
+    },
+    {
+      "rfilename": "raw/ChinaTravel_sandbox_en.zip"
+    },
+    {
+      "rfilename": "raw/ChinaTravel_sandbox_zh.zip"
+    },
+    {
+      "rfilename": "release_manifest.json"
+    }
+  ],
+  "createdAt": "2026-08-17T07:32:55.000Z",
+  "usedStorage": 8175159
+}

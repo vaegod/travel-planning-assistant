@@ -3,6 +3,7 @@ import { auth, ensureAuth } from '../utils/auth'
 import { knowledgeExtensionRoutes } from './extensions'
 
 const routes = [
+    { path:'/agent/:id?', name:'Agent', component:()=>import('../views/Agent.vue') },
     ...knowledgeExtensionRoutes(import.meta.env.VITE_KNOWLEDGE_EXTENSION === 'true'),
     {path:'/planning/:id',redirect:'/'},
     { path:'/login', name:'Login', component:()=>import('../views/Login.vue'), meta:{public:true} },

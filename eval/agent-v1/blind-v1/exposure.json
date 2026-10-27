@@ -1,0 +1,7 @@
+{
+  "runId": "blind-live-v10-20",
+  "exposedAt": "2026-10-25T07:21:34.465Z",
+  "meaning": "First formal model execution starts now. These cases cease to be an unseen holdout after this run.",
+  "attemptsPerCaseGroup": 1,
+  "wholeTaskReruns": false
+}

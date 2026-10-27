@@ -1,0 +1,38 @@
+{
+  "version": "blind-v1-preregistered-plan",
+  "baselineRun": "full-live-v10-reliability-final",
+  "seed": 20261025,
+  "caseCount": 20,
+  "caseGroups": 40,
+  "applicationPolicy": "Keep every v10 measured source file, production prompt, scorer, shared contract, model setting and JAR byte unchanged. Add isolated blind harness files only.",
+  "selectionPolicy": "Select unused Human query UIDs by city and exact duration, prefer single-person then SHA256(seed/city/days/uid). Normalize to one-person destination-only budget 1000 CNY/day, explicitly disclose discarded original constraints. No model outputs are consulted.",
+  "poiPolicy": "Exclude every old city/sourceRowId, normalized name and rounded coordinate. Use the same source eligibility and route formula as v10; choose the densest deterministic eight-point cluster satisfying every walking edge <=25 minutes. No case-specific POI selection.",
+  "revealPolicy": "Static independent feasibility/source checks only before live execution; no Agent fixture output, live pilot or prompt tuning on these 20 cases. One formal run, one attempt per case/group, v10 bounded transport recovery retained and fully metered. Mark the set exposed when live execution begins.",
+  "interpretation": "Unseen adapted inputs and POIs relative to project debugging, not necessarily absent from model pretraining. Same ten cities and synthetic route assumptions. Compare disjoint datasets descriptively, never as paired optimization gains.",
+  "plans": [
+    {"city":"杭州","days":2,"travelMode":"driving"},
+    {"city":"深圳","days":3,"travelMode":"walking"},
+    {"city":"成都","days":2,"travelMode":"driving"},
+    {"city":"南京","days":4,"travelMode":"transit"},
+    {"city":"上海","days":3,"travelMode":"walking"},
+    {"city":"武汉","days":2,"travelMode":"driving"},
+    {"city":"广州","days":4,"travelMode":"walking"},
+    {"city":"重庆","days":1,"travelMode":"transit"},
+    {"city":"苏州","days":3,"travelMode":"driving"},
+    {"city":"北京","days":4,"travelMode":"walking"},
+    {"city":"杭州","days":4,"travelMode":"transit"},
+    {"city":"深圳","days":2,"travelMode":"driving"},
+    {"city":"成都","days":3,"travelMode":"walking"},
+    {"city":"南京","days":2,"travelMode":"transit"}
+  ],
+  "revisions": [
+    {"city":"上海","days":2,"travelMode":"driving","day":2,"slot":"morning","targetIndex":4},
+    {"city":"北京","days":3,"travelMode":"transit","day":1,"slot":"afternoon","targetIndex":6},
+    {"city":"广州","days":2,"travelMode":"walking","day":1,"slot":"evening","targetIndex":4},
+    {"city":"重庆","days":2,"travelMode":"transit","day":2,"slot":"day","targetIndex":5}
+  ],
+  "refusals": [
+    {"city":"深圳","days":4,"travelMode":"driving","reason":"budget","budget":999},
+    {"city":"苏州","days":2,"travelMode":"transit","reason":"route","budget":2000}
+  ]
+}

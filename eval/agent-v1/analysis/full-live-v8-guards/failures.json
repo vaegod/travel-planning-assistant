@@ -1,0 +1,617 @@
+{
+  "run": "full-live-v8-guards",
+  "resultsSha256": "67fb847ae9866901bbc72203db06a5d10840be99d0414be154fa05cbee29a80b",
+  "failedPlanningCases": 7,
+  "terminalErrors": {
+    "AGENT_ROUND_LIMIT": 1,
+    "MODEL_TIMEOUT": 2,
+    "INDEPENDENT_RULE_FAILURE": 1,
+    "AGENT_REPAIR_LIMIT": 1,
+    "AGENT_NO_VALID_DRAFT": 1,
+    "MODEL_CONNECTION_ERROR": 1
+  },
+  "overlappingEvidence": {
+    "mapRequestFailed": 0,
+    "malformedNestedJson": 0,
+    "restSlotFeedback": 0,
+    "modelTimeout": 2,
+    "taskTimeout": 0
+  },
+  "cases": [
+    {
+      "caseId": "CT06",
+      "errorCode": "AGENT_ROUND_LIMIT",
+      "status": "ERROR",
+      "durationMs": 132302,
+      "modelCalls": 8,
+      "attemptedModelRounds": 8,
+      "queryCount": 7,
+      "submissions": 0,
+      "plainTextReplies": 0,
+      "referenceVisits": [],
+      "inputTokens": 52183,
+      "outputTokens": 426,
+      "queueWaitMs": 40938,
+      "mapHttpRequests": 7,
+      "issues": [],
+      "independentFailures": [
+        "deliveredPlan",
+        "identity",
+        "travelMode",
+        "completeSchedule",
+        "groundedPlaces",
+        "distinctPlaces",
+        "attractionsPerDay",
+        "visitAndTravelValues",
+        "dailyTimeUsingReferenceRoutes",
+        "routeAvailable",
+        "reportedRouteConsistent",
+        "travelNotUnderestimated",
+        "ticketReferenceCoverage",
+        "budgetValid",
+        "ticketSum",
+        "minimumExpenses",
+        "transportReferenceCoverage"
+      ],
+      "malformedDrafts": 0,
+      "rounds": [
+        {
+          "round": 1,
+          "httpStatus": 200,
+          "queueWaitMs": 5003,
+          "durationMs": 21545,
+          "calls": [
+            {
+              "tool": "estimate_budget",
+              "argumentsBytes": 81
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "httpStatus": 200,
+          "queueWaitMs": 0,
+          "durationMs": 42201,
+          "calls": [
+            {
+              "tool": "search_places",
+              "argumentsBytes": 25
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "httpStatus": 200,
+          "queueWaitMs": 0,
+          "durationMs": 2771,
+          "calls": [
+            {
+              "tool": "route_places",
+              "argumentsBytes": 60
+            }
+          ]
+        },
+        {
+          "round": 4,
+          "httpStatus": 200,
+          "queueWaitMs": 2235,
+          "durationMs": 8291,
+          "calls": [
+            {
+              "tool": "route_places",
+              "argumentsBytes": 62
+            }
+          ]
+        },
+        {
+          "round": 5,
+          "httpStatus": 200,
+          "queueWaitMs": 0,
+          "durationMs": 10822,
+          "calls": [
+            {
+              "tool": "route_places",
+              "argumentsBytes": 62
+            }
+          ]
+        },
+        {
+          "round": 6,
+          "httpStatus": 200,
+          "queueWaitMs": 0,
+          "durationMs": 6655,
+          "calls": [
+            {
+              "tool": "route_places",
+              "argumentsBytes": 62
+            }
+          ]
+        },
+        {
+          "round": 7,
+          "httpStatus": 200,
+          "queueWaitMs": 0,
+          "durationMs": 2748,
+          "calls": [
+            {
+              "tool": "route_places",
+              "argumentsBytes": 61
+            }
+          ]
+        },
+        {
+          "round": 8,
+          "httpStatus": 200,
+          "queueWaitMs": 33700,
+          "durationMs": 36809,
+          "calls": [
+            {
+              "tool": "route_places",
+              "argumentsBytes": 61
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "caseId": "CT09",
+      "errorCode": "MODEL_TIMEOUT",
+      "status": "ERROR",
+      "durationMs": 128427,
+      "modelCalls": 2,
+      "attemptedModelRounds": 2,
+      "queryCount": 0,
+      "submissions": 0,
+      "plainTextReplies": 0,
+      "referenceVisits": [],
+      "inputTokens": 5413,
+      "outputTokens": 80,
+      "queueWaitMs": 7510,
+      "mapHttpRequests": 0,
+      "issues": [],
+      "independentFailures": [
+        "deliveredPlan",
+        "identity",
+        "travelMode",
+        "completeSchedule",
+        "groundedPlaces",
+        "distinctPlaces",
+        "attractionsPerDay",
+        "visitAndTravelValues",
+        "dailyTimeUsingReferenceRoutes",
+        "routeAvailable",
+        "reportedRouteConsistent",
+        "travelNotUnderestimated",
+        "ticketReferenceCoverage",
+        "budgetValid",
+        "ticketSum",
+        "minimumExpenses",
+        "transportReferenceCoverage"
+      ],
+      "malformedDrafts": 0,
+      "rounds": [
+        {
+          "round": 1,
+          "httpStatus": 200,
+          "queueWaitMs": 4995,
+          "durationMs": 8326,
+          "calls": [
+            {
+              "tool": "estimate_budget",
+              "argumentsBytes": 82
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "httpStatus": 504,
+          "queueWaitMs": 2515,
+          "durationMs": 120006,
+          "calls": []
+        }
+      ]
+    },
+    {
+      "caseId": "CT14",
+      "errorCode": "MODEL_TIMEOUT",
+      "status": "ERROR",
+      "durationMs": 163965,
+      "modelCalls": 3,
+      "attemptedModelRounds": 3,
+      "queryCount": 1,
+      "submissions": 0,
+      "plainTextReplies": 0,
+      "referenceVisits": [],
+      "inputTokens": 10855,
+      "outputTokens": 121,
+      "queueWaitMs": 12576,
+      "mapHttpRequests": 1,
+      "issues": [],
+      "independentFailures": [
+        "deliveredPlan",
+        "identity",
+        "travelMode",
+        "completeSchedule",
+        "groundedPlaces",
+        "distinctPlaces",
+        "attractionsPerDay",
+        "visitAndTravelValues",
+        "dailyTimeUsingReferenceRoutes",
+        "routeAvailable",
+        "reportedRouteConsistent",
+        "travelNotUnderestimated",
+        "ticketReferenceCoverage",
+        "budgetValid",
+        "ticketSum",
+        "minimumExpenses",
+        "transportReferenceCoverage",
+        "requiredCategory"
+      ],
+      "malformedDrafts": 0,
+      "rounds": [
+        {
+          "round": 1,
+          "httpStatus": 200,
+          "queueWaitMs": 10235,
+          "durationMs": 12902,
+          "calls": [
+            {
+              "tool": "estimate_budget",
+              "argumentsBytes": 87
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "httpStatus": 200,
+          "queueWaitMs": 2341,
+          "durationMs": 30822,
+          "calls": [
+            {
+              "tool": "search_places",
+              "argumentsBytes": 58
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "httpStatus": 504,
+          "queueWaitMs": 0,
+          "durationMs": 120005,
+          "calls": []
+        }
+      ]
+    },
+    {
+      "caseId": "CT15",
+      "status": "READY",
+      "durationMs": 39895,
+      "modelCalls": 3,
+      "attemptedModelRounds": 3,
+      "queryCount": 1,
+      "submissions": 1,
+      "plainTextReplies": 0,
+      "referenceVisits": [
+        {
+          "day": 2,
+          "slot": "afternoon",
+          "placeId": "CT-南京-66",
+          "placeName": "南京夫子庙步行街",
+          "actualMinutes": 120,
+          "referenceMinimum": 180
+        }
+      ],
+      "inputTokens": 17266,
+      "outputTokens": 751,
+      "queueWaitMs": 10159,
+      "mapHttpRequests": 3,
+      "issues": [],
+      "independentFailures": [
+        "visitAndTravelValues"
+      ],
+      "malformedDrafts": 0,
+      "rounds": [
+        {
+          "round": 1,
+          "httpStatus": 200,
+          "queueWaitMs": 5005,
+          "durationMs": 7475,
+          "calls": [
+            {
+              "tool": "estimate_budget",
+              "argumentsBytes": 87
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "httpStatus": 200,
+          "queueWaitMs": 2535,
+          "durationMs": 4917,
+          "calls": [
+            {
+              "tool": "search_places",
+              "argumentsBytes": 40
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "httpStatus": 200,
+          "queueWaitMs": 2619,
+          "durationMs": 27088,
+          "calls": [
+            {
+              "tool": "validate_itinerary",
+              "argumentsBytes": 1893,
+              "nestedJsonString": false,
+              "malformedNestedJson": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "caseId": "CT22",
+      "errorCode": "AGENT_REPAIR_LIMIT",
+      "status": "ERROR",
+      "durationMs": 169014,
+      "modelCalls": 7,
+      "attemptedModelRounds": 7,
+      "queryCount": 1,
+      "submissions": 5,
+      "plainTextReplies": 0,
+      "referenceVisits": [],
+      "inputTokens": 52546,
+      "outputTokens": 4610,
+      "queueWaitMs": 10003,
+      "mapHttpRequests": 2,
+      "issues": [
+        "无法唯一确认地点：悬空飞越剧场 (春熙路茂业百货店)；请使用地图返回的完整地点名称"
+      ],
+      "independentFailures": [
+        "deliveredPlan",
+        "identity",
+        "travelMode",
+        "completeSchedule",
+        "groundedPlaces",
+        "distinctPlaces",
+        "attractionsPerDay",
+        "visitAndTravelValues",
+        "dailyTimeUsingReferenceRoutes",
+        "routeAvailable",
+        "reportedRouteConsistent",
+        "travelNotUnderestimated",
+        "ticketReferenceCoverage",
+        "budgetValid",
+        "ticketSum",
+        "minimumExpenses",
+        "transportReferenceCoverage",
+        "requiredCategory"
+      ],
+      "malformedDrafts": 0,
+      "rounds": [
+        {
+          "round": 1,
+          "httpStatus": 200,
+          "queueWaitMs": 4993,
+          "durationMs": 8672,
+          "calls": [
+            {
+              "tool": "estimate_budget",
+              "argumentsBytes": 83
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "httpStatus": 200,
+          "queueWaitMs": 1334,
+          "durationMs": 33259,
+          "calls": [
+            {
+              "tool": "validate_itinerary",
+              "argumentsBytes": 2602,
+              "nestedJsonString": false,
+              "malformedNestedJson": false,
+              "issues": [
+                "无法唯一确认地点：悬空飞越剧场 (春熙路茂业百货店)；请使用地图返回的完整地点名称"
+              ],
+              "valid": false
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "httpStatus": 200,
+          "queueWaitMs": 0,
+          "durationMs": 1324,
+          "calls": [
+            {
+              "tool": "search_places",
+              "argumentsBytes": 34
+            }
+          ]
+        },
+        {
+          "round": 4,
+          "httpStatus": 200,
+          "queueWaitMs": 3676,
+          "durationMs": 42240,
+          "calls": [
+            {
+              "tool": "validate_itinerary",
+              "argumentsBytes": 2602,
+              "nestedJsonString": false,
+              "malformedNestedJson": false,
+              "issues": [
+                "无法唯一确认地点：悬空飞越剧场 (春熙路茂业百货店)；请使用地图返回的完整地点名称"
+              ],
+              "valid": false
+            }
+          ]
+        },
+        {
+          "round": 5,
+          "httpStatus": 200,
+          "queueWaitMs": 0,
+          "durationMs": 36079,
+          "calls": [
+            {
+              "tool": "validate_itinerary",
+              "argumentsBytes": 2602,
+              "nestedJsonString": false,
+              "malformedNestedJson": false,
+              "issues": [
+                "无法唯一确认地点：悬空飞越剧场 (春熙路茂业百货店)；请使用地图返回的完整地点名称"
+              ],
+              "valid": false
+            }
+          ]
+        },
+        {
+          "round": 6,
+          "httpStatus": 200,
+          "queueWaitMs": 0,
+          "durationMs": 25285,
+          "calls": [
+            {
+              "tool": "validate_itinerary",
+              "argumentsBytes": 2602,
+              "nestedJsonString": false,
+              "malformedNestedJson": false,
+              "issues": [
+                "无法唯一确认地点：悬空飞越剧场 (春熙路茂业百货店)；请使用地图返回的完整地点名称"
+              ],
+              "valid": false
+            }
+          ]
+        },
+        {
+          "round": 7,
+          "httpStatus": 200,
+          "queueWaitMs": 0,
+          "durationMs": 21822,
+          "calls": [
+            {
+              "tool": "validate_itinerary",
+              "argumentsBytes": 2602,
+              "nestedJsonString": false,
+              "malformedNestedJson": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "caseId": "CT26",
+      "errorCode": "AGENT_NO_VALID_DRAFT",
+      "status": "ERROR",
+      "durationMs": 24634,
+      "modelCalls": 3,
+      "attemptedModelRounds": 3,
+      "queryCount": 1,
+      "submissions": 0,
+      "plainTextReplies": 1,
+      "referenceVisits": [],
+      "inputTokens": 17775,
+      "outputTokens": 348,
+      "queueWaitMs": 14935,
+      "mapHttpRequests": 1,
+      "issues": [],
+      "independentFailures": [
+        "deliveredPlan",
+        "identity",
+        "travelMode",
+        "completeSchedule",
+        "groundedPlaces",
+        "distinctPlaces",
+        "attractionsPerDay",
+        "visitAndTravelValues",
+        "dailyTimeUsingReferenceRoutes",
+        "routeAvailable",
+        "reportedRouteConsistent",
+        "travelNotUnderestimated",
+        "ticketReferenceCoverage",
+        "budgetValid",
+        "ticketSum",
+        "minimumExpenses",
+        "transportReferenceCoverage",
+        "requiredCategory"
+      ],
+      "malformedDrafts": 0,
+      "rounds": [
+        {
+          "round": 1,
+          "httpStatus": 200,
+          "queueWaitMs": 4991,
+          "durationMs": 6496,
+          "calls": [
+            {
+              "tool": "search_places",
+              "argumentsBytes": 25
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "httpStatus": 200,
+          "queueWaitMs": 3506,
+          "durationMs": 5875,
+          "calls": [
+            {
+              "tool": "estimate_budget",
+              "argumentsBytes": 85
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "httpStatus": 200,
+          "queueWaitMs": 6438,
+          "durationMs": 11732,
+          "calls": []
+        }
+      ]
+    },
+    {
+      "caseId": "CT29",
+      "errorCode": "MODEL_CONNECTION_ERROR",
+      "status": "ERROR",
+      "durationMs": 530,
+      "modelCalls": 0,
+      "attemptedModelRounds": 1,
+      "queryCount": 0,
+      "submissions": 0,
+      "plainTextReplies": 0,
+      "referenceVisits": [],
+      "inputTokens": null,
+      "outputTokens": null,
+      "queueWaitMs": 0,
+      "mapHttpRequests": 0,
+      "issues": [],
+      "independentFailures": [
+        "deliveredPlan",
+        "identity",
+        "travelMode",
+        "completeSchedule",
+        "groundedPlaces",
+        "distinctPlaces",
+        "attractionsPerDay",
+        "visitAndTravelValues",
+        "dailyTimeUsingReferenceRoutes",
+        "routeAvailable",
+        "reportedRouteConsistent",
+        "travelNotUnderestimated",
+        "ticketReferenceCoverage",
+        "budgetValid",
+        "ticketSum",
+        "minimumExpenses",
+        "transportReferenceCoverage",
+        "requiredCategory"
+      ],
+      "malformedDrafts": 0,
+      "rounds": []
+    }
+  ]
+}

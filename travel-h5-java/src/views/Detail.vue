@@ -45,8 +45,19 @@
         </van-empty>
       </div>
       <template v-else-if="tripData && tripData.success !== false">
+        <div v-if="tripData.agentEvidence" class="card agent-summary">
+          <strong>智能规划 · 已通过结构与预算校验</strong>
+          <p>{{ tripData.agentEvidence.budgetScope }}</p>
+          <p>{{ tripData.agentEvidence.validation.warnings.filter(note => note !== tripData?.agentEvidence?.budgetScope).join('；') }}</p>
+        </div>
+        <router-link v-if="saved && selectedVersion === saved.trip.currentVersion"
+          class="card agent-revise-link"
+          :to="{ path: '/agent', query: { tripId: saved.trip.id } }">
+          <span><strong>调整这份行程</strong><small>选择一天或一个时段，预览修改后保存新版本</small></span>
+          <van-icon name="arrow" />
+        </router-link>
         <van-notice-bar
-          v-if="!tripData.evidence"
+          v-if="!tripData.evidence && !tripData.agentEvidence"
           text="AI生成的参考行程：景点、交通及价格未经实时核实，请以官方信息为准。"
         />
         <div v-if="tripData.evidence" class="card">
@@ -67,6 +78,7 @@
         <div class="card overview-card">
           <div class="trip-header">
             <h2>{{ tripData.city }} · {{ tripData.days }}天行程</h2>
+            <span v-if="tripData.travelMode" class="travel-mode-badge">{{ travelModeLabel(tripData.travelMode) }}出行</span>
             <div class="trip-budget">预算：{{ tripData.totalBudget }}元</div>
           </div>
         </div>
@@ -82,21 +94,24 @@
                 <div class="section-label morning">上午</div>
                 <SpotItem
                   :data="day.morning"
-                  :verified="tripData.evidence?.status === 'validated'"
+                  :verified="tripData.evidence?.status === 'validated' || (!!tripData.agentEvidence && !!day.morning.sourceUrl)"
+                  :source-label="tripData.agentEvidence ? '地点数据' : 'OpenStreetMap'"
                 />
               </div>
               <div class="schedule-section">
                 <div class="section-label afternoon">下午</div>
                 <SpotItem
                   :data="day.afternoon"
-                  :verified="tripData.evidence?.status === 'validated'"
+                  :verified="tripData.evidence?.status === 'validated' || (!!tripData.agentEvidence && !!day.afternoon.sourceUrl)"
+                  :source-label="tripData.agentEvidence ? '地点数据' : 'OpenStreetMap'"
                 />
               </div>
               <div class="schedule-section">
                 <div class="section-label evening">晚上</div>
                 <SpotItem
                   :data="day.evening"
-                  :verified="tripData.evidence?.status === 'validated'"
+                  :verified="tripData.evidence?.status === 'validated' || (!!tripData.agentEvidence && !!day.evening.sourceUrl)"
+                  :source-label="tripData.agentEvidence ? '地点数据' : 'OpenStreetMap'"
                 />
               </div>
             </div>
@@ -178,6 +193,7 @@ import type { TravelPlan, TripDetail } from "../types";
 import SpotItem from "../components/SpotItem.vue";
 import BudgetTable from "../components/BudgetTable.vue";
 import { createTripVersionLoader } from "../utils/tripVersionLoader";
+import { travelModeLabel } from "../utils/travelModes";
 const router = useRouter(),
   route = useRoute();
 const formData = reactive({ city: "", budget: 0, days: 0 });
@@ -317,6 +333,11 @@ onMounted(fetchTripData);
 onBeforeUnmount(() => { disposed = true; fetchGeneration++; versionLoader.stop(); stopPlanning(); });
 </script>
 <style scoped>
+.travel-mode-badge { color:#41664d; background:#edf5ee; font-size:12px; border-radius:20px; padding:5px 12px; }
+.agent-summary { border-left:3px solid #557c62; color:#41664d; }
+.agent-summary p { font-size:12px; line-height:1.8; margin-bottom:0; }
+.agent-revise-link { display:flex; justify-content:space-between; align-items:center; color:#35634a; text-decoration:none; background:#f4f8f4; }
+.agent-revise-link small { display:block; margin-top:6px; color:#708477; }
 .page-header {
   min-height: 56px; flex-shrink: 0;
 }

@@ -24,6 +24,7 @@ public class LLMutils {
   private final Boolean enableThinking;
   private final int maxOutputTokens;
   private final OkHttpClient client;
+  private final OkHttpClient agentClient;
   private final ObjectMapper mapper = new ObjectMapper();
 
   @Autowired
@@ -78,6 +79,8 @@ public class LLMutils {
     this.baseUrl = baseUrl.replaceAll("/+$", "");
     this.model = model;
     this.client = client;
+    this.agentClient = client.newBuilder().retryOnConnectionFailure(false)
+        .eventListenerFactory(ModelTrace::listener).build();
     this.enableThinking = enableThinking;
     this.maxOutputTokens = maxOutputTokens;
     org.slf4j.LoggerFactory.getLogger(LLMutils.class)
@@ -164,15 +167,20 @@ public class LLMutils {
   }
 
   private Call newCall(String body, boolean stream) {
+    return newCall(body, stream, client, new ModelTrace.Attempt(model));
+  }
+  private Call newCall(String body, boolean stream, OkHttpClient transport, ModelTrace.Attempt attempt) {
     try {
-      return client.newCall(
-          new Request.Builder()
+      var request = new Request.Builder()
               .url(baseUrl + "/chat/completions")
               .header("Authorization", "Bearer " + apiKey)
               .header("Accept", stream ? "text/event-stream" : "application/json")
-              .tag(ModelTrace.Attempt.class, new ModelTrace.Attempt(model))
+              .tag(ModelTrace.Attempt.class, attempt)
               .post(RequestBody.create(body, MediaType.get("application/json; charset=utf-8")))
-              .build());
+              .header("X-Travel-Model-Attempt", attempt.id);
+      if (attempt.recoveryOf != null) request.header("X-Travel-Model-Recovery-Of", attempt.recoveryOf);
+      if (attempt.recoveryOf != null) request.tag(ConnectionPool.class, transport.connectionPool());
+      return transport.newCall(request.build());
     } catch (IllegalArgumentException e) {
       throw new AppException(HttpStatus.SERVICE_UNAVAILABLE, "MODEL_NOT_CONFIGURED", "模型接口地址配置不正确");
     }
@@ -206,6 +214,73 @@ public class LLMutils {
       throw e;
     } finally {
       if (attempt != null) attempt.finish(failure);
+    }
+  }
+
+  /** Transport only. Spring AI owns tool dispatch and conversation history. */
+  public Call newToolChatCall(List<Map<String, Object>> messages,
+      List<Map<String, Object>> tools, int outputLimit) {
+    return newToolChatCall(messages, tools, outputLimit, null);
+  }
+  /** A recovery is a new physical request on a fresh connection, never a replay of tool execution. */
+  public Call newToolChatCall(List<Map<String, Object>> messages,
+      List<Map<String, Object>> tools, int outputLimit, String recoveryOf) {
+    ensureConfigured();
+    var payload = new LinkedHashMap<String, Object>();
+    payload.put("model", model);
+    payload.put("messages", messages);
+    payload.put("stream", false);
+    payload.put("temperature", 0.2);
+    payload.put("max_tokens", Math.min(maxOutputTokens, outputLimit));
+    payload.put("tools", tools);
+    payload.put("tool_choice", "auto");
+    payload.put("parallel_tool_calls", false);
+    if (enableThinking != null) payload.put("enable_thinking", enableThinking);
+    try {
+      String body = mapper.writeValueAsString(payload);
+      if (body.length() > 500000)
+        throw new AppException(HttpStatus.BAD_GATEWAY, "AGENT_CONTEXT_LIMIT", "规划上下文过长，请减少天数后重试");
+      // A per-request pool also isolates active HTTP/2 multiplexed connections across concurrent recoveries.
+      var transport=recoveryOf==null?agentClient:agentClient.newBuilder()
+          .connectionPool(new ConnectionPool(1,1,TimeUnit.SECONDS)).build();
+      return newCall(body, false, transport,
+          new ModelTrace.Attempt(model, recoveryOf));
+    } catch (IOException e) {
+      throw new IllegalStateException("Cannot encode agent request", e);
+    }
+  }
+
+  public JsonNode readToolCompletion(Call call) {
+    ModelTrace.Attempt attempt = call.request().tag(ModelTrace.Attempt.class);
+    Throwable failure = null;
+    try (Response response = call.execute()) {
+      checkStatus(response.code());
+      if (response.body() == null) throw invalid();
+      byte[] bytes = response.body().byteStream().readNBytes(1048577);
+      if (bytes.length > 1048576) throw invalid();
+      JsonNode root = mapper.readTree(bytes);
+      if (root == null || root.has("error")) throw invalid();
+      if (attempt != null) attempt.usage(root);
+      var choice = root.path("choices").path(0);
+      String finish = choice.path("finish_reason").asText();
+      checkFinish(finish);
+      if (!Set.of("stop", "tool_calls").contains(finish)) throw invalid();
+      if (!choice.path("message").isObject()) throw invalid();
+      if (attempt != null) attempt.content();
+      return choice.path("message");
+    } catch (IOException e) {
+      if(attempt!=null)attempt.ioFailure(e);
+      var error = translate(call, e);
+      failure = error;
+      throw error;
+    } catch (RuntimeException e) {
+      failure = e;
+      throw e;
+    } finally {
+      if (attempt != null) attempt.finish(failure);
+      // Release only after the body is consumed/closed; zero-idle eviction can race HTTP/2 body reads.
+      var recoveryPool=call.request().tag(ConnectionPool.class);
+      if(recoveryPool!=null)recoveryPool.evictAll();
     }
   }
 
@@ -314,5 +389,6 @@ public class LLMutils {
     client.dispatcher().cancelAll();
     client.dispatcher().executorService().shutdownNow();
     client.connectionPool().evictAll();
+    agentClient.connectionPool().evictAll();
   }
 }

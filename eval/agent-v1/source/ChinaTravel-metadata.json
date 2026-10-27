@@ -1,0 +1,177 @@
+{
+  "_id": "67c516748d0fa24124998805",
+  "id": "LAMDA-NeSy/ChinaTravel",
+  "author": "LAMDA-NeSy",
+  "sha": "a7d893afb628af6ca181625b6c7cca2d60a6bccb",
+  "lastModified": "2026-09-15T13:07:02.000Z",
+  "private": false,
+  "gated": false,
+  "disabled": false,
+  "tags": [
+    "task_categories:text-generation",
+    "language:zh",
+    "language:en",
+    "license:cc-by-4.0",
+    "size_categories:1K<n<10K",
+    "format:csv",
+    "modality:tabular",
+    "modality:text",
+    "library:datasets",
+    "library:dask",
+    "library:polars",
+    "library:mlcroissant",
+    "arxiv:2412.13682",
+    "region:us"
+  ],
+  "description": "\n\t\n\t\t\n\t\n\t\n\t\tChinaTravel Query Dataset\n\t\n\nThis dataset is licensed under Creative Commons Attribution 4.0 International (CC BY 4.0).\nChinaTravel is an open-ended travel-planning benchmark with compositional\nconstraint validation for language agents. See the\npaper,\nHugging Face paper page,\ncode, and\nbilingual sandbox database\n(ModelScope mirror)\nfor the complete benchmark resources.\n\n\t\n\t\t\n\t\n\t\n\t\tIntroduction\n\t\n\nFor a given query, a language agent uses the sandbox tools to collect\ninformation and… See the full description on the dataset page: https://huggingface.co/datasets/LAMDA-NeSy/ChinaTravel.",
+  "downloads": 1418,
+  "likes": 14,
+  "cardData": {
+    "license": "cc-by-4.0",
+    "configs": [
+      {
+        "config_name": "default",
+        "data_files": [
+          {
+            "split": "easy",
+            "path": "easy.csv"
+          },
+          {
+            "split": "medium",
+            "path": "medium.csv"
+          },
+          {
+            "split": "human",
+            "path": "human.csv"
+          },
+          {
+            "split": "preference_base50",
+            "path": "preference_base50.csv"
+          }
+        ]
+      },
+      {
+        "config_name": "test",
+        "data_files": [
+          {
+            "split": "human1000",
+            "path": "human1000.csv"
+          }
+        ]
+      },
+      {
+        "config_name": "preference",
+        "data_files": [
+          {
+            "split": "preference0_base50",
+            "path": "preference0_base50.csv"
+          },
+          {
+            "split": "preference1_base50",
+            "path": "preference1_base50.csv"
+          },
+          {
+            "split": "preference2_base50",
+            "path": "preference2_base50.csv"
+          },
+          {
+            "split": "preference3_base50",
+            "path": "preference3_base50.csv"
+          },
+          {
+            "split": "preference4_base50",
+            "path": "preference4_base50.csv"
+          },
+          {
+            "split": "preference5_base50",
+            "path": "preference5_base50.csv"
+          }
+        ]
+      },
+      {
+        "config_name": "TPC2026_phase2",
+        "data_files": [
+          {
+            "split": "full",
+            "path": "phase2/part-*.csv"
+          },
+          {
+            "split": "competition_test",
+            "path": "phase2/competition_test.csv"
+          }
+        ]
+      }
+    ],
+    "task_categories": [
+      "text-generation"
+    ],
+    "language": [
+      "zh",
+      "en"
+    ]
+  },
+  "siblings": [
+    {
+      "rfilename": ".gitattributes"
+    },
+    {
+      "rfilename": "DATA_QUALITY_FIXES_2026_08.md"
+    },
+    {
+      "rfilename": "DATA_QUALITY_REPAIRS_2026_08.json"
+    },
+    {
+      "rfilename": "PHASE2_RELEASE_NOTES.md"
+    },
+    {
+      "rfilename": "README.md"
+    },
+    {
+      "rfilename": "easy.csv"
+    },
+    {
+      "rfilename": "human.csv"
+    },
+    {
+      "rfilename": "human1000.csv"
+    },
+    {
+      "rfilename": "medium.csv"
+    },
+    {
+      "rfilename": "phase2/competition_test.csv"
+    },
+    {
+      "rfilename": "phase2/part-00000.csv"
+    },
+    {
+      "rfilename": "phase2/part-00001.csv"
+    },
+    {
+      "rfilename": "phase2_audit_report.json"
+    },
+    {
+      "rfilename": "preference0_base50.csv"
+    },
+    {
+      "rfilename": "preference1_base50.csv"
+    },
+    {
+      "rfilename": "preference2_base50.csv"
+    },
+    {
+      "rfilename": "preference3_base50.csv"
+    },
+    {
+      "rfilename": "preference4_base50.csv"
+    },
+    {
+      "rfilename": "preference5_base50.csv"
+    },
+    {
+      "rfilename": "preference_base50.csv"
+    }
+  ],
+  "createdAt": "2025-03-03T02:39:48.000Z",
+  "usedStorage": 3221385
+}

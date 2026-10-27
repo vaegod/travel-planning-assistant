@@ -7,11 +7,11 @@
     >
       <div class="detail-row" v-if="data.duration">
         <van-icon name="clock-o" size="14" />
-        <span>{{ data.duration }}</span>
+        <span>{{ /^[0-9]+$/.test(String(data.duration)) ? data.duration + '分钟' : data.duration }}</span>
       </div>
       <div class="detail-row" v-if="data.ticket">
         <van-icon name="ticket-o" size="14" />
-        <span>{{ data.ticket }}</span>
+        <span>{{ /^[0-9]+([.][0-9]+)?$/.test(String(data.ticket)) ? '门票参考 ' + data.ticket + '元（未核实）' : data.ticket }}</span>
       </div>
       <div class="detail-row" v-if="data.transportation">
         <van-icon name="logistics" size="14" />
@@ -21,13 +21,15 @@
     <div v-if="verified && data.placeId" class="place-source">
       <span v-if="data.indoor">室内类别 · </span
       ><a :href="data.sourceUrl" target="_blank" rel="noopener noreferrer"
-        >OpenStreetMap 地点来源</a
+        >{{ sourceLabel }} 地点来源</a
       >
       <div>
         查询于 {{ new Date(data.queriedAt).toLocaleString("zh-CN") }} ·
         票价/开放条件未核实
       </div>
       <div v-if="data.route">
+        {{ travelModeLabel(data.route.profile) }} · {{ (data.route.meters / 1000).toFixed(2) }}公里 ·
+        约{{ Math.ceil(data.route.seconds / 60) }}分钟<br />
         路线来源 {{ data.route.source }} · 查询于
         {{ new Date(data.route.queriedAt).toLocaleString("zh-CN") }}
       </div>
@@ -40,7 +42,9 @@
 </template>
 
 <script setup>
+import { travelModeLabel } from "../utils/travelModes";
 defineProps({
+  sourceLabel: { type: String, default: "OpenStreetMap" },
   verified: { type: Boolean, default: false },
   data: {
     type: Object,

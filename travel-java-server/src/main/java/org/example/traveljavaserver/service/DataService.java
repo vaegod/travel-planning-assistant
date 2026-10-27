@@ -30,6 +30,9 @@ public class DataService {
   }
 
   private void validate(TravelRecommendVO plan) {
+    if (plan != null && plan.getTravelMode() != null
+        && !org.example.traveljavaserver.agent.TravelModes.ALL.contains(plan.getTravelMode()))
+      throw new AppException(HttpStatus.BAD_REQUEST, "INVALID_INPUT", "出行方式须为步行、公交或自驾");
     if (plan == null
         || !Boolean.TRUE.equals(plan.getSuccess())
         || plan.getCity() == null
@@ -54,7 +57,7 @@ public class DataService {
 
   @Transactional
   public DataViews.TripDetail save(long owner, String id, DataRequests.SaveTrip request) {
-    if (request.plan() != null && request.plan().getEvidence() != null)
+    if (request.plan() != null && (request.plan().getEvidence() != null || request.plan().getAgentEvidence() != null))
       throw new AppException(
           HttpStatus.BAD_REQUEST, "USE_PLANNING_JOB_SAVE", "带查询凭证的行程必须从服务端规划草稿保存");
     return persist(owner, id, request);
@@ -63,6 +66,15 @@ public class DataService {
   @Transactional
   public DataViews.TripDetail saveVerified(long owner, String id, DataRequests.SaveTrip request) {
     org.example.traveljavaserver.planning.PlanRules.calculate(request.plan());
+    return persist(owner, id, request);
+  }
+
+  /** Called only with a server-held, validated agent draft, never a client-supplied plan. */
+  @Transactional
+  public DataViews.TripDetail saveAgent(long owner, String id, DataRequests.SaveTrip request) {
+    if (request.plan() == null || request.plan().getAgentEvidence() == null
+        || !request.plan().getAgentEvidence().validation().valid())
+      throw new AppException(HttpStatus.BAD_REQUEST, "INVALID_AGENT_DRAFT", "智能规划草稿未通过校验");
     return persist(owner, id, request);
   }
 

@@ -1,0 +1,5 @@
+# Evaluation scripts and the sealed dataset builder use LF in their hashes
+# and source comparisons, including when checked out on Windows.
+scripts/*.mjs text eol=lf
+scripts/agent-eval/*.mjs text eol=lf
+scripts/build-agent-blind.py text eol=lf

@@ -5,9 +5,9 @@ export function isPlanningPending(status: PlanningJob["status"]) {
 }
 
 // A new refresh or leaving the page invalidates any earlier in-flight response.
-export function createPlanningPoller(
-  load: () => Promise<PlanningJob>,
-  receive: (job: PlanningJob) => void,
+export function createPlanningPoller<T extends PlanningJob = PlanningJob>(
+  load: () => Promise<T>,
+  receive: (job: T) => void,
   fail: (error: unknown) => void,
   interval = 1000,
 ) {

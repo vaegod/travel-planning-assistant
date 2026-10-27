@@ -9,6 +9,16 @@ import org.example.traveljavaserver.vo.TravelRecommendVO.*;
 public final class PlanRules {
   private PlanRules() {}
 
+  public static final String EXPENSE_POLICY = "destination-fixed-expenses-v1";
+  /** Existing project budgeting assumptions, not verified market prices. */
+  public record FixedExpenses(BigDecimal accommodation, BigDecimal food, BigDecimal other) {
+    public BigDecimal total() { return accommodation.add(food).add(other); }
+  }
+  public static FixedExpenses fixedExpenses(int days) {
+    return new FixedExpenses(BigDecimal.valueOf(Math.max(0,days-1)*200L),
+        BigDecimal.valueOf(days*80L),BigDecimal.valueOf(days*20L));
+  }
+
   public static List<Timeslot> slots(DailyItinerary day) {
     return Arrays.asList(day.getMorning(), day.getAfternoon(), day.getEvening());
   }
@@ -73,9 +83,10 @@ public final class PlanRules {
         throw Work.error("DAY_TOO_LONG", "第" + day.getDay() + "天游览与交通超过10小时，请调整景点");
     }
     var costs = new BudgetBreakdown();
-    costs.setAccommodation(BigDecimal.valueOf(Math.max(0, plan.getDays() - 1) * 200L));
-    costs.setFood(BigDecimal.valueOf(plan.getDays() * 80L));
-    costs.setOther(BigDecimal.valueOf(plan.getDays() * 20L));
+    var fixed = fixedExpenses(plan.getDays());
+    costs.setAccommodation(fixed.accommodation());
+    costs.setFood(fixed.food());
+    costs.setOther(fixed.other());
     costs.setTickets(tickets.setScale(2));
     costs.setTransportation(transport.setScale(2));
     BigDecimal sum =

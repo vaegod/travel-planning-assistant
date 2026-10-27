@@ -16,6 +16,7 @@ export interface Slot {
   sourceUrl?: string;
   queriedAt?: string;
   visitMinutes?: number;
+  travelMinutes?: number;
   estimatedCost?: number;
   route?: {
     fromId: string;
@@ -25,7 +26,7 @@ export interface Slot {
     profile: string;
     source: string;
     queriedAt: string;
-    estimatedFare: number;
+    estimatedFare: number | null;
   };
 }
 export interface Day {
@@ -39,6 +40,7 @@ export interface TravelPlan {
   success: boolean;
   city: string;
   days: number;
+  travelMode?: import("./utils/travelModes").TravelMode | null;
   totalBudget: number;
   dailyItinerary: Day[];
   budgetBreakdown?: Record<string, number>;
@@ -52,6 +54,36 @@ export interface TravelPlan {
     priceNotice: string;
     traces: ToolTrace[];
   };
+  agentEvidence?: {
+    status: string;
+    budgetScope: string;
+    validation: AgentValidation;
+    traces: ToolTrace[];
+    visitRequirements?: VisitRequirement[];
+    ticketRequirements?: TicketRequirement[];
+  };
+}
+export interface VisitRequirement { placeName: string; placeId?: string | null; minimumMinutes: number }
+export interface TicketRequirement { placeName: string; placeId?: string | null; minimumBudget: number; source: string }
+export interface AgentValidation {
+  valid: boolean;
+  issues: string[];
+  warnings: string[];
+  estimatedTotal?: number;
+  remainingBudget?: number;
+}
+export interface AgentJob extends PlanningJob {
+  visitRequirements?: VisitRequirement[];
+  ticketRequirements?: TicketRequirement[];
+  recoveryAttempts?: number;
+  recoveryDurationMs?: number;
+  refusal?: { code: string; reason: string; minimumExpenses?: {
+    policy: string; accommodation: number; food: number; other: number; total: number; requestedBudget: number;
+  } | null } | null;
+  travelMode: import("./utils/travelModes").TravelMode;
+  validation?: AgentValidation;
+  modelRounds: number;
+  toolCalls: number;
 }
 export interface Trip {
   id: string;
@@ -129,7 +161,7 @@ export interface PlanChange {
 }
 export interface PlanningJob {
   id: string;
-  status: "QUEUED" | "RUNNING" | "READY" | "SAVED" | "ERROR" | "CANCELLED";
+  status: "QUEUED" | "RUNNING" | "READY" | "SAVED" | "ERROR" | "CANCELLED" | "REFUSED";
   progress: string;
   errorCode?: string;
   message?: string;

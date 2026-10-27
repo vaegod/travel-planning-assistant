@@ -132,6 +132,8 @@ public class TravelService {
         }
       }
       plan.setEvidence(null);
+      plan.setAgentEvidence(null);
+      plan.setTravelMode(null);
       plan.setEstimatedTotal(null);
       plan.setRemainingBudget(null);
       plan.setCity(city);

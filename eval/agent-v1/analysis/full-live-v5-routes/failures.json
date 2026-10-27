@@ -1,0 +1,1919 @@
+{
+  "run": "full-live-v5-routes",
+  "resultsSha256": "ebd24a02bfaba53eb32a7fce6985ad2e0ec30b91876e434bbe8eff3b3d9164a4",
+  "failedPlanningCases": 15,
+  "terminalErrors": {
+    "AGENT_ROUND_LIMIT": 8,
+    "AGENT_REPAIR_LIMIT": 2,
+    "MAP_SERVICE_UNAVAILABLE": 1,
+    "MODEL_TIMEOUT": 3,
+    "AGENT_TIMEOUT": 1
+  },
+  "overlappingEvidence": {
+    "mapRequestFailed": 13,
+    "malformedNestedJson": 3,
+    "restSlotFeedback": 3,
+    "modelTimeout": 3,
+    "taskTimeout": 1
+  },
+  "cases": [
+    {
+      "caseId": "CT02",
+      "errorCode": "AGENT_ROUND_LIMIT",
+      "status": "ERROR",
+      "durationMs": 89860,
+      "modelCalls": 8,
+      "inputTokens": 41722,
+      "outputTokens": 1216,
+      "queueWaitMs": 40447,
+      "mapHttpRequests": 3,
+      "issues": [
+        "草稿JSON格式或字段类型不正确，请按任务指定格式提交",
+        "地图请求未完成，不能提供已查询结果"
+      ],
+      "independentFailures": [
+        "deliveredPlan",
+        "identity",
+        "travelMode",
+        "completeSchedule",
+        "groundedPlaces",
+        "distinctPlaces",
+        "attractionsPerDay",
+        "visitAndTravelValues",
+        "dailyTimeUsingReferenceRoutes",
+        "routeAvailable",
+        "reportedRouteConsistent",
+        "travelNotUnderestimated",
+        "ticketReferenceCoverage",
+        "budgetValid",
+        "ticketSum",
+        "minimumExpenses",
+        "transportReferenceCoverage"
+      ],
+      "malformedDrafts": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "httpStatus": 200,
+          "queueWaitMs": 12891,
+          "durationMs": 16822,
+          "calls": [
+            {
+              "tool": "estimate_budget",
+              "argumentsBytes": 86
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "httpStatus": 200,
+          "queueWaitMs": 1071,
+          "durationMs": 8058,
+          "calls": [
+            {
+              "tool": "validate_itinerary",
+              "argumentsBytes": 1085,
+              "nestedJsonString": true,
+              "malformedNestedJson": true,
+              "issues": [
+                "草稿JSON格式或字段类型不正确，请按任务指定格式提交"
+              ],
+              "valid": false
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "httpStatus": 200,
+          "queueWaitMs": 0,
+          "durationMs": 11053,
+          "calls": [
+            {
+              "tool": "validate_itinerary",
+              "argumentsBytes": 1045,
+              "nestedJsonString": false,
+              "malformedNestedJson": false,
+              "issues": [
+                "地图请求未完成，不能提供已查询结果"
+              ],
+              "valid": false
+            }
+          ]
+        },
+        {
+          "round": 4,
+          "httpStatus": 200,
+          "queueWaitMs": 0,
+          "durationMs": 2246,
+          "calls": [
+            {
+              "tool": "search_places",
+              "argumentsBytes": 60
+            }
+          ]
+        },
+        {
+          "round": 5,
+          "httpStatus": 200,
+          "queueWaitMs": 2749,
+          "durationMs": 7925,
+          "calls": [
+            {
+              "tool": "route_places",
+              "argumentsBytes": 62,
+              "error": "地图请求未完成，不能提供已查询结果"
+            }
+          ]
+        },
+        {
+          "round": 6,
+          "httpStatus": 200,
+          "queueWaitMs": 0,
+          "durationMs": 3026,
+          "calls": [
+            {
+              "tool": "route_places",
+              "argumentsBytes": 62
+            }
+          ]
+        },
+        {
+          "round": 7,
+          "httpStatus": 200,
+          "queueWaitMs": 23736,
+          "durationMs": 37651,
+          "calls": [
+            {
+              "tool": "validate_itinerary",
+              "argumentsBytes": 1045,
+              "nestedJsonString": false,
+              "malformedNestedJson": false,
+              "issues": [
+                "地图请求未完成，不能提供已查询结果"
+              ],
+              "valid": false
+            }
+          ]
+        },
+        {
+          "round": 8,
+          "httpStatus": 200,
+          "queueWaitMs": 0,
+          "durationMs": 2876,
+          "calls": [
+            {
+              "tool": "route_places",
+              "argumentsBytes": 62
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "caseId": "CT08",
+      "errorCode": "AGENT_REPAIR_LIMIT",
+      "status": "ERROR",
+      "durationMs": 63851,
+      "modelCalls": 6,
+      "inputTokens": 27811,
+      "outputTokens": 1402,
+      "queueWaitMs": 17283,
+      "mapHttpRequests": 0,
+      "issues": [
+        "草稿JSON格式或字段类型不正确，请按任务指定格式提交"
+      ],
+      "independentFailures": [
+        "deliveredPlan",
+        "identity",
+        "travelMode",
+        "completeSchedule",
+        "groundedPlaces",
+        "distinctPlaces",
+        "attractionsPerDay",
+        "visitAndTravelValues",
+        "dailyTimeUsingReferenceRoutes",
+        "routeAvailable",
+        "reportedRouteConsistent",
+        "travelNotUnderestimated",
+        "ticketReferenceCoverage",
+        "budgetValid",
+        "ticketSum",
+        "minimumExpenses",
+        "transportReferenceCoverage"
+      ],
+      "malformedDrafts": 5,
+      "rounds": [
+        {
+          "round": 1,
+          "httpStatus": 200,
+          "queueWaitMs": 7160,
+          "durationMs": 10004,
+          "calls": [
+            {
+              "tool": "estimate_budget",
+              "argumentsBytes": 84
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "httpStatus": 200,
+          "queueWaitMs": 10123,
+          "durationMs": 16594,
+          "calls": [
+            {
+              "tool": "validate_itinerary",
+              "argumentsBytes": 1075,
+              "nestedJsonString": true,
+              "malformedNestedJson": true,
+              "issues": [
+                "草稿JSON格式或字段类型不正确，请按任务指定格式提交"
+              ],
+              "valid": false
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "httpStatus": 200,
+          "queueWaitMs": 0,
+          "durationMs": 10559,
+          "calls": [
+            {
+              "tool": "validate_itinerary",
+              "argumentsBytes": 1075,
+              "nestedJsonString": true,
+              "malformedNestedJson": true,
+              "issues": [
+                "草稿JSON格式或字段类型不正确，请按任务指定格式提交"
+              ],
+              "valid": false
+            }
+          ]
+        },
+        {
+          "round": 4,
+          "httpStatus": 200,
+          "queueWaitMs": 0,
+          "durationMs": 10027,
+          "calls": [
+            {
+              "tool": "validate_itinerary",
+              "argumentsBytes": 1075,
+              "nestedJsonString": true,
+              "malformedNestedJson": true,
+              "issues": [
+                "草稿JSON格式或字段类型不正确，请按任务指定格式提交"
+              ],
+              "valid": false
+            }
+          ]
+        },
+        {
+          "round": 5,
+          "httpStatus": 200,
+          "queueWaitMs": 0,
+          "durationMs": 10300,
+          "calls": [
+            {
+              "tool": "validate_itinerary",
+              "argumentsBytes": 1075,
+              "nestedJsonString": true,
+              "malformedNestedJson": true,
+              "issues": [
+                "草稿JSON格式或字段类型不正确，请按任务指定格式提交"
+              ],
+              "valid": false
+            }
+          ]
+        },
+        {
+          "round": 6,
+          "httpStatus": 200,
+          "queueWaitMs": 0,
+          "durationMs": 6289,
+          "calls": [
+            {
+              "tool": "validate_itinerary",
+              "argumentsBytes": 1075,
+              "nestedJsonString": true,
+              "malformedNestedJson": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "caseId": "CT09",
+      "errorCode": "AGENT_REPAIR_LIMIT",
+      "status": "ERROR",
+      "durationMs": 111980,
+      "modelCalls": 8,
+      "inputTokens": 44145,
+      "outputTokens": 2355,
+      "queueWaitMs": 20028,
+      "mapHttpRequests": 2,
+      "issues": [
+        "地图请求未完成，不能提供已查询结果",
+        "无法唯一确认地点：酒店休息；请使用地图返回的完整地点名称"
+      ],
+      "independentFailures": [
+        "deliveredPlan",
+        "identity",
+        "travelMode",
+        "completeSchedule",
+        "groundedPlaces",
+        "distinctPlaces",
+        "attractionsPerDay",
+        "visitAndTravelValues",
+        "dailyTimeUsingReferenceRoutes",
+        "routeAvailable",
+        "reportedRouteConsistent",
+        "travelNotUnderestimated",
+        "ticketReferenceCoverage",
+        "budgetValid",
+        "ticketSum",
+        "minimumExpenses",
+        "transportReferenceCoverage"
+      ],
+      "malformedDrafts": 0,
+      "rounds": [
+        {
+          "round": 1,
+          "httpStatus": 200,
+          "queueWaitMs": 16292,
+          "durationMs": 20685,
+          "calls": [
+            {
+              "tool": "estimate_budget",
+              "argumentsBytes": 85
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "httpStatus": 200,
+          "queueWaitMs": 606,
+          "durationMs": 11771,
+          "calls": [
+            {
+              "tool": "validate_itinerary",
+              "argumentsBytes": 1007,
+              "nestedJsonString": false,
+              "malformedNestedJson": false,
+              "issues": [
+                "地图请求未完成，不能提供已查询结果"
+              ],
+              "valid": false
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "httpStatus": 200,
+          "queueWaitMs": 0,
+          "durationMs": 2369,
+          "calls": [
+            {
+              "tool": "search_places",
+              "argumentsBytes": 41
+            }
+          ]
+        },
+        {
+          "round": 4,
+          "httpStatus": 200,
+          "queueWaitMs": 2639,
+          "durationMs": 8018,
+          "calls": [
+            {
+              "tool": "route_places",
+              "argumentsBytes": 60,
+              "error": "地图请求未完成，不能提供已查询结果"
+            }
+          ]
+        },
+        {
+          "round": 5,
+          "httpStatus": 200,
+          "queueWaitMs": 491,
+          "durationMs": 28401,
+          "calls": [
+            {
+              "tool": "validate_itinerary",
+              "argumentsBytes": 1005,
+              "nestedJsonString": false,
+              "malformedNestedJson": false,
+              "issues": [
+                "无法唯一确认地点：酒店休息；请使用地图返回的完整地点名称"
+              ],
+              "valid": false
+            }
+          ]
+        },
+        {
+          "round": 6,
+          "httpStatus": 200,
+          "queueWaitMs": 0,
+          "durationMs": 14175,
+          "calls": [
+            {
+              "tool": "validate_itinerary",
+              "argumentsBytes": 1005,
+              "nestedJsonString": false,
+              "malformedNestedJson": false,
+              "issues": [
+                "无法唯一确认地点：酒店休息；请使用地图返回的完整地点名称"
+              ],
+              "valid": false
+            }
+          ]
+        },
+        {
+          "round": 7,
+          "httpStatus": 200,
+          "queueWaitMs": 0,
+          "durationMs": 16044,
+          "calls": [
+            {
+              "tool": "validate_itinerary",
+              "argumentsBytes": 1005,
+              "nestedJsonString": false,
+              "malformedNestedJson": false,
+              "issues": [
+                "无法唯一确认地点：酒店休息；请使用地图返回的完整地点名称"
+              ],
+              "valid": false
+            }
+          ]
+        },
+        {
+          "round": 8,
+          "httpStatus": 200,
+          "queueWaitMs": 0,
+          "durationMs": 10467,
+          "calls": [
+            {
+              "tool": "validate_itinerary",
+              "argumentsBytes": 1019,
+              "nestedJsonString": false,
+              "malformedNestedJson": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "caseId": "CT13",
+      "errorCode": "AGENT_ROUND_LIMIT",
+      "status": "ERROR",
+      "durationMs": 83805,
+      "modelCalls": 8,
+      "inputTokens": 42306,
+      "outputTokens": 1178,
+      "queueWaitMs": 46494,
+      "mapHttpRequests": 3,
+      "issues": [
+        "草稿JSON格式或字段类型不正确，请按任务指定格式提交",
+        "地图请求未完成，不能提供已查询结果"
+      ],
+      "independentFailures": [
+        "deliveredPlan",
+        "identity",
+        "travelMode",
+        "completeSchedule",
+        "groundedPlaces",
+        "distinctPlaces",
+        "attractionsPerDay",
+        "visitAndTravelValues",
+        "dailyTimeUsingReferenceRoutes",
+        "routeAvailable",
+        "reportedRouteConsistent",
+        "travelNotUnderestimated",
+        "ticketReferenceCoverage",
+        "budgetValid",
+        "ticketSum",
+        "minimumExpenses",
+        "transportReferenceCoverage",
+        "requiredCategory"
+      ],
+      "malformedDrafts": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "httpStatus": 200,
+          "queueWaitMs": 4992,
+          "durationMs": 7563,
+          "calls": [
+            {
+              "tool": "estimate_budget",
+              "argumentsBytes": 83
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "httpStatus": 200,
+          "queueWaitMs": 2428,
+          "durationMs": 13011,
+          "calls": [
+            {
+              "tool": "validate_itinerary",
+              "argumentsBytes": 1872,
+              "nestedJsonString": true,
+              "malformedNestedJson": true,
+              "issues": [
+                "草稿JSON格式或字段类型不正确，请按任务指定格式提交"
+              ],
+              "valid": false
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "httpStatus": 200,
+          "queueWaitMs": 0,
+          "durationMs": 9488,
+          "calls": [
+            {
+              "tool": "validate_itinerary",
+              "argumentsBytes": 1640,
+              "nestedJsonString": false,
+              "malformedNestedJson": false,
+              "issues": [
+                "地图请求未完成，不能提供已查询结果"
+              ],
+              "valid": false
+            }
+          ]
+        },
+        {
+          "round": 4,
+          "httpStatus": 200,
+          "queueWaitMs": 0,
+          "durationMs": 1378,
+          "calls": [
+            {
+              "tool": "search_places",
+              "argumentsBytes": 25
+            }
+          ]
+        },
+        {
+          "round": 5,
+          "httpStatus": 200,
+          "queueWaitMs": 6989,
+          "durationMs": 11201,
+          "calls": [
+            {
+              "tool": "route_places",
+              "argumentsBytes": 62,
+              "error": "地图请求未完成，不能提供已查询结果"
+            }
+          ]
+        },
+        {
+          "round": 6,
+          "httpStatus": 200,
+          "queueWaitMs": 785,
+          "durationMs": 3585,
+          "calls": [
+            {
+              "tool": "route_places",
+              "argumentsBytes": 62
+            }
+          ]
+        },
+        {
+          "round": 7,
+          "httpStatus": 200,
+          "queueWaitMs": 18738,
+          "durationMs": 21758,
+          "calls": [
+            {
+              "tool": "route_places",
+              "argumentsBytes": 60,
+              "error": "地图请求未完成，不能提供已查询结果"
+            }
+          ]
+        },
+        {
+          "round": 8,
+          "httpStatus": 200,
+          "queueWaitMs": 12562,
+          "durationMs": 15455,
+          "calls": [
+            {
+              "tool": "route_places",
+              "argumentsBytes": 60
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "caseId": "CT15",
+      "errorCode": "AGENT_ROUND_LIMIT",
+      "status": "ERROR",
+      "durationMs": 73162,
+      "modelCalls": 8,
+      "inputTokens": 42194,
+      "outputTokens": 815,
+      "queueWaitMs": 46853,
+      "mapHttpRequests": 4,
+      "issues": [
+        "地图请求未完成，不能提供已查询结果"
+      ],
+      "independentFailures": [
+        "deliveredPlan",
+        "identity",
+        "travelMode",
+        "completeSchedule",
+        "groundedPlaces",
+        "distinctPlaces",
+        "attractionsPerDay",
+        "visitAndTravelValues",
+        "dailyTimeUsingReferenceRoutes",
+        "routeAvailable",
+        "reportedRouteConsistent",
+        "travelNotUnderestimated",
+        "ticketReferenceCoverage",
+        "budgetValid",
+        "ticketSum",
+        "minimumExpenses",
+        "transportReferenceCoverage",
+        "requiredCategory"
+      ],
+      "malformedDrafts": 0,
+      "rounds": [
+        {
+          "round": 1,
+          "httpStatus": 200,
+          "queueWaitMs": 5009,
+          "durationMs": 7740,
+          "calls": [
+            {
+              "tool": "estimate_budget",
+              "argumentsBytes": 87
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "httpStatus": 200,
+          "queueWaitMs": 2267,
+          "durationMs": 12363,
+          "calls": [
+            {
+              "tool": "validate_itinerary",
+              "argumentsBytes": 1752,
+              "nestedJsonString": false,
+              "malformedNestedJson": false,
+              "issues": [
+                "地图请求未完成，不能提供已查询结果"
+              ],
+              "valid": false
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "httpStatus": 200,
+          "queueWaitMs": 0,
+          "durationMs": 1450,
+          "calls": [
+            {
+              "tool": "search_places",
+              "argumentsBytes": 40
+            }
+          ]
+        },
+        {
+          "round": 4,
+          "httpStatus": 200,
+          "queueWaitMs": 3553,
+          "durationMs": 5336,
+          "calls": [
+            {
+              "tool": "route_places",
+              "argumentsBytes": 58
+            }
+          ]
+        },
+        {
+          "round": 5,
+          "httpStatus": 200,
+          "queueWaitMs": 11405,
+          "durationMs": 13623,
+          "calls": [
+            {
+              "tool": "route_places",
+              "argumentsBytes": 60,
+              "error": "地图请求未完成，不能提供已查询结果"
+            }
+          ]
+        },
+        {
+          "round": 6,
+          "httpStatus": 200,
+          "queueWaitMs": 2792,
+          "durationMs": 4688,
+          "calls": [
+            {
+              "tool": "route_places",
+              "argumentsBytes": 60
+            }
+          ]
+        },
+        {
+          "round": 7,
+          "httpStatus": 200,
+          "queueWaitMs": 19798,
+          "durationMs": 22776,
+          "calls": [
+            {
+              "tool": "route_places",
+              "argumentsBytes": 61,
+              "error": "地图请求未完成，不能提供已查询结果"
+            }
+          ]
+        },
+        {
+          "round": 8,
+          "httpStatus": 200,
+          "queueWaitMs": 2029,
+          "durationMs": 4628,
+          "calls": [
+            {
+              "tool": "route_places",
+              "argumentsBytes": 61
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "caseId": "CT17",
+      "errorCode": "AGENT_ROUND_LIMIT",
+      "status": "ERROR",
+      "durationMs": 93771,
+      "modelCalls": 8,
+      "inputTokens": 43122,
+      "outputTokens": 952,
+      "queueWaitMs": 56223,
+      "mapHttpRequests": 5,
+      "issues": [
+        "地图请求未完成，不能提供已查询结果"
+      ],
+      "independentFailures": [
+        "deliveredPlan",
+        "identity",
+        "travelMode",
+        "completeSchedule",
+        "groundedPlaces",
+        "distinctPlaces",
+        "attractionsPerDay",
+        "visitAndTravelValues",
+        "dailyTimeUsingReferenceRoutes",
+        "routeAvailable",
+        "reportedRouteConsistent",
+        "travelNotUnderestimated",
+        "ticketReferenceCoverage",
+        "budgetValid",
+        "ticketSum",
+        "minimumExpenses",
+        "transportReferenceCoverage",
+        "requiredCategory"
+      ],
+      "malformedDrafts": 0,
+      "rounds": [
+        {
+          "round": 1,
+          "httpStatus": 200,
+          "queueWaitMs": 5000,
+          "durationMs": 7551,
+          "calls": [
+            {
+              "tool": "estimate_budget",
+              "argumentsBytes": 88
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "httpStatus": 200,
+          "queueWaitMs": 2446,
+          "durationMs": 22458,
+          "calls": [
+            {
+              "tool": "validate_itinerary",
+              "argumentsBytes": 2005,
+              "nestedJsonString": false,
+              "malformedNestedJson": false,
+              "issues": [
+                "地图请求未完成，不能提供已查询结果"
+              ],
+              "valid": false
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "httpStatus": 200,
+          "queueWaitMs": 0,
+          "durationMs": 1910,
+          "calls": [
+            {
+              "tool": "search_places",
+              "argumentsBytes": 43
+            }
+          ]
+        },
+        {
+          "round": 4,
+          "httpStatus": 200,
+          "queueWaitMs": 3101,
+          "durationMs": 5406,
+          "calls": [
+            {
+              "tool": "route_places",
+              "argumentsBytes": 60
+            }
+          ]
+        },
+        {
+          "round": 5,
+          "httpStatus": 200,
+          "queueWaitMs": 2702,
+          "durationMs": 5342,
+          "calls": [
+            {
+              "tool": "route_places",
+              "argumentsBytes": 60
+            }
+          ]
+        },
+        {
+          "round": 6,
+          "httpStatus": 200,
+          "queueWaitMs": 2370,
+          "durationMs": 4321,
+          "calls": [
+            {
+              "tool": "route_places",
+              "argumentsBytes": 60
+            }
+          ]
+        },
+        {
+          "round": 7,
+          "httpStatus": 200,
+          "queueWaitMs": 17993,
+          "durationMs": 20406,
+          "calls": [
+            {
+              "tool": "route_places",
+              "argumentsBytes": 61,
+              "error": "地图请求未完成，不能提供已查询结果"
+            }
+          ]
+        },
+        {
+          "round": 8,
+          "httpStatus": 200,
+          "queueWaitMs": 22611,
+          "durationMs": 26335,
+          "calls": [
+            {
+              "tool": "route_places",
+              "argumentsBytes": 61
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "caseId": "CT20",
+      "errorCode": "AGENT_ROUND_LIMIT",
+      "status": "ERROR",
+      "durationMs": 86703,
+      "modelCalls": 8,
+      "inputTokens": 39533,
+      "outputTokens": 1376,
+      "queueWaitMs": 43537,
+      "mapHttpRequests": 4,
+      "issues": [
+        "地图请求未完成，不能提供已查询结果",
+        "游览时长须为15～360分钟：酒店休息"
+      ],
+      "independentFailures": [
+        "deliveredPlan",
+        "identity",
+        "travelMode",
+        "completeSchedule",
+        "groundedPlaces",
+        "distinctPlaces",
+        "attractionsPerDay",
+        "visitAndTravelValues",
+        "dailyTimeUsingReferenceRoutes",
+        "routeAvailable",
+        "reportedRouteConsistent",
+        "travelNotUnderestimated",
+        "ticketReferenceCoverage",
+        "budgetValid",
+        "ticketSum",
+        "minimumExpenses",
+        "transportReferenceCoverage",
+        "requiredCategory"
+      ],
+      "malformedDrafts": 0,
+      "rounds": [
+        {
+          "round": 1,
+          "httpStatus": 200,
+          "queueWaitMs": 5002,
+          "durationMs": 7678,
+          "calls": [
+            {
+              "tool": "estimate_budget",
+              "argumentsBytes": 85
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "httpStatus": 200,
+          "queueWaitMs": 2334,
+          "durationMs": 4033,
+          "calls": [
+            {
+              "tool": "search_places",
+              "argumentsBytes": 25,
+              "error": "地图请求未完成，不能提供已查询结果"
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "httpStatus": 200,
+          "queueWaitMs": 3302,
+          "durationMs": 5105,
+          "calls": [
+            {
+              "tool": "search_places",
+              "argumentsBytes": 28
+            }
+          ]
+        },
+        {
+          "round": 4,
+          "httpStatus": 200,
+          "queueWaitMs": 3203,
+          "durationMs": 13339,
+          "calls": [
+            {
+              "tool": "route_places",
+              "argumentsBytes": 61,
+              "error": "地图请求未完成，不能提供已查询结果"
+            }
+          ]
+        },
+        {
+          "round": 5,
+          "httpStatus": 200,
+          "queueWaitMs": 0,
+          "durationMs": 2524,
+          "calls": [
+            {
+              "tool": "route_places",
+              "argumentsBytes": 61
+            }
+          ]
+        },
+        {
+          "round": 6,
+          "httpStatus": 200,
+          "queueWaitMs": 2484,
+          "durationMs": 4394,
+          "calls": [
+            {
+              "tool": "route_places",
+              "argumentsBytes": 62
+            }
+          ]
+        },
+        {
+          "round": 7,
+          "httpStatus": 200,
+          "queueWaitMs": 22902,
+          "durationMs": 28600,
+          "calls": [
+            {
+              "tool": "route_places",
+              "argumentsBytes": 61,
+              "error": "地图请求未完成，不能提供已查询结果"
+            }
+          ]
+        },
+        {
+          "round": 8,
+          "httpStatus": 200,
+          "queueWaitMs": 4310,
+          "durationMs": 20848,
+          "calls": [
+            {
+              "tool": "validate_itinerary",
+              "argumentsBytes": 1542,
+              "nestedJsonString": false,
+              "malformedNestedJson": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "caseId": "CT21",
+      "errorCode": "MAP_SERVICE_UNAVAILABLE",
+      "status": "ERROR",
+      "durationMs": 65210,
+      "modelCalls": 6,
+      "inputTokens": 32386,
+      "outputTokens": 1458,
+      "queueWaitMs": 15836,
+      "mapHttpRequests": 3,
+      "issues": [
+        "地图请求未完成，不能提供已查询结果"
+      ],
+      "independentFailures": [
+        "deliveredPlan",
+        "identity",
+        "travelMode",
+        "completeSchedule",
+        "groundedPlaces",
+        "distinctPlaces",
+        "attractionsPerDay",
+        "visitAndTravelValues",
+        "dailyTimeUsingReferenceRoutes",
+        "routeAvailable",
+        "reportedRouteConsistent",
+        "travelNotUnderestimated",
+        "ticketReferenceCoverage",
+        "budgetValid",
+        "ticketSum",
+        "minimumExpenses",
+        "transportReferenceCoverage",
+        "requiredCategory"
+      ],
+      "malformedDrafts": 0,
+      "rounds": [
+        {
+          "round": 1,
+          "httpStatus": 200,
+          "queueWaitMs": 5003,
+          "durationMs": 9207,
+          "calls": [
+            {
+              "tool": "estimate_budget",
+              "argumentsBytes": 87
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "httpStatus": 200,
+          "queueWaitMs": 805,
+          "durationMs": 23129,
+          "calls": [
+            {
+              "tool": "validate_itinerary",
+              "argumentsBytes": 2365,
+              "nestedJsonString": false,
+              "malformedNestedJson": false,
+              "issues": [
+                "地图请求未完成，不能提供已查询结果"
+              ],
+              "valid": false
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "httpStatus": 200,
+          "queueWaitMs": 0,
+          "durationMs": 2689,
+          "calls": [
+            {
+              "tool": "search_places",
+              "argumentsBytes": 37
+            }
+          ]
+        },
+        {
+          "round": 4,
+          "httpStatus": 200,
+          "queueWaitMs": 2319,
+          "durationMs": 5007,
+          "calls": [
+            {
+              "tool": "route_places",
+              "argumentsBytes": 62
+            }
+          ]
+        },
+        {
+          "round": 5,
+          "httpStatus": 200,
+          "queueWaitMs": 3262,
+          "durationMs": 15507,
+          "calls": [
+            {
+              "tool": "route_places",
+              "argumentsBytes": 62
+            },
+            {
+              "tool": "route_places",
+              "argumentsBytes": 62,
+              "error": "地图请求未完成，不能提供已查询结果"
+            },
+            {
+              "tool": "route_places",
+              "argumentsBytes": 62
+            }
+          ]
+        },
+        {
+          "round": 6,
+          "httpStatus": 200,
+          "queueWaitMs": 4447,
+          "durationMs": 9464,
+          "calls": []
+        }
+      ]
+    },
+    {
+      "caseId": "CT22",
+      "errorCode": "MODEL_TIMEOUT",
+      "status": "ERROR",
+      "durationMs": 175873,
+      "modelCalls": 3,
+      "inputTokens": 8195,
+      "outputTokens": 847,
+      "queueWaitMs": 22951,
+      "mapHttpRequests": 0,
+      "issues": [
+        "地图请求未完成，不能提供已查询结果"
+      ],
+      "independentFailures": [
+        "deliveredPlan",
+        "identity",
+        "travelMode",
+        "completeSchedule",
+        "groundedPlaces",
+        "distinctPlaces",
+        "attractionsPerDay",
+        "visitAndTravelValues",
+        "dailyTimeUsingReferenceRoutes",
+        "routeAvailable",
+        "reportedRouteConsistent",
+        "travelNotUnderestimated",
+        "ticketReferenceCoverage",
+        "budgetValid",
+        "ticketSum",
+        "minimumExpenses",
+        "transportReferenceCoverage",
+        "requiredCategory"
+      ],
+      "malformedDrafts": 0,
+      "rounds": [
+        {
+          "round": 1,
+          "httpStatus": 200,
+          "queueWaitMs": 4996,
+          "durationMs": 9166,
+          "calls": [
+            {
+              "tool": "estimate_budget",
+              "argumentsBytes": 85
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "httpStatus": 200,
+          "queueWaitMs": 17955,
+          "durationMs": 46500,
+          "calls": [
+            {
+              "tool": "validate_itinerary",
+              "argumentsBytes": 2831,
+              "nestedJsonString": false,
+              "malformedNestedJson": false,
+              "issues": [
+                "地图请求未完成，不能提供已查询结果"
+              ],
+              "valid": false
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "httpStatus": 504,
+          "queueWaitMs": 0,
+          "durationMs": 120003,
+          "calls": []
+        }
+      ]
+    },
+    {
+      "caseId": "CT23",
+      "errorCode": "AGENT_ROUND_LIMIT",
+      "status": "ERROR",
+      "durationMs": 83421,
+      "modelCalls": 8,
+      "inputTokens": 47326,
+      "outputTokens": 573,
+      "queueWaitMs": 61689,
+      "mapHttpRequests": 5,
+      "issues": [
+        "地图请求未完成，不能提供已查询结果"
+      ],
+      "independentFailures": [
+        "deliveredPlan",
+        "identity",
+        "travelMode",
+        "completeSchedule",
+        "groundedPlaces",
+        "distinctPlaces",
+        "attractionsPerDay",
+        "visitAndTravelValues",
+        "dailyTimeUsingReferenceRoutes",
+        "routeAvailable",
+        "reportedRouteConsistent",
+        "travelNotUnderestimated",
+        "ticketReferenceCoverage",
+        "budgetValid",
+        "ticketSum",
+        "minimumExpenses",
+        "transportReferenceCoverage",
+        "requiredCategory"
+      ],
+      "malformedDrafts": 0,
+      "rounds": [
+        {
+          "round": 1,
+          "httpStatus": 200,
+          "queueWaitMs": 4989,
+          "durationMs": 7680,
+          "calls": [
+            {
+              "tool": "estimate_budget",
+              "argumentsBytes": 85
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "httpStatus": 200,
+          "queueWaitMs": 2317,
+          "durationMs": 3624,
+          "calls": [
+            {
+              "tool": "search_places",
+              "argumentsBytes": 31
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "httpStatus": 200,
+          "queueWaitMs": 3701,
+          "durationMs": 5764,
+          "calls": [
+            {
+              "tool": "search_places",
+              "argumentsBytes": 31
+            }
+          ]
+        },
+        {
+          "round": 4,
+          "httpStatus": 200,
+          "queueWaitMs": 2943,
+          "durationMs": 4704,
+          "calls": [
+            {
+              "tool": "search_places",
+              "argumentsBytes": 28
+            }
+          ]
+        },
+        {
+          "round": 5,
+          "httpStatus": 200,
+          "queueWaitMs": 3230,
+          "durationMs": 5037,
+          "calls": [
+            {
+              "tool": "search_places",
+              "argumentsBytes": 25
+            }
+          ]
+        },
+        {
+          "round": 6,
+          "httpStatus": 200,
+          "queueWaitMs": 33138,
+          "durationMs": 35221,
+          "calls": [
+            {
+              "tool": "search_places",
+              "argumentsBytes": 25,
+              "error": "地图请求未完成，不能提供已查询结果"
+            }
+          ]
+        },
+        {
+          "round": 7,
+          "httpStatus": 200,
+          "queueWaitMs": 7922,
+          "durationMs": 9485,
+          "calls": [
+            {
+              "tool": "search_places",
+              "argumentsBytes": 28
+            }
+          ]
+        },
+        {
+          "round": 8,
+          "httpStatus": 200,
+          "queueWaitMs": 3449,
+          "durationMs": 11320,
+          "calls": [
+            {
+              "tool": "route_places",
+              "argumentsBytes": 60
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "caseId": "CT25",
+      "errorCode": "AGENT_TIMEOUT",
+      "status": "ERROR",
+      "durationMs": 240020,
+      "modelCalls": 5,
+      "inputTokens": 18638,
+      "outputTokens": 1047,
+      "queueWaitMs": 9091,
+      "mapHttpRequests": 1,
+      "issues": [
+        "地图请求未完成，不能提供已查询结果"
+      ],
+      "independentFailures": [
+        "deliveredPlan",
+        "identity",
+        "travelMode",
+        "completeSchedule",
+        "groundedPlaces",
+        "distinctPlaces",
+        "attractionsPerDay",
+        "visitAndTravelValues",
+        "dailyTimeUsingReferenceRoutes",
+        "routeAvailable",
+        "reportedRouteConsistent",
+        "travelNotUnderestimated",
+        "ticketReferenceCoverage",
+        "budgetValid",
+        "ticketSum",
+        "minimumExpenses",
+        "transportReferenceCoverage",
+        "requiredCategory"
+      ],
+      "malformedDrafts": 0,
+      "rounds": [
+        {
+          "round": 1,
+          "httpStatus": 200,
+          "queueWaitMs": 5002,
+          "durationMs": 111036,
+          "calls": [
+            {
+              "tool": "estimate_budget",
+              "argumentsBytes": 85
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "httpStatus": 200,
+          "queueWaitMs": 0,
+          "durationMs": 115489,
+          "calls": [
+            {
+              "tool": "validate_itinerary",
+              "argumentsBytes": 2827,
+              "nestedJsonString": false,
+              "malformedNestedJson": false,
+              "issues": [
+                "地图请求未完成，不能提供已查询结果"
+              ],
+              "valid": false
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "httpStatus": 200,
+          "queueWaitMs": 0,
+          "durationMs": 1404,
+          "calls": [
+            {
+              "tool": "search_places",
+              "argumentsBytes": 40
+            }
+          ]
+        },
+        {
+          "round": 4,
+          "httpStatus": 200,
+          "queueWaitMs": 3607,
+          "durationMs": 8122,
+          "calls": [
+            {
+              "tool": "route_places",
+              "argumentsBytes": 58,
+              "error": "地图请求未完成，不能提供已查询结果"
+            }
+          ]
+        },
+        {
+          "round": 5,
+          "httpStatus": 504,
+          "queueWaitMs": 482,
+          "durationMs": 3879,
+          "calls": []
+        }
+      ]
+    },
+    {
+      "caseId": "CT27",
+      "errorCode": "MODEL_TIMEOUT",
+      "status": "ERROR",
+      "durationMs": 157715,
+      "modelCalls": 3,
+      "inputTokens": 8334,
+      "outputTokens": 803,
+      "queueWaitMs": 8065,
+      "mapHttpRequests": 0,
+      "issues": [
+        "地图请求未完成，不能提供已查询结果"
+      ],
+      "independentFailures": [
+        "deliveredPlan",
+        "identity",
+        "travelMode",
+        "completeSchedule",
+        "groundedPlaces",
+        "distinctPlaces",
+        "attractionsPerDay",
+        "visitAndTravelValues",
+        "dailyTimeUsingReferenceRoutes",
+        "routeAvailable",
+        "reportedRouteConsistent",
+        "travelNotUnderestimated",
+        "ticketReferenceCoverage",
+        "budgetValid",
+        "ticketSum",
+        "minimumExpenses",
+        "transportReferenceCoverage",
+        "requiredCategory"
+      ],
+      "malformedDrafts": 0,
+      "rounds": [
+        {
+          "round": 1,
+          "httpStatus": 200,
+          "queueWaitMs": 4997,
+          "durationMs": 6937,
+          "calls": [
+            {
+              "tool": "estimate_budget",
+              "argumentsBytes": 87
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "httpStatus": 200,
+          "queueWaitMs": 3068,
+          "durationMs": 30433,
+          "calls": [
+            {
+              "tool": "validate_itinerary",
+              "argumentsBytes": 2772,
+              "nestedJsonString": false,
+              "malformedNestedJson": false,
+              "issues": [
+                "地图请求未完成，不能提供已查询结果"
+              ],
+              "valid": false
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "httpStatus": 504,
+          "queueWaitMs": 0,
+          "durationMs": 120000,
+          "calls": []
+        }
+      ]
+    },
+    {
+      "caseId": "CT28",
+      "errorCode": "MODEL_TIMEOUT",
+      "status": "ERROR",
+      "durationMs": 151732,
+      "modelCalls": 4,
+      "inputTokens": 13129,
+      "outputTokens": 1413,
+      "queueWaitMs": 7907,
+      "mapHttpRequests": 4,
+      "issues": [
+        "游览时长须为15～360分钟：酒店休息"
+      ],
+      "independentFailures": [
+        "deliveredPlan",
+        "identity",
+        "travelMode",
+        "completeSchedule",
+        "groundedPlaces",
+        "distinctPlaces",
+        "attractionsPerDay",
+        "visitAndTravelValues",
+        "dailyTimeUsingReferenceRoutes",
+        "routeAvailable",
+        "reportedRouteConsistent",
+        "travelNotUnderestimated",
+        "ticketReferenceCoverage",
+        "budgetValid",
+        "ticketSum",
+        "minimumExpenses",
+        "transportReferenceCoverage",
+        "requiredCategory"
+      ],
+      "malformedDrafts": 0,
+      "rounds": [
+        {
+          "round": 1,
+          "httpStatus": 200,
+          "queueWaitMs": 4991,
+          "durationMs": 7083,
+          "calls": [
+            {
+              "tool": "estimate_budget",
+              "argumentsBytes": 84
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "httpStatus": 200,
+          "queueWaitMs": 2916,
+          "durationMs": 13204,
+          "calls": [
+            {
+              "tool": "validate_itinerary",
+              "argumentsBytes": 2385,
+              "nestedJsonString": false,
+              "malformedNestedJson": false,
+              "issues": [
+                "游览时长须为15～360分钟：酒店休息"
+              ],
+              "valid": false
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "httpStatus": 200,
+          "queueWaitMs": 0,
+          "durationMs": 11373,
+          "calls": [
+            {
+              "tool": "validate_itinerary",
+              "argumentsBytes": 2385,
+              "nestedJsonString": false,
+              "malformedNestedJson": false,
+              "issues": [
+                "游览时长须为15～360分钟：酒店休息"
+              ],
+              "valid": false
+            }
+          ]
+        },
+        {
+          "round": 4,
+          "httpStatus": 504,
+          "queueWaitMs": 0,
+          "durationMs": 120000,
+          "calls": []
+        }
+      ]
+    },
+    {
+      "caseId": "CT29",
+      "errorCode": "AGENT_ROUND_LIMIT",
+      "status": "ERROR",
+      "durationMs": 88226,
+      "modelCalls": 8,
+      "inputTokens": 47362,
+      "outputTokens": 1780,
+      "queueWaitMs": 38649,
+      "mapHttpRequests": 3,
+      "issues": [
+        "地图请求未完成，不能提供已查询结果"
+      ],
+      "independentFailures": [
+        "deliveredPlan",
+        "identity",
+        "travelMode",
+        "completeSchedule",
+        "groundedPlaces",
+        "distinctPlaces",
+        "attractionsPerDay",
+        "visitAndTravelValues",
+        "dailyTimeUsingReferenceRoutes",
+        "routeAvailable",
+        "reportedRouteConsistent",
+        "travelNotUnderestimated",
+        "ticketReferenceCoverage",
+        "budgetValid",
+        "ticketSum",
+        "minimumExpenses",
+        "transportReferenceCoverage",
+        "requiredCategory"
+      ],
+      "malformedDrafts": 0,
+      "rounds": [
+        {
+          "round": 1,
+          "httpStatus": 200,
+          "queueWaitMs": 4995,
+          "durationMs": 7010,
+          "calls": [
+            {
+              "tool": "estimate_budget",
+              "argumentsBytes": 86
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "httpStatus": 200,
+          "queueWaitMs": 2998,
+          "durationMs": 13233,
+          "calls": [
+            {
+              "tool": "validate_itinerary",
+              "argumentsBytes": 2566,
+              "nestedJsonString": false,
+              "malformedNestedJson": false,
+              "issues": [
+                "地图请求未完成，不能提供已查询结果"
+              ],
+              "valid": false
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "httpStatus": 200,
+          "queueWaitMs": 0,
+          "durationMs": 2269,
+          "calls": [
+            {
+              "tool": "search_places",
+              "argumentsBytes": 25
+            }
+          ]
+        },
+        {
+          "round": 4,
+          "httpStatus": 200,
+          "queueWaitMs": 2730,
+          "durationMs": 25997,
+          "calls": [
+            {
+              "tool": "validate_itinerary",
+              "argumentsBytes": 2575,
+              "nestedJsonString": false,
+              "malformedNestedJson": false,
+              "issues": [
+                "地图请求未完成，不能提供已查询结果"
+              ],
+              "valid": false
+            }
+          ]
+        },
+        {
+          "round": 5,
+          "httpStatus": 200,
+          "queueWaitMs": 0,
+          "durationMs": 4168,
+          "calls": [
+            {
+              "tool": "route_places",
+              "argumentsBytes": 60
+            }
+          ]
+        },
+        {
+          "round": 6,
+          "httpStatus": 200,
+          "queueWaitMs": 7305,
+          "durationMs": 9998,
+          "calls": [
+            {
+              "tool": "route_places",
+              "argumentsBytes": 60,
+              "error": "地图请求未完成，不能提供已查询结果"
+            }
+          ]
+        },
+        {
+          "round": 7,
+          "httpStatus": 200,
+          "queueWaitMs": 7314,
+          "durationMs": 9248,
+          "calls": [
+            {
+              "tool": "route_places",
+              "argumentsBytes": 60
+            }
+          ]
+        },
+        {
+          "round": 8,
+          "httpStatus": 200,
+          "queueWaitMs": 13307,
+          "durationMs": 15887,
+          "calls": [
+            {
+              "tool": "route_places",
+              "argumentsBytes": 62
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "caseId": "CT30",
+      "errorCode": "AGENT_ROUND_LIMIT",
+      "status": "ERROR",
+      "durationMs": 195131,
+      "modelCalls": 8,
+      "inputTokens": 50256,
+      "outputTokens": 2520,
+      "queueWaitMs": 44215,
+      "mapHttpRequests": 4,
+      "issues": [
+        "地图请求未完成，不能提供已查询结果"
+      ],
+      "independentFailures": [
+        "deliveredPlan",
+        "identity",
+        "travelMode",
+        "completeSchedule",
+        "groundedPlaces",
+        "distinctPlaces",
+        "attractionsPerDay",
+        "visitAndTravelValues",
+        "dailyTimeUsingReferenceRoutes",
+        "routeAvailable",
+        "reportedRouteConsistent",
+        "travelNotUnderestimated",
+        "ticketReferenceCoverage",
+        "budgetValid",
+        "ticketSum",
+        "minimumExpenses",
+        "transportReferenceCoverage",
+        "requiredCategory"
+      ],
+      "malformedDrafts": 0,
+      "rounds": [
+        {
+          "round": 1,
+          "httpStatus": 200,
+          "queueWaitMs": 20278,
+          "durationMs": 23017,
+          "calls": [
+            {
+              "tool": "estimate_budget",
+              "argumentsBytes": 85
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "httpStatus": 200,
+          "queueWaitMs": 8736,
+          "durationMs": 18277,
+          "calls": [
+            {
+              "tool": "validate_itinerary",
+              "argumentsBytes": 2539,
+              "nestedJsonString": false,
+              "malformedNestedJson": false,
+              "issues": [
+                "地图请求未完成，不能提供已查询结果"
+              ],
+              "valid": false
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "httpStatus": 200,
+          "queueWaitMs": 454,
+          "durationMs": 2154,
+          "calls": [
+            {
+              "tool": "search_places",
+              "argumentsBytes": 25
+            }
+          ]
+        },
+        {
+          "round": 4,
+          "httpStatus": 200,
+          "queueWaitMs": 3309,
+          "durationMs": 24615,
+          "calls": [
+            {
+              "tool": "validate_itinerary",
+              "argumentsBytes": 2539,
+              "nestedJsonString": false,
+              "malformedNestedJson": false,
+              "issues": [
+                "地图请求未完成，不能提供已查询结果"
+              ],
+              "valid": false
+            }
+          ]
+        },
+        {
+          "round": 5,
+          "httpStatus": 200,
+          "queueWaitMs": 0,
+          "durationMs": 4015,
+          "calls": [
+            {
+              "tool": "route_places",
+              "argumentsBytes": 62
+            }
+          ]
+        },
+        {
+          "round": 6,
+          "httpStatus": 200,
+          "queueWaitMs": 8188,
+          "durationMs": 114941,
+          "calls": [
+            {
+              "tool": "route_places",
+              "argumentsBytes": 61,
+              "error": "地图请求未完成，不能提供已查询结果"
+            }
+          ]
+        },
+        {
+          "round": 7,
+          "httpStatus": 200,
+          "queueWaitMs": 0,
+          "durationMs": 1760,
+          "calls": [
+            {
+              "tool": "route_places",
+              "argumentsBytes": 61
+            }
+          ]
+        },
+        {
+          "round": 8,
+          "httpStatus": 200,
+          "queueWaitMs": 3250,
+          "durationMs": 5778,
+          "calls": [
+            {
+              "tool": "route_places",
+              "argumentsBytes": 61
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+server:
+  address: ${SERVER_ADDRESS:127.0.0.1}
+  forward-headers-strategy: ${FORWARD_HEADERS_STRATEGY:none}
+  port: ${SERVER_PORT:3200}
+  servlet:
+    session:
+      timeout: 30m
+      cookie:
+        http-only: true
+        same-site: lax
+
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:mysql://127.0.0.1:3306/travel_ai?serverTimezone=UTC&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&useSSL=false}
+    username: ${DB_USERNAME:travel_app}
+    password: ${DB_PASSWORD:}
+    hikari:
+      maximum-pool-size: 8
+      connection-timeout: 5000
+      connection-init-sql: "SET time_zone = '+00:00'"
+  flyway:
+    enabled: true
+    clean-disabled: true
+  jackson:
+    deserialization:
+      accept-float-as-int: false
+  config:
+    import: optional:file:.env[.properties]
+
+llm:
+  base-url: ${LLM_BASE_URL:https://api.siliconflow.cn/v1}
+  model: ${LLM_MODEL:Qwen/Qwen3.5-35B-A3B}
+  enable-thinking: ${LLM_ENABLE_THINKING:}
+  api-key: ${LLM_API_KEY:}
+  timeout-seconds: ${LLM_TIMEOUT_SECONDS:120}
+  max-output-tokens: ${LLM_MAX_OUTPUT_TOKENS:16384}
+
+chat:
+  timeout-ms: 180000
+  heartbeat-ms: 1000
+  workers: 4
+  queue-capacity: 16
+
+planning:
+  external-enabled: ${PLANNING_EXTERNAL_ENABLED:false}
+  cache-ttl-seconds: ${PLANNING_CACHE_TTL_SECONDS:3600}
+  cache-dir: ${PLANNING_CACHE_DIR:.planning-cache}
+  overpass-url: ${OVERPASS_URL:https://overpass-api.de/api/interpreter,https://maps.mail.ru/osm/tools/overpass/api/interpreter}
+  osrm-url: ${OSRM_URL:https://router.project-osrm.org}
+
+agent:
+  timeout-ms: ${AGENT_TIMEOUT_MS:240000}
+  max-rounds: ${AGENT_MAX_ROUNDS:8}
+  max-tool-calls: ${AGENT_MAX_TOOL_CALLS:16}
+  amap-key: ${AMAP_API_KEY:}
+  amap-base-url: ${AMAP_BASE_URL:https://restapi.amap.com}
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+    default-statement-timeout: 5
+
+knowledge:
+  enabled: ${KNOWLEDGE_ENABLED:false}
+  embedding-base-url: ${EMBEDDING_BASE_URL:${LLM_BASE_URL:https://api.siliconflow.cn/v1}}
+  embedding-model: ${EMBEDDING_MODEL:BAAI/bge-m3}
+  dimensions: ${EMBEDDING_DIMENSIONS:1024}
+  min-score: ${RAG_MIN_SCORE:0.55}

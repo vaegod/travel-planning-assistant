@@ -57,6 +57,8 @@ jobs:
           ./mvnw verify -B -ntp
       - name: Archived map experiment regression (fixtures only)
         run: node scripts/evaluate.mjs
+      - name: Agent evaluation data and independent scorer (offline only)
+        run: node --test eval/agent-v1/score.test.mjs eval/agent-v1/dataset.test.mjs eval/agent-v1/pacer.test.mjs eval/agent-v1/reuse.test.mjs eval/agent-v1/budget-proof.test.mjs eval/agent-v1/visit-requirements.test.mjs eval/agent-v1/ticket-requirements.test.mjs eval/agent-v1/model-recovery.test.mjs eval/agent-v1/blind.test.mjs
       - name: Upload explicit test and evaluation results
         if: always()
         uses: actions/upload-artifact@v7

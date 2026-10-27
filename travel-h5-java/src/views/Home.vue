@@ -39,6 +39,9 @@
           </div>
           <van-button type="primary" size="large" round :loading="isLoading" @click="handleSubmit" class="plan-submit">开始规划 <van-icon name="arrow" /></van-button>
           <p class="planner-notice"><van-icon name="info-o" />AI 生成参考行程，地点、交通和价格请以官方信息为准。</p>
+          <router-link class="agent-entry" :to="{ path: '/agent', query: { city: formData.city, days: formData.days || 3, budget: formData.budget || 3000 } }">
+            <span><strong>试试智能规划</strong><small>提出偏好 · 工具核算 · 校验后生成草稿</small></span><van-icon name="arrow" />
+          </router-link>
         </section>
         <aside class="home-support">
           <section class="card popular-destinations">
@@ -138,6 +141,9 @@ const selectedCity = (city) => {
 };
 </script>
 <style scoped>
+.agent-entry { display:flex; align-items:center; justify-content:space-between; gap:16px; margin-top:18px; padding:16px 18px; border:1px solid #d9e6dc; border-radius:12px; background:#f4f8f4; color:#35634a; text-decoration:none; }
+.agent-entry strong { display:block; font-size:14px; }
+.agent-entry small { display:block; margin-top:5px; color:#6e8275; font-size:12px; }
 .home-content { padding-top: 24px; }
 .home-hero { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 164px; margin-bottom: 18px; }
 .hero-copy { flex: 1; }

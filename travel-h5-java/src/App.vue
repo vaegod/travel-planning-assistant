@@ -28,7 +28,7 @@ const active = ref(0);
           <span>旅游规划智能助手<small>TRAVEL, WITH A PLAN.</small></span>
         </router-link>
         <nav aria-label="主导航" class="desktop-nav">
-          <router-link to="/" :class="{ selected: route.name === 'Home' || route.name === 'Detail' }">规划旅行</router-link>
+          <router-link to="/" :class="{ selected: ['Home', 'Detail', 'Agent'].includes(route.name) }">规划旅行</router-link>
           <router-link to="/chat" :class="{ selected: ['Chat', 'SavedChat', 'Conversations'].includes(route.name) }">AI 对话</router-link>
           <router-link to="/trips" :class="{ selected: route.path === '/trips' }">我的行程</router-link>
         </nav>

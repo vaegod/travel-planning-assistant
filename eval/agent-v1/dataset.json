@@ -1,0 +1,2914 @@
+{
+  "version": "travel-agent-eval-v1",
+  "phase": "full",
+  "seed": 20261024,
+  "scope": "ChinaTravel-adapted destination-only single-person offline evaluation; NOT official ChinaTravel scores",
+  "queryRevision": "a7d893afb628af6ca181625b6c7cca2d60a6bccb",
+  "sandboxRevision": "885c7dad143bf040238ddca263f4788d582ee0f4",
+  "sourceFileSha256": {
+    "ChinaTravel-metadata.json": "1485753d9eaa7b89deef9baf96228d513395275af0dc61988c34c736941214cf",
+    "ChinaTravel-Sandbox-metadata.json": "3f48f26c7d84794f4900f458c9cce85eeb06432aa1709b09a0fbbaf3fb91fbb6",
+    "easy.csv": "cb0b7940defa8a9b260bac12bee3fb3254678883b40371c3ca8f33c5f37153e3",
+    "human.csv": "2f0d61e37665a345bd428732ace6e1ce9d6de2af8d292047bcf5cc1c4f9cfc78",
+    "README.md": "d6516aa440045b84632d57f0c0c117e3048ad9cc45f6723b521e66fab3474127",
+    "sandbox-data_zh_accommodations.parquet": "e316a06aa94107d6e535cb02f120fcdbef6120c5ee00c21862c25460c4d742d7",
+    "sandbox-data_zh_attractions.parquet": "aa6ebb96f4f31b47fc90f1cb8b95d2d164202f99c1f0dac3398058cbb0e9ee7b",
+    "sandbox-data_zh_poi.parquet": "2c0cde306e15add7462fc0991ced1b133ca87277f842937a561538e1d101ecfd",
+    "sandbox-README.md": "b8a143c9907789ad96fb55049eefec6e7d70c89c354b81c2258f2618aeaa1181",
+    "sandbox-release_manifest.json": "0f683d97f340d37fd416458f72d17662d9d0246d571e629948bca2c93d00696a"
+  },
+  "selection": "Earliest UID per city/duration, preferring single-person then extractable numeric budget; other party sizes explicitly normalized to one person",
+  "sourceLicense": "CC-BY-4.0",
+  "budgetScope": "单人目的地内预算；往返目的地交通剔除；有数字上限则保留，否则显式新增1000元/天",
+  "cases": [
+    {
+      "id": "CT01",
+      "split": "development",
+      "pilot": true,
+      "kind": "plan",
+      "expectedOutcome": "completed",
+      "input": {
+        "city": "杭州",
+        "days": 1,
+        "budget": 1500.0,
+        "travelMode": "walking",
+        "instruction": "单人目的地内1天，总预算上限1500元，不含往返目的地交通。每天上午、下午各安排一个不同景点，晚上可以住宿地休息。"
+      },
+      "expect": {
+        "minimumAttractionsPerDay": 2,
+        "requiredCategory": null,
+        "maxDailyMinutes": 600,
+        "minimumAccommodation": 0,
+        "minimumFood": 80,
+        "minimumOther": 20
+      },
+      "provenance": {
+        "source": "ChinaTravel/easy",
+        "sourceUid": "e20241028160248698752",
+        "sourceRow": {
+          "uid": "e20241028160248698752",
+          "tag": "easy",
+          "start_city": "上海",
+          "target_city": "杭州",
+          "days": "1",
+          "people_number": "1",
+          "limit_rooms": "False",
+          "limits_room_type": "False",
+          "hard_logic_py": "['result=(day_count(plan)==1)', 'result=(people_count(plan)==1)', 'total_cost=0 \\nfor activity in allactivities(plan):\\n    total_cost+=activity_cost(activity)\\n    total_cost += innercity_transport_cost(activity_transports(activity))\\nresult=(total_cost<=1500)', \"result=True\\nfor activity in allactivities(plan):\\n  if activity_type(activity) in ['attraction', 'airplane', 'train'] and activity_tickets(activity)!=1: result=False\\n  if innercity_transport_type(activity_transports(activity))=='metro'and metro_tickets(activity_transports(activity))!=1: result=False\", \"result=True\\nfor activity in allactivities(plan):\\n  if innercity_transport_type(activity_transports(activity))=='taxi'and taxi_cars(activity_transports(activity))!=1: result=False\"]",
+          "nature_language": "当前位置上海。我一个人想去杭州玩一天，预算1500人民币，请给我一个旅行规划。",
+          "nature_language_en": "Current location: Shanghai. I want to travel to Hangzhou alone for a day with a budget of 1500 RMB. Please provide me with a travel plan."
+        },
+        "mapped": [
+          "destination",
+          "duration",
+          "numeric_budget",
+          "single_person"
+        ],
+        "changes": [
+          "原始同行人数1，适配任务统一为单人；评分不声称等同原题",
+          "移除出发地及往返目的地交通",
+          "原预算数字保留，范围改为目的地内支出",
+          "原始约束程序仅作来源存档，不执行；除mapped列出的维度外，原始约束不纳入适配评分",
+          "新增三种交通模式、每日两个景点、夜间可休息、固定费用假设",
+          "如有requiredCategory，该约束为适配后新增，不宣称来自原题"
+        ]
+      }
+    },
+    {
+      "id": "CT02",
+      "split": "development",
+      "pilot": true,
+      "kind": "plan",
+      "expectedOutcome": "completed",
+      "input": {
+        "city": "成都",
+        "days": 1,
+        "budget": 1200.0,
+        "travelMode": "transit",
+        "instruction": "单人目的地内1天，总预算上限1200元，不含往返目的地交通。每天上午、下午各安排一个不同景点，晚上可以住宿地休息。"
+      },
+      "expect": {
+        "minimumAttractionsPerDay": 2,
+        "requiredCategory": null,
+        "maxDailyMinutes": 600,
+        "minimumAccommodation": 0,
+        "minimumFood": 80,
+        "minimumOther": 20
+      },
+      "provenance": {
+        "source": "ChinaTravel/easy",
+        "sourceUid": "e20241028160253742452",
+        "sourceRow": {
+          "uid": "e20241028160253742452",
+          "tag": "easy",
+          "start_city": "重庆",
+          "target_city": "成都",
+          "days": "1",
+          "people_number": "1",
+          "limit_rooms": "False",
+          "limits_room_type": "False",
+          "hard_logic_py": "['result=(day_count(plan)==1)', 'result=(people_count(plan)==1)', 'total_cost=0 \\nfor activity in allactivities(plan):\\n    total_cost+=activity_cost(activity)\\n    total_cost += innercity_transport_cost(activity_transports(activity))\\nresult=(total_cost<=1200)', \"result=True\\nfor activity in allactivities(plan):\\n  if activity_type(activity) in ['attraction', 'airplane', 'train'] and activity_tickets(activity)!=1: result=False\\n  if innercity_transport_type(activity_transports(activity))=='metro'and metro_tickets(activity_transports(activity))!=1: result=False\", \"result=True\\nfor activity in allactivities(plan):\\n  if innercity_transport_type(activity_transports(activity))=='taxi'and taxi_cars(activity_transports(activity))!=1: result=False\"]",
+          "nature_language": "当前位置重庆。我一个人想去成都玩一天，预算1200人民币，请给我一个旅行规划。",
+          "nature_language_en": "Current location: Chongqing. I want to travel to Chengdu alone for one day with a budget of 1200 RMB. Please provide me with a travel plan."
+        },
+        "mapped": [
+          "destination",
+          "duration",
+          "numeric_budget",
+          "single_person"
+        ],
+        "changes": [
+          "原始同行人数1，适配任务统一为单人；评分不声称等同原题",
+          "移除出发地及往返目的地交通",
+          "原预算数字保留，范围改为目的地内支出",
+          "原始约束程序仅作来源存档，不执行；除mapped列出的维度外，原始约束不纳入适配评分",
+          "新增三种交通模式、每日两个景点、夜间可休息、固定费用假设",
+          "如有requiredCategory，该约束为适配后新增，不宣称来自原题"
+        ]
+      }
+    },
+    {
+      "id": "CT03",
+      "split": "development",
+      "pilot": true,
+      "kind": "plan",
+      "expectedOutcome": "completed",
+      "input": {
+        "city": "北京",
+        "days": 1,
+        "budget": 2500.0,
+        "travelMode": "driving",
+        "instruction": "单人目的地内1天，总预算上限2500元，不含往返目的地交通。每天上午、下午各安排一个不同景点，晚上可以住宿地休息。"
+      },
+      "expect": {
+        "minimumAttractionsPerDay": 2,
+        "requiredCategory": null,
+        "maxDailyMinutes": 600,
+        "minimumAccommodation": 0,
+        "minimumFood": 80,
+        "minimumOther": 20
+      },
+      "provenance": {
+        "source": "ChinaTravel/easy",
+        "sourceUid": "e20241028160320866976",
+        "sourceRow": {
+          "uid": "e20241028160320866976",
+          "tag": "easy",
+          "start_city": "深圳",
+          "target_city": "北京",
+          "days": "1",
+          "people_number": "1",
+          "limit_rooms": "False",
+          "limits_room_type": "False",
+          "hard_logic_py": "['result=(day_count(plan)==1)', 'result=(people_count(plan)==1)', 'total_cost=0 \\nfor activity in allactivities(plan):\\n    total_cost+=activity_cost(activity)\\n    total_cost += innercity_transport_cost(activity_transports(activity))\\nresult=(total_cost<=2500)', \"result=True\\nfor activity in allactivities(plan):\\n  if activity_type(activity) in ['attraction', 'airplane', 'train'] and activity_tickets(activity)!=1: result=False\\n  if innercity_transport_type(activity_transports(activity))=='metro'and metro_tickets(activity_transports(activity))!=1: result=False\", \"result=True\\nfor activity in allactivities(plan):\\n  if innercity_transport_type(activity_transports(activity))=='taxi'and taxi_cars(activity_transports(activity))!=1: result=False\"]",
+          "nature_language": "当前位置深圳。我一个人想去北京玩一天，预算2500人民币，请给我一个旅行规划。",
+          "nature_language_en": "Current location: Shenzhen. I want to travel alone to Beijing for a day with a budget of 2,500 RMB. Please provide me with a travel plan."
+        },
+        "mapped": [
+          "destination",
+          "duration",
+          "numeric_budget",
+          "single_person"
+        ],
+        "changes": [
+          "原始同行人数1，适配任务统一为单人；评分不声称等同原题",
+          "移除出发地及往返目的地交通",
+          "原预算数字保留，范围改为目的地内支出",
+          "原始约束程序仅作来源存档，不执行；除mapped列出的维度外，原始约束不纳入适配评分",
+          "新增三种交通模式、每日两个景点、夜间可休息、固定费用假设",
+          "如有requiredCategory，该约束为适配后新增，不宣称来自原题"
+        ]
+      }
+    },
+    {
+      "id": "CT04",
+      "split": "development",
+      "pilot": true,
+      "kind": "plan",
+      "expectedOutcome": "completed",
+      "input": {
+        "city": "上海",
+        "days": 1,
+        "budget": 1600.0,
+        "travelMode": "walking",
+        "instruction": "单人目的地内1天，总预算上限1600元，不含往返目的地交通。每天上午、下午各安排一个不同景点，晚上可以住宿地休息。"
+      },
+      "expect": {
+        "minimumAttractionsPerDay": 2,
+        "requiredCategory": null,
+        "maxDailyMinutes": 600,
+        "minimumAccommodation": 0,
+        "minimumFood": 80,
+        "minimumOther": 20
+      },
+      "provenance": {
+        "source": "ChinaTravel/easy",
+        "sourceUid": "e20241028160258515151",
+        "sourceRow": {
+          "uid": "e20241028160258515151",
+          "tag": "easy",
+          "start_city": "杭州",
+          "target_city": "上海",
+          "days": "1",
+          "people_number": "1",
+          "limit_rooms": "False",
+          "limits_room_type": "False",
+          "hard_logic_py": "['result=(day_count(plan)==1)', 'result=(people_count(plan)==1)', 'total_cost=0 \\nfor activity in allactivities(plan):\\n    total_cost+=activity_cost(activity)\\n    total_cost += innercity_transport_cost(activity_transports(activity))\\nresult=(total_cost<=1600)', \"result=True\\nfor activity in allactivities(plan):\\n  if activity_type(activity) in ['attraction', 'airplane', 'train'] and activity_tickets(activity)!=1: result=False\\n  if innercity_transport_type(activity_transports(activity))=='metro'and metro_tickets(activity_transports(activity))!=1: result=False\", \"result=True\\nfor activity in allactivities(plan):\\n  if innercity_transport_type(activity_transports(activity))=='taxi'and taxi_cars(activity_transports(activity))!=1: result=False\"]",
+          "nature_language": "当前位置杭州。我一个人想去上海玩一天，预算1600人民币，请给我一个旅行规划。",
+          "nature_language_en": "Current location: Hangzhou. I want to visit Shanghai for a day by myself with a budget of 1600 RMB. Please provide me with a travel plan."
+        },
+        "mapped": [
+          "destination",
+          "duration",
+          "numeric_budget",
+          "single_person"
+        ],
+        "changes": [
+          "原始同行人数1，适配任务统一为单人；评分不声称等同原题",
+          "移除出发地及往返目的地交通",
+          "原预算数字保留，范围改为目的地内支出",
+          "原始约束程序仅作来源存档，不执行；除mapped列出的维度外，原始约束不纳入适配评分",
+          "新增三种交通模式、每日两个景点、夜间可休息、固定费用假设",
+          "如有requiredCategory，该约束为适配后新增，不宣称来自原题"
+        ]
+      }
+    },
+    {
+      "id": "CT05",
+      "split": "development",
+      "pilot": true,
+      "kind": "plan",
+      "expectedOutcome": "completed",
+      "input": {
+        "city": "南京",
+        "days": 1,
+        "budget": 1800.0,
+        "travelMode": "transit",
+        "instruction": "单人目的地内1天，总预算上限1800元，不含往返目的地交通。每天上午、下午各安排一个不同景点，晚上可以住宿地休息。"
+      },
+      "expect": {
+        "minimumAttractionsPerDay": 2,
+        "requiredCategory": null,
+        "maxDailyMinutes": 600,
+        "minimumAccommodation": 0,
+        "minimumFood": 80,
+        "minimumOther": 20
+      },
+      "provenance": {
+        "source": "ChinaTravel/easy",
+        "sourceUid": "e20241028160255878579",
+        "sourceRow": {
+          "uid": "e20241028160255878579",
+          "tag": "easy",
+          "start_city": "武汉",
+          "target_city": "南京",
+          "days": "1",
+          "people_number": "1",
+          "limit_rooms": "False",
+          "limits_room_type": "False",
+          "hard_logic_py": "['result=(day_count(plan)==1)', 'result=(people_count(plan)==1)', 'total_cost=0 \\nfor activity in allactivities(plan):\\n    total_cost+=activity_cost(activity)\\n    total_cost += innercity_transport_cost(activity_transports(activity))\\nresult=(total_cost<=1800)', \"result=True\\nfor activity in allactivities(plan):\\n  if activity_type(activity) in ['attraction', 'airplane', 'train'] and activity_tickets(activity)!=1: result=False\\n  if innercity_transport_type(activity_transports(activity))=='metro'and metro_tickets(activity_transports(activity))!=1: result=False\", \"result=True\\nfor activity in allactivities(plan):\\n  if innercity_transport_type(activity_transports(activity))=='taxi'and taxi_cars(activity_transports(activity))!=1: result=False\"]",
+          "nature_language": "当前位置武汉。我一个人想去南京玩一天，预算1800人民币，请给我一个旅行规划。",
+          "nature_language_en": "Current location: Wuhan. I want to visit Nanjing for a day by myself with a budget of 1800 RMB. Please provide me with a travel plan."
+        },
+        "mapped": [
+          "destination",
+          "duration",
+          "numeric_budget",
+          "single_person"
+        ],
+        "changes": [
+          "原始同行人数1，适配任务统一为单人；评分不声称等同原题",
+          "移除出发地及往返目的地交通",
+          "原预算数字保留，范围改为目的地内支出",
+          "原始约束程序仅作来源存档，不执行；除mapped列出的维度外，原始约束不纳入适配评分",
+          "新增三种交通模式、每日两个景点、夜间可休息、固定费用假设",
+          "如有requiredCategory，该约束为适配后新增，不宣称来自原题"
+        ]
+      }
+    },
+    {
+      "id": "CT06",
+      "split": "development",
+      "pilot": true,
+      "kind": "plan",
+      "expectedOutcome": "completed",
+      "input": {
+        "city": "武汉",
+        "days": 1,
+        "budget": 1500.0,
+        "travelMode": "driving",
+        "instruction": "单人目的地内1天，总预算上限1500元，不含往返目的地交通。每天上午、下午各安排一个不同景点，晚上可以住宿地休息。"
+      },
+      "expect": {
+        "minimumAttractionsPerDay": 2,
+        "requiredCategory": null,
+        "maxDailyMinutes": 600,
+        "minimumAccommodation": 0,
+        "minimumFood": 80,
+        "minimumOther": 20
+      },
+      "provenance": {
+        "source": "ChinaTravel/easy",
+        "sourceUid": "e20241028160300570125",
+        "sourceRow": {
+          "uid": "e20241028160300570125",
+          "tag": "easy",
+          "start_city": "南京",
+          "target_city": "武汉",
+          "days": "1",
+          "people_number": "1",
+          "limit_rooms": "False",
+          "limits_room_type": "False",
+          "hard_logic_py": "['result=(day_count(plan)==1)', 'result=(people_count(plan)==1)', 'total_cost=0 \\nfor activity in allactivities(plan):\\n    total_cost+=activity_cost(activity)\\n    total_cost += innercity_transport_cost(activity_transports(activity))\\nresult=(total_cost<=1500)', \"result=True\\nfor activity in allactivities(plan):\\n  if activity_type(activity) in ['attraction', 'airplane', 'train'] and activity_tickets(activity)!=1: result=False\\n  if innercity_transport_type(activity_transports(activity))=='metro'and metro_tickets(activity_transports(activity))!=1: result=False\", \"result=True\\nfor activity in allactivities(plan):\\n  if innercity_transport_type(activity_transports(activity))=='taxi'and taxi_cars(activity_transports(activity))!=1: result=False\"]",
+          "nature_language": "当前位置南京。我一个人想去武汉玩一天，预算1500人民币，请给我一个旅行规划。",
+          "nature_language_en": "Current location: Nanjing. I want to travel alone to Wuhan for a day with a budget of 1500 RMB. Please provide me with a travel plan."
+        },
+        "mapped": [
+          "destination",
+          "duration",
+          "numeric_budget",
+          "single_person"
+        ],
+        "changes": [
+          "原始同行人数1，适配任务统一为单人；评分不声称等同原题",
+          "移除出发地及往返目的地交通",
+          "原预算数字保留，范围改为目的地内支出",
+          "原始约束程序仅作来源存档，不执行；除mapped列出的维度外，原始约束不纳入适配评分",
+          "新增三种交通模式、每日两个景点、夜间可休息、固定费用假设",
+          "如有requiredCategory，该约束为适配后新增，不宣称来自原题"
+        ]
+      }
+    },
+    {
+      "id": "CT07",
+      "split": "development",
+      "pilot": true,
+      "kind": "plan",
+      "expectedOutcome": "completed",
+      "input": {
+        "city": "广州",
+        "days": 1,
+        "budget": 800.0,
+        "travelMode": "walking",
+        "instruction": "单人目的地内1天，总预算上限800元，不含往返目的地交通。每天上午、下午各安排一个不同景点，晚上可以住宿地休息。"
+      },
+      "expect": {
+        "minimumAttractionsPerDay": 2,
+        "requiredCategory": null,
+        "maxDailyMinutes": 600,
+        "minimumAccommodation": 0,
+        "minimumFood": 80,
+        "minimumOther": 20
+      },
+      "provenance": {
+        "source": "ChinaTravel/easy",
+        "sourceUid": "e20241028160301887545",
+        "sourceRow": {
+          "uid": "e20241028160301887545",
+          "tag": "easy",
+          "start_city": "深圳",
+          "target_city": "广州",
+          "days": "1",
+          "people_number": "1",
+          "limit_rooms": "False",
+          "limits_room_type": "False",
+          "hard_logic_py": "['result=(day_count(plan)==1)', 'result=(people_count(plan)==1)', 'total_cost=0 \\nfor activity in allactivities(plan):\\n    total_cost+=activity_cost(activity)\\n    total_cost += innercity_transport_cost(activity_transports(activity))\\nresult=(total_cost<=800)', \"result=True\\nfor activity in allactivities(plan):\\n  if activity_type(activity) in ['attraction', 'airplane', 'train'] and activity_tickets(activity)!=1: result=False\\n  if innercity_transport_type(activity_transports(activity))=='metro'and metro_tickets(activity_transports(activity))!=1: result=False\", \"result=True\\nfor activity in allactivities(plan):\\n  if innercity_transport_type(activity_transports(activity))=='taxi'and taxi_cars(activity_transports(activity))!=1: result=False\"]",
+          "nature_language": "当前位置深圳。我一个人想去广州玩一天，预算800人民币，请给我一个旅行规划。",
+          "nature_language_en": "Current location: Shenzhen. I want to go to Guangzhou for a day trip by myself with a budget of 800 RMB. Please provide me with a travel plan."
+        },
+        "mapped": [
+          "destination",
+          "duration",
+          "numeric_budget",
+          "single_person"
+        ],
+        "changes": [
+          "原始同行人数1，适配任务统一为单人；评分不声称等同原题",
+          "移除出发地及往返目的地交通",
+          "原预算数字保留，范围改为目的地内支出",
+          "原始约束程序仅作来源存档，不执行；除mapped列出的维度外，原始约束不纳入适配评分",
+          "新增三种交通模式、每日两个景点、夜间可休息、固定费用假设",
+          "如有requiredCategory，该约束为适配后新增，不宣称来自原题"
+        ]
+      }
+    },
+    {
+      "id": "CT08",
+      "split": "development",
+      "pilot": true,
+      "kind": "plan",
+      "expectedOutcome": "completed",
+      "input": {
+        "city": "深圳",
+        "days": 1,
+        "budget": 1000.0,
+        "travelMode": "transit",
+        "instruction": "单人目的地内1天，总预算上限1000元，不含往返目的地交通。每天上午、下午各安排一个不同景点，晚上可以住宿地休息。"
+      },
+      "expect": {
+        "minimumAttractionsPerDay": 2,
+        "requiredCategory": null,
+        "maxDailyMinutes": 600,
+        "minimumAccommodation": 0,
+        "minimumFood": 80,
+        "minimumOther": 20
+      },
+      "provenance": {
+        "source": "ChinaTravel/easy",
+        "sourceUid": "e20241028160251109186",
+        "sourceRow": {
+          "uid": "e20241028160251109186",
+          "tag": "easy",
+          "start_city": "广州",
+          "target_city": "深圳",
+          "days": "1",
+          "people_number": "1",
+          "limit_rooms": "False",
+          "limits_room_type": "False",
+          "hard_logic_py": "['result=(day_count(plan)==1)', 'result=(people_count(plan)==1)', 'total_cost=0 \\nfor activity in allactivities(plan):\\n    total_cost+=activity_cost(activity)\\n    total_cost += innercity_transport_cost(activity_transports(activity))\\nresult=(total_cost<=1000)', \"result=True\\nfor activity in allactivities(plan):\\n  if activity_type(activity) in ['attraction', 'airplane', 'train'] and activity_tickets(activity)!=1: result=False\\n  if innercity_transport_type(activity_transports(activity))=='metro'and metro_tickets(activity_transports(activity))!=1: result=False\", \"result=True\\nfor activity in allactivities(plan):\\n  if innercity_transport_type(activity_transports(activity))=='taxi'and taxi_cars(activity_transports(activity))!=1: result=False\"]",
+          "nature_language": "当前位置广州。我一个人想去深圳玩一天，预算1000人民币，请给我一个旅行规划。",
+          "nature_language_en": "Current location: Guangzhou. I want to go to Shenzhen alone for a day, with a budget of 1000 RMB. Please provide me with a travel plan."
+        },
+        "mapped": [
+          "destination",
+          "duration",
+          "numeric_budget",
+          "single_person"
+        ],
+        "changes": [
+          "原始同行人数1，适配任务统一为单人；评分不声称等同原题",
+          "移除出发地及往返目的地交通",
+          "原预算数字保留，范围改为目的地内支出",
+          "原始约束程序仅作来源存档，不执行；除mapped列出的维度外，原始约束不纳入适配评分",
+          "新增三种交通模式、每日两个景点、夜间可休息、固定费用假设",
+          "如有requiredCategory，该约束为适配后新增，不宣称来自原题"
+        ]
+      }
+    },
+    {
+      "id": "CT09",
+      "split": "development",
+      "pilot": true,
+      "kind": "plan",
+      "expectedOutcome": "completed",
+      "input": {
+        "city": "重庆",
+        "days": 1,
+        "budget": 1100.0,
+        "travelMode": "driving",
+        "instruction": "单人目的地内1天，总预算上限1100元，不含往返目的地交通。每天上午、下午各安排一个不同景点，晚上可以住宿地休息。"
+      },
+      "expect": {
+        "minimumAttractionsPerDay": 2,
+        "requiredCategory": null,
+        "maxDailyMinutes": 600,
+        "minimumAccommodation": 0,
+        "minimumFood": 80,
+        "minimumOther": 20
+      },
+      "provenance": {
+        "source": "ChinaTravel/easy",
+        "sourceUid": "e20241028160306588034",
+        "sourceRow": {
+          "uid": "e20241028160306588034",
+          "tag": "easy",
+          "start_city": "成都",
+          "target_city": "重庆",
+          "days": "1",
+          "people_number": "1",
+          "limit_rooms": "False",
+          "limits_room_type": "False",
+          "hard_logic_py": "['result=(day_count(plan)==1)', 'result=(people_count(plan)==1)', 'total_cost=0 \\nfor activity in allactivities(plan):\\n    total_cost+=activity_cost(activity)\\n    total_cost += innercity_transport_cost(activity_transports(activity))\\nresult=(total_cost<=1100)', \"result=True\\nfor activity in allactivities(plan):\\n  if activity_type(activity) in ['attraction', 'airplane', 'train'] and activity_tickets(activity)!=1: result=False\\n  if innercity_transport_type(activity_transports(activity))=='metro'and metro_tickets(activity_transports(activity))!=1: result=False\", \"result=True\\nfor activity in allactivities(plan):\\n  if innercity_transport_type(activity_transports(activity))=='taxi'and taxi_cars(activity_transports(activity))!=1: result=False\"]",
+          "nature_language": "当前位置成都。我一个人想去重庆玩一天，预算1100人民币，请给我一个旅行规划。",
+          "nature_language_en": "Current location: Chengdu. I want to visit Chongqing alone for a day with a budget of 1100 RMB. Please provide me with a travel plan."
+        },
+        "mapped": [
+          "destination",
+          "duration",
+          "numeric_budget",
+          "single_person"
+        ],
+        "changes": [
+          "原始同行人数1，适配任务统一为单人；评分不声称等同原题",
+          "移除出发地及往返目的地交通",
+          "原预算数字保留，范围改为目的地内支出",
+          "原始约束程序仅作来源存档，不执行；除mapped列出的维度外，原始约束不纳入适配评分",
+          "新增三种交通模式、每日两个景点、夜间可休息、固定费用假设",
+          "如有requiredCategory，该约束为适配后新增，不宣称来自原题"
+        ]
+      }
+    },
+    {
+      "id": "CT10",
+      "split": "development",
+      "pilot": true,
+      "kind": "plan",
+      "expectedOutcome": "completed",
+      "input": {
+        "city": "苏州",
+        "days": 1,
+        "budget": 1400.0,
+        "travelMode": "walking",
+        "instruction": "单人目的地内1天，总预算上限1400元，不含往返目的地交通。每天上午、下午各安排一个不同景点，晚上可以住宿地休息。"
+      },
+      "expect": {
+        "minimumAttractionsPerDay": 2,
+        "requiredCategory": null,
+        "maxDailyMinutes": 600,
+        "minimumAccommodation": 0,
+        "minimumFood": 80,
+        "minimumOther": 20
+      },
+      "provenance": {
+        "source": "ChinaTravel/easy",
+        "sourceUid": "e20241028160312706595",
+        "sourceRow": {
+          "uid": "e20241028160312706595",
+          "tag": "easy",
+          "start_city": "重庆",
+          "target_city": "苏州",
+          "days": "1",
+          "people_number": "1",
+          "limit_rooms": "False",
+          "limits_room_type": "False",
+          "hard_logic_py": "['result=(day_count(plan)==1)', 'result=(people_count(plan)==1)', 'total_cost=0 \\nfor activity in allactivities(plan):\\n    total_cost+=activity_cost(activity)\\n    total_cost += innercity_transport_cost(activity_transports(activity))\\nresult=(total_cost<=1400)', \"result=True\\nfor activity in allactivities(plan):\\n  if activity_type(activity) in ['attraction', 'airplane', 'train'] and activity_tickets(activity)!=1: result=False\\n  if innercity_transport_type(activity_transports(activity))=='metro'and metro_tickets(activity_transports(activity))!=1: result=False\", \"result=True\\nfor activity in allactivities(plan):\\n  if innercity_transport_type(activity_transports(activity))=='taxi'and taxi_cars(activity_transports(activity))!=1: result=False\"]",
+          "nature_language": "当前位置重庆。我一个人想去苏州玩一天，预算1400人民币，请给我一个旅行规划。",
+          "nature_language_en": "Current location: Chongqing. I want to visit Suzhou for a day by myself with a budget of 1,400 RMB. Please provide me with a travel plan."
+        },
+        "mapped": [
+          "destination",
+          "duration",
+          "numeric_budget",
+          "single_person"
+        ],
+        "changes": [
+          "原始同行人数1，适配任务统一为单人；评分不声称等同原题",
+          "移除出发地及往返目的地交通",
+          "原预算数字保留，范围改为目的地内支出",
+          "原始约束程序仅作来源存档，不执行；除mapped列出的维度外，原始约束不纳入适配评分",
+          "新增三种交通模式、每日两个景点、夜间可休息、固定费用假设",
+          "如有requiredCategory，该约束为适配后新增，不宣称来自原题"
+        ]
+      }
+    },
+    {
+      "id": "CT11",
+      "split": "development",
+      "pilot": false,
+      "kind": "plan",
+      "expectedOutcome": "completed",
+      "input": {
+        "city": "杭州",
+        "days": 2,
+        "budget": 2000,
+        "travelMode": "transit",
+        "instruction": "单人目的地内2天，总预算上限2000元，不含往返目的地交通。每天上午、下午各安排一个不同景点，晚上可以住宿地休息。全行程至少有一个类型为【人文景观】的景点。"
+      },
+      "expect": {
+        "minimumAttractionsPerDay": 2,
+        "requiredCategory": "人文景观",
+        "maxDailyMinutes": 600,
+        "minimumAccommodation": 200,
+        "minimumFood": 160,
+        "minimumOther": 40
+      },
+      "provenance": {
+        "source": "ChinaTravel/easy",
+        "sourceUid": "m20241028164655927567",
+        "sourceRow": {
+          "uid": "m20241028164655927567",
+          "tag": "easy",
+          "start_city": "重庆",
+          "target_city": "杭州",
+          "days": "2",
+          "people_number": "1",
+          "limit_rooms": "False",
+          "limits_room_type": "False",
+          "hard_logic_py": "['result=(day_count(plan)==2)', 'result=(people_count(plan)==1)', \"result=True\\nfor activity in allactivities(plan):\\n  if activity_type(activity) in ['attraction', 'airplane', 'train'] and activity_tickets(activity)!=1: result=False\\n  if innercity_transport_type(activity_transports(activity))=='metro'and metro_tickets(activity_transports(activity))!=1: result=False\", \"restaurant_type_set=set()\\nfor activity in allactivities(plan):\\n  if activity_type(activity) in ['breakfast', 'lunch', 'dinner']: restaurant_type_set.add(restaurant_type(activity, target_city(plan)))\\nresult=({'西餐'}<=restaurant_type_set)\", \"result=True\\nfor activity in allactivities(plan):\\n  if innercity_transport_type(activity_transports(activity))=='taxi'and taxi_cars(activity_transports(activity))!=1: result=False\"]",
+          "nature_language": "当前位置重庆。我一个人想去杭州玩2天，想尝试西餐，请给我一个旅行规划。",
+          "nature_language_en": "Current location: Chongqing. I want to travel alone to Hangzhou for 2 days and try some Western cuisine. Please provide me with a travel plan."
+        },
+        "mapped": [
+          "destination",
+          "duration",
+          "single_person"
+        ],
+        "changes": [
+          "原始同行人数1，适配任务统一为单人；评分不声称等同原题",
+          "移除出发地及往返目的地交通",
+          "原题没有可直接提取的数字预算，显式新增1000元/天预算上限",
+          "原始约束程序仅作来源存档，不执行；除mapped列出的维度外，原始约束不纳入适配评分",
+          "新增三种交通模式、每日两个景点、夜间可休息、固定费用假设",
+          "如有requiredCategory，该约束为适配后新增，不宣称来自原题"
+        ]
+      }
+    },
+    {
+      "id": "CT12",
+      "split": "development",
+      "pilot": false,
+      "kind": "plan",
+      "expectedOutcome": "completed",
+      "input": {
+        "city": "成都",
+        "days": 2,
+        "budget": 2000,
+        "travelMode": "driving",
+        "instruction": "单人目的地内2天，总预算上限2000元，不含往返目的地交通。每天上午、下午各安排一个不同景点，晚上可以住宿地休息。全行程至少有一个类型为【美术馆/艺术馆】的景点。"
+      },
+      "expect": {
+        "minimumAttractionsPerDay": 2,
+        "requiredCategory": "美术馆/艺术馆",
+        "maxDailyMinutes": 600,
+        "minimumAccommodation": 200,
+        "minimumFood": 160,
+        "minimumOther": 40
+      },
+      "provenance": {
+        "source": "ChinaTravel/easy",
+        "sourceUid": "m20241028164626006100",
+        "sourceRow": {
+          "uid": "m20241028164626006100",
+          "tag": "easy",
+          "start_city": "北京",
+          "target_city": "成都",
+          "days": "2",
+          "people_number": "1",
+          "limit_rooms": "False",
+          "limits_room_type": "False",
+          "hard_logic_py": "['result=(day_count(plan)==2)', 'result=(people_count(plan)==1)', \"result=True\\nfor activity in allactivities(plan):\\n  if activity_type(activity) in ['attraction', 'airplane', 'train'] and activity_tickets(activity)!=1: result=False\\n  if innercity_transport_type(activity_transports(activity))=='metro'and metro_tickets(activity_transports(activity))!=1: result=False\", \"attraction_type_set=set()\\nfor activity in allactivities(plan):\\n  if activity_type(activity)=='attraction': attraction_type_set.add(attraction_type(activity, target_city(plan)))\\nresult=({'博物馆/纪念馆'}<=attraction_type_set)\", \"result=True\\nfor activity in allactivities(plan):\\n  if innercity_transport_type(activity_transports(activity))=='taxi'and taxi_cars(activity_transports(activity))!=1: result=False\"]",
+          "nature_language": "当前位置北京。我一个人想去成都玩2天，想去参观一些博物馆或纪念馆，请给我一个旅行规划。",
+          "nature_language_en": "Current location: Beijing. I want to travel alone to Chengdu for 2 days and visit some museums or memorials. Please provide me with a travel plan."
+        },
+        "mapped": [
+          "destination",
+          "duration",
+          "single_person"
+        ],
+        "changes": [
+          "原始同行人数1，适配任务统一为单人；评分不声称等同原题",
+          "移除出发地及往返目的地交通",
+          "原题没有可直接提取的数字预算，显式新增1000元/天预算上限",
+          "原始约束程序仅作来源存档，不执行；除mapped列出的维度外，原始约束不纳入适配评分",
+          "新增三种交通模式、每日两个景点、夜间可休息、固定费用假设",
+          "如有requiredCategory，该约束为适配后新增，不宣称来自原题"
+        ]
+      }
+    },
+    {
+      "id": "CT13",
+      "split": "development",
+      "pilot": false,
+      "kind": "plan",
+      "expectedOutcome": "completed",
+      "input": {
+        "city": "北京",
+        "days": 2,
+        "budget": 2000,
+        "travelMode": "walking",
+        "instruction": "单人目的地内2天，总预算上限2000元，不含往返目的地交通。每天上午、下午各安排一个不同景点，晚上可以住宿地休息。全行程至少有一个类型为【历史古迹】的景点。"
+      },
+      "expect": {
+        "minimumAttractionsPerDay": 2,
+        "requiredCategory": "历史古迹",
+        "maxDailyMinutes": 600,
+        "minimumAccommodation": 200,
+        "minimumFood": 160,
+        "minimumOther": 40
+      },
+      "provenance": {
+        "source": "ChinaTravel/easy",
+        "sourceUid": "m20241028164843213370",
+        "sourceRow": {
+          "uid": "m20241028164843213370",
+          "tag": "easy",
+          "start_city": "南京",
+          "target_city": "北京",
+          "days": "2",
+          "people_number": "1",
+          "limit_rooms": "False",
+          "limits_room_type": "False",
+          "hard_logic_py": "['result=(day_count(plan)==2)', 'result=(people_count(plan)==1)', \"result=True\\nfor activity in allactivities(plan):\\n  if activity_type(activity) in ['attraction', 'airplane', 'train'] and activity_tickets(activity)!=1: result=False\\n  if innercity_transport_type(activity_transports(activity))=='metro'and metro_tickets(activity_transports(activity))!=1: result=False\", \"attraction_name_set=set()\\nfor activity in allactivities(plan):\\n  if activity_type(activity)=='attraction': attraction_name_set.add(activity_position(activity))\\nresult=({'清晏舫'}<=attraction_name_set)\", \"result=True\\nfor activity in allactivities(plan):\\n  if innercity_transport_type(activity_transports(activity))=='taxi'and taxi_cars(activity_transports(activity))!=1: result=False\"]",
+          "nature_language": "当前位置南京。我一个人想去北京玩2天，想去清晏舫，请给我一个旅行规划。",
+          "nature_language_en": "Current location: Nanjing. I want to travel alone to Beijing for 2 days and visit the Qingyanfang. Please provide me with a travel plan."
+        },
+        "mapped": [
+          "destination",
+          "duration",
+          "single_person"
+        ],
+        "changes": [
+          "原始同行人数1，适配任务统一为单人；评分不声称等同原题",
+          "移除出发地及往返目的地交通",
+          "原题没有可直接提取的数字预算，显式新增1000元/天预算上限",
+          "原始约束程序仅作来源存档，不执行；除mapped列出的维度外，原始约束不纳入适配评分",
+          "新增三种交通模式、每日两个景点、夜间可休息、固定费用假设",
+          "如有requiredCategory，该约束为适配后新增，不宣称来自原题"
+        ]
+      }
+    },
+    {
+      "id": "CT14",
+      "split": "development",
+      "pilot": false,
+      "kind": "plan",
+      "expectedOutcome": "completed",
+      "input": {
+        "city": "上海",
+        "days": 2,
+        "budget": 2000,
+        "travelMode": "transit",
+        "instruction": "单人目的地内2天，总预算上限2000元，不含往返目的地交通。每天上午、下午各安排一个不同景点，晚上可以住宿地休息。全行程至少有一个类型为【游乐园/体育娱乐】的景点。"
+      },
+      "expect": {
+        "minimumAttractionsPerDay": 2,
+        "requiredCategory": "游乐园/体育娱乐",
+        "maxDailyMinutes": 600,
+        "minimumAccommodation": 200,
+        "minimumFood": 160,
+        "minimumOther": 40
+      },
+      "provenance": {
+        "source": "ChinaTravel/easy",
+        "sourceUid": "m20241028164637595271",
+        "sourceRow": {
+          "uid": "m20241028164637595271",
+          "tag": "easy",
+          "start_city": "杭州",
+          "target_city": "上海",
+          "days": "2",
+          "people_number": "1",
+          "limit_rooms": "False",
+          "limits_room_type": "False",
+          "hard_logic_py": "['result=(day_count(plan)==2)', 'result=(people_count(plan)==1)', \"result=True\\nfor activity in allactivities(plan):\\n  if activity_type(activity) in ['attraction', 'airplane', 'train'] and activity_tickets(activity)!=1: result=False\\n  if innercity_transport_type(activity_transports(activity))=='metro'and metro_tickets(activity_transports(activity))!=1: result=False\", \"restaurant_type_set=set()\\nfor activity in allactivities(plan):\\n  if activity_type(activity) in ['breakfast', 'lunch', 'dinner']: restaurant_type_set.add(restaurant_type(activity, target_city(plan)))\\nresult=({'本帮菜'}<=restaurant_type_set)\", \"result=True\\nfor activity in allactivities(plan):\\n  if innercity_transport_type(activity_transports(activity))=='taxi'and taxi_cars(activity_transports(activity))!=1: result=False\"]",
+          "nature_language": "当前位置杭州。我一个人想去上海玩2天，想尝试当地的特色菜，请给我一个旅行规划。",
+          "nature_language_en": "Current location: Hangzhou. I want to travel to Shanghai alone for 2 days and try the local specialties. Please provide me with a travel plan."
+        },
+        "mapped": [
+          "destination",
+          "duration",
+          "single_person"
+        ],
+        "changes": [
+          "原始同行人数1，适配任务统一为单人；评分不声称等同原题",
+          "移除出发地及往返目的地交通",
+          "原题没有可直接提取的数字预算，显式新增1000元/天预算上限",
+          "原始约束程序仅作来源存档，不执行；除mapped列出的维度外，原始约束不纳入适配评分",
+          "新增三种交通模式、每日两个景点、夜间可休息、固定费用假设",
+          "如有requiredCategory，该约束为适配后新增，不宣称来自原题"
+        ]
+      }
+    },
+    {
+      "id": "CT15",
+      "split": "development",
+      "pilot": false,
+      "kind": "plan",
+      "expectedOutcome": "completed",
+      "input": {
+        "city": "南京",
+        "days": 2,
+        "budget": 2000,
+        "travelMode": "driving",
+        "instruction": "单人目的地内2天，总预算上限2000元，不含往返目的地交通。每天上午、下午各安排一个不同景点，晚上可以住宿地休息。全行程至少有一个类型为【文化旅游区】的景点。"
+      },
+      "expect": {
+        "minimumAttractionsPerDay": 2,
+        "requiredCategory": "文化旅游区",
+        "maxDailyMinutes": 600,
+        "minimumAccommodation": 200,
+        "minimumFood": 160,
+        "minimumOther": 40
+      },
+      "provenance": {
+        "source": "ChinaTravel/easy",
+        "sourceUid": "m20241028164657140437",
+        "sourceRow": {
+          "uid": "m20241028164657140437",
+          "tag": "easy",
+          "start_city": "广州",
+          "target_city": "南京",
+          "days": "2",
+          "people_number": "1",
+          "limit_rooms": "False",
+          "limits_room_type": "False",
+          "hard_logic_py": "['result=(day_count(plan)==2)', 'result=(people_count(plan)==1)', \"result=True\\nfor activity in allactivities(plan):\\n  if activity_type(activity) in ['attraction', 'airplane', 'train'] and activity_tickets(activity)!=1: result=False\\n  if innercity_transport_type(activity_transports(activity))=='metro'and metro_tickets(activity_transports(activity))!=1: result=False\", \"restaurant_type_set=set()\\nfor activity in allactivities(plan):\\n  if activity_type(activity) in ['breakfast', 'lunch', 'dinner']: restaurant_type_set.add(restaurant_type(activity, target_city(plan)))\\nresult=({'融合菜'}<=restaurant_type_set)\", \"result=True\\nfor activity in allactivities(plan):\\n  if innercity_transport_type(activity_transports(activity))=='taxi'and taxi_cars(activity_transports(activity))!=1: result=False\"]",
+          "nature_language": "当前位置广州。我一个人想去南京玩2天，想尝试江浙融合菜，请给我一个旅行规划。",
+          "nature_language_en": "Current location: Guangzhou. I want to travel alone to Nanjing for 2 days and try Jiangsu-Zhejiang fusion cuisine. Please provide me with a travel plan."
+        },
+        "mapped": [
+          "destination",
+          "duration",
+          "single_person"
+        ],
+        "changes": [
+          "原始同行人数1，适配任务统一为单人；评分不声称等同原题",
+          "移除出发地及往返目的地交通",
+          "原题没有可直接提取的数字预算，显式新增1000元/天预算上限",
+          "原始约束程序仅作来源存档，不执行；除mapped列出的维度外，原始约束不纳入适配评分",
+          "新增三种交通模式、每日两个景点、夜间可休息、固定费用假设",
+          "如有requiredCategory，该约束为适配后新增，不宣称来自原题"
+        ]
+      }
+    },
+    {
+      "id": "CT16",
+      "split": "development",
+      "pilot": false,
+      "kind": "plan",
+      "expectedOutcome": "completed",
+      "input": {
+        "city": "武汉",
+        "days": 2,
+        "budget": 2000,
+        "travelMode": "walking",
+        "instruction": "单人目的地内2天，总预算上限2000元，不含往返目的地交通。每天上午、下午各安排一个不同景点，晚上可以住宿地休息。全行程至少有一个类型为【游乐园/体育娱乐】的景点。"
+      },
+      "expect": {
+        "minimumAttractionsPerDay": 2,
+        "requiredCategory": "游乐园/体育娱乐",
+        "maxDailyMinutes": 600,
+        "minimumAccommodation": 200,
+        "minimumFood": 160,
+        "minimumOther": 40
+      },
+      "provenance": {
+        "source": "ChinaTravel/easy",
+        "sourceUid": "m20241028164628014228",
+        "sourceRow": {
+          "uid": "m20241028164628014228",
+          "tag": "easy",
+          "start_city": "南京",
+          "target_city": "武汉",
+          "days": "2",
+          "people_number": "1",
+          "limit_rooms": "False",
+          "limits_room_type": "False",
+          "hard_logic_py": "['result=(day_count(plan)==2)', 'result=(people_count(plan)==1)', \"result=True\\nfor activity in allactivities(plan):\\n  if activity_type(activity) in ['attraction', 'airplane', 'train'] and activity_tickets(activity)!=1: result=False\\n  if innercity_transport_type(activity_transports(activity))=='metro'and metro_tickets(activity_transports(activity))!=1: result=False\", \"attraction_type_set=set()\\nfor activity in allactivities(plan):\\n  if activity_type(activity)=='attraction': attraction_type_set.add(attraction_type(activity, target_city(plan)))\\nresult=({'美术馆/艺术馆'}<=attraction_type_set)\", \"result=True\\nfor activity in allactivities(plan):\\n  if innercity_transport_type(activity_transports(activity))=='taxi'and taxi_cars(activity_transports(activity))!=1: result=False\"]",
+          "nature_language": "我目前在南京，计划一个人去武汉玩两天，想参观一些美术馆，请帮我规划一个旅行路线。",
+          "nature_language_en": "Sure, here is the translation of your text into English:"
+        },
+        "mapped": [
+          "destination",
+          "duration",
+          "single_person"
+        ],
+        "changes": [
+          "原始同行人数1，适配任务统一为单人；评分不声称等同原题",
+          "移除出发地及往返目的地交通",
+          "原题没有可直接提取的数字预算，显式新增1000元/天预算上限",
+          "原始约束程序仅作来源存档，不执行；除mapped列出的维度外，原始约束不纳入适配评分",
+          "新增三种交通模式、每日两个景点、夜间可休息、固定费用假设",
+          "如有requiredCategory，该约束为适配后新增，不宣称来自原题"
+        ]
+      }
+    },
+    {
+      "id": "CT17",
+      "split": "development",
+      "pilot": false,
+      "kind": "plan",
+      "expectedOutcome": "completed",
+      "input": {
+        "city": "广州",
+        "days": 2,
+        "budget": 2000,
+        "travelMode": "transit",
+        "instruction": "单人目的地内2天，总预算上限2000元，不含往返目的地交通。每天上午、下午各安排一个不同景点，晚上可以住宿地休息。全行程至少有一个类型为【公园】的景点。"
+      },
+      "expect": {
+        "minimumAttractionsPerDay": 2,
+        "requiredCategory": "公园",
+        "maxDailyMinutes": 600,
+        "minimumAccommodation": 200,
+        "minimumFood": 160,
+        "minimumOther": 40
+      },
+      "provenance": {
+        "source": "ChinaTravel/easy",
+        "sourceUid": "m20241028164806059008",
+        "sourceRow": {
+          "uid": "m20241028164806059008",
+          "tag": "easy",
+          "start_city": "深圳",
+          "target_city": "广州",
+          "days": "2",
+          "people_number": "1",
+          "limit_rooms": "True",
+          "limits_room_type": "True",
+          "hard_logic_py": "['result=(day_count(plan)==2)', 'result=(people_count(plan)==1)', \"result=True\\nfor activity in allactivities(plan):\\n  if activity_type(activity) in ['attraction', 'airplane', 'train'] and activity_tickets(activity)!=1: result=False\\n  if innercity_transport_type(activity_transports(activity))=='metro'and metro_tickets(activity_transports(activity))!=1: result=False\", \"result=True\\nfor activity in allactivities(plan):\\n  if activity_type(activity)=='accommodation' and room_count(activity)!=1: result=False\", \"result=True\\nfor activity in allactivities(plan):\\n  if activity_type(activity)=='accommodation' and room_type(activity)!=1: result=False\", \"accommodation_type_set=set()\\nfor activity in allactivities(plan):\\n  if activity_type(activity) == 'accommodation': accommodation_type_set.add(accommodation_type(activity, target_city(plan)))\\nresult=({'儿童乐园'}<=accommodation_type_set)\", \"result=True\\nfor activity in allactivities(plan):\\n  if innercity_transport_type(activity_transports(activity))=='taxi'and taxi_cars(activity_transports(activity))!=1: result=False\"]",
+          "nature_language": "当前位置深圳。我一个人想去广州玩2天，住一间大床房，酒店要有可以带小孩玩的乐园，请给我一个旅行规划。",
+          "nature_language_en": "Current location: Shenzhen. I want to go to Guangzhou alone for 2 days and stay in a hotel with a king-size bed. The hotel should have a playground for children. Please provide me with a travel plan."
+        },
+        "mapped": [
+          "destination",
+          "duration",
+          "single_person"
+        ],
+        "changes": [
+          "原始同行人数1，适配任务统一为单人；评分不声称等同原题",
+          "移除出发地及往返目的地交通",
+          "原题没有可直接提取的数字预算，显式新增1000元/天预算上限",
+          "原始约束程序仅作来源存档，不执行；除mapped列出的维度外，原始约束不纳入适配评分",
+          "新增三种交通模式、每日两个景点、夜间可休息、固定费用假设",
+          "如有requiredCategory，该约束为适配后新增，不宣称来自原题"
+        ]
+      }
+    },
+    {
+      "id": "CT18",
+      "split": "development",
+      "pilot": false,
+      "kind": "plan",
+      "expectedOutcome": "completed",
+      "input": {
+        "city": "深圳",
+        "days": 2,
+        "budget": 2000,
+        "travelMode": "driving",
+        "instruction": "单人目的地内2天，总预算上限2000元，不含往返目的地交通。每天上午、下午各安排一个不同景点，晚上可以住宿地休息。全行程至少有一个类型为【历史古迹】的景点。"
+      },
+      "expect": {
+        "minimumAttractionsPerDay": 2,
+        "requiredCategory": "历史古迹",
+        "maxDailyMinutes": 600,
+        "minimumAccommodation": 200,
+        "minimumFood": 160,
+        "minimumOther": 40
+      },
+      "provenance": {
+        "source": "ChinaTravel/easy",
+        "sourceUid": "m20241028165009070086",
+        "sourceRow": {
+          "uid": "m20241028165009070086",
+          "tag": "easy",
+          "start_city": "北京",
+          "target_city": "深圳",
+          "days": "2",
+          "people_number": "1",
+          "limit_rooms": "False",
+          "limits_room_type": "False",
+          "hard_logic_py": "['result=(day_count(plan)==2)', 'result=(people_count(plan)==1)', \"result=True\\nfor activity in allactivities(plan):\\n  if activity_type(activity) in ['attraction', 'airplane', 'train'] and activity_tickets(activity)!=1: result=False\\n  if innercity_transport_type(activity_transports(activity))=='metro'and metro_tickets(activity_transports(activity))!=1: result=False\", \"accommodation_name_set=set()\\nfor activity in allactivities(plan):\\n  if activity_type(activity)=='accommodation': accommodation_name_set.add(activity_position(activity))\\nresult=({'丽呈東谷酒店(深圳华强北店)'}<=accommodation_name_set)\", \"result=True\\nfor activity in allactivities(plan):\\n  if innercity_transport_type(activity_transports(activity))=='taxi'and taxi_cars(activity_transports(activity))!=1: result=False\"]",
+          "nature_language": "当前位置北京。我一个人想去深圳玩2天，住丽呈東谷酒店(深圳华强北店)，请给我一个旅行规划。",
+          "nature_language_en": "Current location: Beijing. I want to travel alone to Shenzhen for 2 days and stay at the Rezen Dong Hotel (Shenzhen Huaqiangbei). Please provide me with a travel plan."
+        },
+        "mapped": [
+          "destination",
+          "duration",
+          "single_person"
+        ],
+        "changes": [
+          "原始同行人数1，适配任务统一为单人；评分不声称等同原题",
+          "移除出发地及往返目的地交通",
+          "原题没有可直接提取的数字预算，显式新增1000元/天预算上限",
+          "原始约束程序仅作来源存档，不执行；除mapped列出的维度外，原始约束不纳入适配评分",
+          "新增三种交通模式、每日两个景点、夜间可休息、固定费用假设",
+          "如有requiredCategory，该约束为适配后新增，不宣称来自原题"
+        ]
+      }
+    },
+    {
+      "id": "CT19",
+      "split": "development",
+      "pilot": false,
+      "kind": "plan",
+      "expectedOutcome": "completed",
+      "input": {
+        "city": "重庆",
+        "days": 2,
+        "budget": 2000,
+        "travelMode": "walking",
+        "instruction": "单人目的地内2天，总预算上限2000元，不含往返目的地交通。每天上午、下午各安排一个不同景点，晚上可以住宿地休息。全行程至少有一个类型为【商业街区】的景点。"
+      },
+      "expect": {
+        "minimumAttractionsPerDay": 2,
+        "requiredCategory": "商业街区",
+        "maxDailyMinutes": 600,
+        "minimumAccommodation": 200,
+        "minimumFood": 160,
+        "minimumOther": 40
+      },
+      "provenance": {
+        "source": "ChinaTravel/easy",
+        "sourceUid": "m20241028164641561951",
+        "sourceRow": {
+          "uid": "m20241028164641561951",
+          "tag": "easy",
+          "start_city": "武汉",
+          "target_city": "重庆",
+          "days": "2",
+          "people_number": "1",
+          "limit_rooms": "False",
+          "limits_room_type": "False",
+          "hard_logic_py": "['result=(day_count(plan)==2)', 'result=(people_count(plan)==1)', \"result=True\\nfor activity in allactivities(plan):\\n  if activity_type(activity) in ['attraction', 'airplane', 'train'] and activity_tickets(activity)!=1: result=False\\n  if innercity_transport_type(activity_transports(activity))=='metro'and metro_tickets(activity_transports(activity))!=1: result=False\", \"restaurant_type_set=set()\\nfor activity in allactivities(plan):\\n  if activity_type(activity) in ['breakfast', 'lunch', 'dinner']: restaurant_type_set.add(restaurant_type(activity, target_city(plan)))\\nresult=({'火锅'}<=restaurant_type_set)\", \"result=True\\nfor activity in allactivities(plan):\\n  if innercity_transport_type(activity_transports(activity))=='taxi'and taxi_cars(activity_transports(activity))!=1: result=False\"]",
+          "nature_language": "当前位置武汉。我一个人想去重庆玩2天，想尝试当地的火锅，请给我一个旅行规划。",
+          "nature_language_en": "Current location: Wuhan. I want to travel to Chongqing alone for 2 days and try the local hotpot. Please provide me with a travel plan."
+        },
+        "mapped": [
+          "destination",
+          "duration",
+          "single_person"
+        ],
+        "changes": [
+          "原始同行人数1，适配任务统一为单人；评分不声称等同原题",
+          "移除出发地及往返目的地交通",
+          "原题没有可直接提取的数字预算，显式新增1000元/天预算上限",
+          "原始约束程序仅作来源存档，不执行；除mapped列出的维度外，原始约束不纳入适配评分",
+          "新增三种交通模式、每日两个景点、夜间可休息、固定费用假设",
+          "如有requiredCategory，该约束为适配后新增，不宣称来自原题"
+        ]
+      }
+    },
+    {
+      "id": "CT20",
+      "split": "development",
+      "pilot": false,
+      "kind": "plan",
+      "expectedOutcome": "completed",
+      "input": {
+        "city": "苏州",
+        "days": 2,
+        "budget": 2000,
+        "travelMode": "transit",
+        "instruction": "单人目的地内2天，总预算上限2000元，不含往返目的地交通。每天上午、下午各安排一个不同景点，晚上可以住宿地休息。全行程至少有一个类型为【人文景观】的景点。"
+      },
+      "expect": {
+        "minimumAttractionsPerDay": 2,
+        "requiredCategory": "人文景观",
+        "maxDailyMinutes": 600,
+        "minimumAccommodation": 200,
+        "minimumFood": 160,
+        "minimumOther": 40
+      },
+      "provenance": {
+        "source": "ChinaTravel/easy",
+        "sourceUid": "t20241206171912934521",
+        "sourceRow": {
+          "uid": "t20241206171912934521",
+          "tag": "easy",
+          "start_city": "上海",
+          "target_city": "苏州",
+          "days": "2",
+          "people_number": "3",
+          "limit_rooms": "False",
+          "limits_room_type": "False",
+          "hard_logic_py": "['result=(day_count(plan)==2)', 'result=(people_count(plan)==3)', \"intercity_transport_set=set()\\nfor activity in allactivities(plan):\\n  if activity_type(activity) in ['train', 'airplane']: intercity_transport_set.add(intercity_transport_type(activity))\\nresult=({'train'}==intercity_transport_set)\", \"result=True\\nfor activity in allactivities(plan):\\n  if activity_type(activity) in ['attraction', 'airplane', 'train'] and activity_tickets(activity)!=3: result=False\\n  if innercity_transport_type(activity_transports(activity))=='metro'and metro_tickets(activity_transports(activity))!=3: result=False\", \"result=True\\nfor activity in allactivities(plan):\\n  if innercity_transport_type(activity_transports(activity))=='taxi'and taxi_cars(activity_transports(activity))!=1: result=False\"]",
+          "nature_language": "当前位置上海。我和两位朋友打算去苏州玩两天，选择火车出行。请给我一个旅行规划。",
+          "nature_language_en": "Current location: Shanghai. My two friends and I are planning to visit Suzhou for two days, and we plan to travel by train. Could you please provide a travel itinerary for us?"
+        },
+        "mapped": [
+          "destination",
+          "duration"
+        ],
+        "changes": [
+          "原始同行人数3，适配任务统一为单人；评分不声称等同原题",
+          "移除出发地及往返目的地交通",
+          "原题没有可直接提取的数字预算，显式新增1000元/天预算上限",
+          "原始约束程序仅作来源存档，不执行；除mapped列出的维度外，原始约束不纳入适配评分",
+          "新增三种交通模式、每日两个景点、夜间可休息、固定费用假设",
+          "如有requiredCategory，该约束为适配后新增，不宣称来自原题"
+        ]
+      }
+    },
+    {
+      "id": "CT21",
+      "split": "development",
+      "pilot": false,
+      "kind": "plan",
+      "expectedOutcome": "completed",
+      "input": {
+        "city": "杭州",
+        "days": 3,
+        "budget": 3000,
+        "travelMode": "driving",
+        "instruction": "单人目的地内3天，总预算上限3000元，不含往返目的地交通。每天上午、下午各安排一个不同景点，晚上可以住宿地休息。全行程至少有一个类型为【历史古迹】的景点。"
+      },
+      "expect": {
+        "minimumAttractionsPerDay": 2,
+        "requiredCategory": "历史古迹",
+        "maxDailyMinutes": 600,
+        "minimumAccommodation": 400,
+        "minimumFood": 240,
+        "minimumOther": 60
+      },
+      "provenance": {
+        "source": "ChinaTravel/easy",
+        "sourceUid": "m20241028164715213722",
+        "sourceRow": {
+          "uid": "m20241028164715213722",
+          "tag": "easy",
+          "start_city": "北京",
+          "target_city": "杭州",
+          "days": "3",
+          "people_number": "1",
+          "limit_rooms": "True",
+          "limits_room_type": "True",
+          "hard_logic_py": "['result=(day_count(plan)==3)', 'result=(people_count(plan)==1)', \"result=True\\nfor activity in allactivities(plan):\\n  if activity_type(activity) in ['attraction', 'airplane', 'train'] and activity_tickets(activity)!=1: result=False\\n  if innercity_transport_type(activity_transports(activity))=='metro'and metro_tickets(activity_transports(activity))!=1: result=False\", \"result=True\\nfor activity in allactivities(plan):\\n  if activity_type(activity)=='accommodation' and room_count(activity)!=1: result=False\", \"result=True\\nfor activity in allactivities(plan):\\n  if activity_type(activity)=='accommodation' and room_type(activity)!=1: result=False\", \"accommodation_type_set=set()\\nfor activity in allactivities(plan):\\n  if activity_type(activity) == 'accommodation': accommodation_type_set.add(accommodation_type(activity, target_city(plan)))\\nresult=({'民宿'}<=accommodation_type_set)\", \"result=True\\nfor activity in allactivities(plan):\\n  if innercity_transport_type(activity_transports(activity))=='taxi'and taxi_cars(activity_transports(activity))!=1: result=False\"]",
+          "nature_language": "当前位置北京。我一个人想去杭州玩3天，住一间大床房，酒店要像民宿一样温馨，请给我一个旅行规划。",
+          "nature_language_en": "Current location: Beijing. I want to travel alone to Hangzhou for 3 days and stay in a hotel with a large bed that feels as cozy as a homestay. Please provide me with a travel plan."
+        },
+        "mapped": [
+          "destination",
+          "duration",
+          "single_person"
+        ],
+        "changes": [
+          "原始同行人数1，适配任务统一为单人；评分不声称等同原题",
+          "移除出发地及往返目的地交通",
+          "原题没有可直接提取的数字预算，显式新增1000元/天预算上限",
+          "原始约束程序仅作来源存档，不执行；除mapped列出的维度外，原始约束不纳入适配评分",
+          "新增三种交通模式、每日两个景点、夜间可休息、固定费用假设",
+          "如有requiredCategory，该约束为适配后新增，不宣称来自原题"
+        ]
+      }
+    },
+    {
+      "id": "CT22",
+      "split": "development",
+      "pilot": false,
+      "kind": "plan",
+      "expectedOutcome": "completed",
+      "input": {
+        "city": "成都",
+        "days": 3,
+        "budget": 3000,
+        "travelMode": "walking",
+        "instruction": "单人目的地内3天，总预算上限3000元，不含往返目的地交通。每天上午、下午各安排一个不同景点，晚上可以住宿地休息。全行程至少有一个类型为【商业街区】的景点。"
+      },
+      "expect": {
+        "minimumAttractionsPerDay": 2,
+        "requiredCategory": "商业街区",
+        "maxDailyMinutes": 600,
+        "minimumAccommodation": 400,
+        "minimumFood": 240,
+        "minimumOther": 60
+      },
+      "provenance": {
+        "source": "ChinaTravel/easy",
+        "sourceUid": "m20241028164748425604",
+        "sourceRow": {
+          "uid": "m20241028164748425604",
+          "tag": "easy",
+          "start_city": "重庆",
+          "target_city": "成都",
+          "days": "3",
+          "people_number": "1",
+          "limit_rooms": "False",
+          "limits_room_type": "False",
+          "hard_logic_py": "['result=(day_count(plan)==3)', 'result=(people_count(plan)==1)', \"result=True\\nfor activity in allactivities(plan):\\n  if activity_type(activity) in ['attraction', 'airplane', 'train'] and activity_tickets(activity)!=1: result=False\\n  if innercity_transport_type(activity_transports(activity))=='metro'and metro_tickets(activity_transports(activity))!=1: result=False\", \"attraction_type_set=set()\\nfor activity in allactivities(plan):\\n  if activity_type(activity)=='attraction': attraction_type_set.add(attraction_type(activity, target_city(plan)))\\nresult=({'大学校园'}<=attraction_type_set)\", \"result=True\\nfor activity in allactivities(plan):\\n  if innercity_transport_type(activity_transports(activity))=='taxi'and taxi_cars(activity_transports(activity))!=1: result=False\"]",
+          "nature_language": "当前位置重庆。我一个人想去成都玩3天，想去大学校园参观，请给我一个旅行规划。",
+          "nature_language_en": "Current location: Chongqing. I want to visit Chengdu alone for 3 days and would like to tour some university campuses. Please provide me with a travel plan."
+        },
+        "mapped": [
+          "destination",
+          "duration",
+          "single_person"
+        ],
+        "changes": [
+          "原始同行人数1，适配任务统一为单人；评分不声称等同原题",
+          "移除出发地及往返目的地交通",
+          "原题没有可直接提取的数字预算，显式新增1000元/天预算上限",
+          "原始约束程序仅作来源存档，不执行；除mapped列出的维度外，原始约束不纳入适配评分",
+          "新增三种交通模式、每日两个景点、夜间可休息、固定费用假设",
+          "如有requiredCategory，该约束为适配后新增，不宣称来自原题"
+        ]
+      }
+    },
+    {
+      "id": "CT23",
+      "split": "development",
+      "pilot": false,
+      "kind": "plan",
+      "expectedOutcome": "completed",
+      "input": {
+        "city": "北京",
+        "days": 3,
+        "budget": 3000,
+        "travelMode": "transit",
+        "instruction": "单人目的地内3天，总预算上限3000元，不含往返目的地交通。每天上午、下午各安排一个不同景点，晚上可以住宿地休息。全行程至少有一个类型为【博物馆/纪念馆】的景点。"
+      },
+      "expect": {
+        "minimumAttractionsPerDay": 2,
+        "requiredCategory": "博物馆/纪念馆",
+        "maxDailyMinutes": 600,
+        "minimumAccommodation": 400,
+        "minimumFood": 240,
+        "minimumOther": 60
+      },
+      "provenance": {
+        "source": "ChinaTravel/easy",
+        "sourceUid": "m20241028164828899127",
+        "sourceRow": {
+          "uid": "m20241028164828899127",
+          "tag": "easy",
+          "start_city": "成都",
+          "target_city": "北京",
+          "days": "3",
+          "people_number": "1",
+          "limit_rooms": "False",
+          "limits_room_type": "False",
+          "hard_logic_py": "['result=(day_count(plan)==3)', 'result=(people_count(plan)==1)', \"result=True\\nfor activity in allactivities(plan):\\n  if activity_type(activity) in ['attraction', 'airplane', 'train'] and activity_tickets(activity)!=1: result=False\\n  if innercity_transport_type(activity_transports(activity))=='metro'and metro_tickets(activity_transports(activity))!=1: result=False\", \"attraction_name_set=set()\\nfor activity in allactivities(plan):\\n  if activity_type(activity)=='attraction': attraction_name_set.add(activity_position(activity))\\nresult=({'京杭大运河'}<=attraction_name_set)\", \"result=True\\nfor activity in allactivities(plan):\\n  if innercity_transport_type(activity_transports(activity))=='taxi'and taxi_cars(activity_transports(activity))!=1: result=False\"]",
+          "nature_language": "当前位置成都。我一个人想去北京玩3天，想去京杭大运河，请给我一个旅行规划。",
+          "nature_language_en": "Current location: Chengdu. I want to travel to Beijing alone for 3 days and visit the Beijing-Hangzhou Grand Canal. Please provide me with a travel plan."
+        },
+        "mapped": [
+          "destination",
+          "duration",
+          "single_person"
+        ],
+        "changes": [
+          "原始同行人数1，适配任务统一为单人；评分不声称等同原题",
+          "移除出发地及往返目的地交通",
+          "原题没有可直接提取的数字预算，显式新增1000元/天预算上限",
+          "原始约束程序仅作来源存档，不执行；除mapped列出的维度外，原始约束不纳入适配评分",
+          "新增三种交通模式、每日两个景点、夜间可休息、固定费用假设",
+          "如有requiredCategory，该约束为适配后新增，不宣称来自原题"
+        ]
+      }
+    },
+    {
+      "id": "CT24",
+      "split": "development",
+      "pilot": false,
+      "kind": "plan",
+      "expectedOutcome": "completed",
+      "input": {
+        "city": "上海",
+        "days": 3,
+        "budget": 3000,
+        "travelMode": "driving",
+        "instruction": "单人目的地内3天，总预算上限3000元，不含往返目的地交通。每天上午、下午各安排一个不同景点，晚上可以住宿地休息。全行程至少有一个类型为【商业街区】的景点。"
+      },
+      "expect": {
+        "minimumAttractionsPerDay": 2,
+        "requiredCategory": "商业街区",
+        "maxDailyMinutes": 600,
+        "minimumAccommodation": 400,
+        "minimumFood": 240,
+        "minimumOther": 60
+      },
+      "provenance": {
+        "source": "ChinaTravel/easy",
+        "sourceUid": "m20241028164632364032",
+        "sourceRow": {
+          "uid": "m20241028164632364032",
+          "tag": "easy",
+          "start_city": "重庆",
+          "target_city": "上海",
+          "days": "3",
+          "people_number": "1",
+          "limit_rooms": "False",
+          "limits_room_type": "False",
+          "hard_logic_py": "['result=(day_count(plan)==3)', 'result=(people_count(plan)==1)', \"result=True\\nfor activity in allactivities(plan):\\n  if activity_type(activity) in ['attraction', 'airplane', 'train'] and activity_tickets(activity)!=1: result=False\\n  if innercity_transport_type(activity_transports(activity))=='metro'and metro_tickets(activity_transports(activity))!=1: result=False\", \"attraction_type_set=set()\\nfor activity in allactivities(plan):\\n  if activity_type(activity)=='attraction': attraction_type_set.add(attraction_type(activity, target_city(plan)))\\nresult=({'大学校园'}<=attraction_type_set)\", \"result=True\\nfor activity in allactivities(plan):\\n  if innercity_transport_type(activity_transports(activity))=='taxi'and taxi_cars(activity_transports(activity))!=1: result=False\"]",
+          "nature_language": "当前位置重庆。我一个人想去上海玩3天，想去大学里面看看，请给我一个旅行规划。",
+          "nature_language_en": "Current location: Chongqing. I want to travel to Shanghai alone for 3 days and visit some universities. Please provide me with a travel plan."
+        },
+        "mapped": [
+          "destination",
+          "duration",
+          "single_person"
+        ],
+        "changes": [
+          "原始同行人数1，适配任务统一为单人；评分不声称等同原题",
+          "移除出发地及往返目的地交通",
+          "原题没有可直接提取的数字预算，显式新增1000元/天预算上限",
+          "原始约束程序仅作来源存档，不执行；除mapped列出的维度外，原始约束不纳入适配评分",
+          "新增三种交通模式、每日两个景点、夜间可休息、固定费用假设",
+          "如有requiredCategory，该约束为适配后新增，不宣称来自原题"
+        ]
+      }
+    },
+    {
+      "id": "CT25",
+      "split": "holdout",
+      "pilot": false,
+      "kind": "plan",
+      "expectedOutcome": "completed",
+      "input": {
+        "city": "南京",
+        "days": 3,
+        "budget": 3000,
+        "travelMode": "walking",
+        "instruction": "单人目的地内3天，总预算上限3000元，不含往返目的地交通。每天上午、下午各安排一个不同景点，晚上可以住宿地休息。全行程至少有一个类型为【博物馆/纪念馆】的景点。"
+      },
+      "expect": {
+        "minimumAttractionsPerDay": 2,
+        "requiredCategory": "博物馆/纪念馆",
+        "maxDailyMinutes": 600,
+        "minimumAccommodation": 400,
+        "minimumFood": 240,
+        "minimumOther": 60
+      },
+      "provenance": {
+        "source": "ChinaTravel/easy",
+        "sourceUid": "m20241028164812917723",
+        "sourceRow": {
+          "uid": "m20241028164812917723",
+          "tag": "easy",
+          "start_city": "杭州",
+          "target_city": "南京",
+          "days": "3",
+          "people_number": "1",
+          "limit_rooms": "True",
+          "limits_room_type": "True",
+          "hard_logic_py": "['result=(day_count(plan)==3)', 'result=(people_count(plan)==1)', \"result=True\\nfor activity in allactivities(plan):\\n  if activity_type(activity) in ['attraction', 'airplane', 'train'] and activity_tickets(activity)!=1: result=False\\n  if innercity_transport_type(activity_transports(activity))=='metro'and metro_tickets(activity_transports(activity))!=1: result=False\", \"result=True\\nfor activity in allactivities(plan):\\n  if activity_type(activity)=='accommodation' and room_count(activity)!=1: result=False\", \"result=True\\nfor activity in allactivities(plan):\\n  if activity_type(activity)=='accommodation' and room_type(activity)!=1: result=False\", \"accommodation_type_set=set()\\nfor activity in allactivities(plan):\\n  if activity_type(activity) == 'accommodation': accommodation_type_set.add(accommodation_type(activity, target_city(plan)))\\nresult=({'影音房'}<=accommodation_type_set)\", \"result=True\\nfor activity in allactivities(plan):\\n  if innercity_transport_type(activity_transports(activity))=='taxi'and taxi_cars(activity_transports(activity))!=1: result=False\"]",
+          "nature_language": "当前位置杭州。我一个人想去南京玩3天，住一间大床房，酒店要可以看电影，请给我一个旅行规划。",
+          "nature_language_en": "Current location: Hangzhou. I want to travel to Nanjing alone for 3 days and stay in a hotel with a king-size bed that allows me to watch movies. Please provide me with a travel plan."
+        },
+        "mapped": [
+          "destination",
+          "duration",
+          "single_person"
+        ],
+        "changes": [
+          "原始同行人数1，适配任务统一为单人；评分不声称等同原题",
+          "移除出发地及往返目的地交通",
+          "原题没有可直接提取的数字预算，显式新增1000元/天预算上限",
+          "原始约束程序仅作来源存档，不执行；除mapped列出的维度外，原始约束不纳入适配评分",
+          "新增三种交通模式、每日两个景点、夜间可休息、固定费用假设",
+          "如有requiredCategory，该约束为适配后新增，不宣称来自原题"
+        ]
+      }
+    },
+    {
+      "id": "CT26",
+      "split": "holdout",
+      "pilot": false,
+      "kind": "plan",
+      "expectedOutcome": "completed",
+      "input": {
+        "city": "武汉",
+        "days": 3,
+        "budget": 3000,
+        "travelMode": "transit",
+        "instruction": "单人目的地内3天，总预算上限3000元，不含往返目的地交通。每天上午、下午各安排一个不同景点，晚上可以住宿地休息。全行程至少有一个类型为【历史古迹】的景点。"
+      },
+      "expect": {
+        "minimumAttractionsPerDay": 2,
+        "requiredCategory": "历史古迹",
+        "maxDailyMinutes": 600,
+        "minimumAccommodation": 400,
+        "minimumFood": 240,
+        "minimumOther": 60
+      },
+      "provenance": {
+        "source": "ChinaTravel/easy",
+        "sourceUid": "m20241028164841864509",
+        "sourceRow": {
+          "uid": "m20241028164841864509",
+          "tag": "easy",
+          "start_city": "上海",
+          "target_city": "武汉",
+          "days": "3",
+          "people_number": "1",
+          "limit_rooms": "False",
+          "limits_room_type": "False",
+          "hard_logic_py": "['result=(day_count(plan)==3)', 'result=(people_count(plan)==1)', \"result=True\\nfor activity in allactivities(plan):\\n  if activity_type(activity) in ['attraction', 'airplane', 'train'] and activity_tickets(activity)!=1: result=False\\n  if innercity_transport_type(activity_transports(activity))=='metro'and metro_tickets(activity_transports(activity))!=1: result=False\", \"attraction_name_set=set()\\nfor activity in allactivities(plan):\\n  if activity_type(activity)=='attraction': attraction_name_set.add(activity_position(activity))\\nresult=({'汉口新四军军部旧址'}<=attraction_name_set)\", \"result=True\\nfor activity in allactivities(plan):\\n  if innercity_transport_type(activity_transports(activity))=='taxi'and taxi_cars(activity_transports(activity))!=1: result=False\"]",
+          "nature_language": "当前位置上海。我一个人想去武汉玩3天，想去汉口新四军军部旧址，请给我一个旅行规划。",
+          "nature_language_en": "Current location: Shanghai. I want to travel to Wuhan alone for 3 days and visit the former site of the New Fourth Army Headquarters in Hankou. Please provide me with a travel plan."
+        },
+        "mapped": [
+          "destination",
+          "duration",
+          "single_person"
+        ],
+        "changes": [
+          "原始同行人数1，适配任务统一为单人；评分不声称等同原题",
+          "移除出发地及往返目的地交通",
+          "原题没有可直接提取的数字预算，显式新增1000元/天预算上限",
+          "原始约束程序仅作来源存档，不执行；除mapped列出的维度外，原始约束不纳入适配评分",
+          "新增三种交通模式、每日两个景点、夜间可休息、固定费用假设",
+          "如有requiredCategory，该约束为适配后新增，不宣称来自原题"
+        ]
+      }
+    },
+    {
+      "id": "CT27",
+      "split": "holdout",
+      "pilot": false,
+      "kind": "plan",
+      "expectedOutcome": "completed",
+      "input": {
+        "city": "广州",
+        "days": 3,
+        "budget": 3000,
+        "travelMode": "driving",
+        "instruction": "单人目的地内3天，总预算上限3000元，不含往返目的地交通。每天上午、下午各安排一个不同景点，晚上可以住宿地休息。全行程至少有一个类型为【商业街区】的景点。"
+      },
+      "expect": {
+        "minimumAttractionsPerDay": 2,
+        "requiredCategory": "商业街区",
+        "maxDailyMinutes": 600,
+        "minimumAccommodation": 400,
+        "minimumFood": 240,
+        "minimumOther": 60
+      },
+      "provenance": {
+        "source": "ChinaTravel/easy",
+        "sourceUid": "m20241028164620332052",
+        "sourceRow": {
+          "uid": "m20241028164620332052",
+          "tag": "easy",
+          "start_city": "杭州",
+          "target_city": "广州",
+          "days": "3",
+          "people_number": "1",
+          "limit_rooms": "False",
+          "limits_room_type": "False",
+          "hard_logic_py": "['result=(day_count(plan)==3)', 'result=(people_count(plan)==1)', \"result=True\\nfor activity in allactivities(plan):\\n  if activity_type(activity) in ['attraction', 'airplane', 'train'] and activity_tickets(activity)!=1: result=False\\n  if innercity_transport_type(activity_transports(activity))=='metro'and metro_tickets(activity_transports(activity))!=1: result=False\", \"attraction_type_set=set()\\nfor activity in allactivities(plan):\\n  if activity_type(activity)=='attraction': attraction_type_set.add(attraction_type(activity, target_city(plan)))\\nresult=({'自然风光'}<=attraction_type_set)\", \"result=True\\nfor activity in allactivities(plan):\\n  if innercity_transport_type(activity_transports(activity))=='taxi'and taxi_cars(activity_transports(activity))!=1: result=False\"]",
+          "nature_language": "当前位置杭州。我一个人想去广州玩3天，想去看看自然景观，请给我一个旅行规划。",
+          "nature_language_en": "Current location: Hangzhou. I want to travel alone to Guangzhou for 3 days to see natural landscapes. Please provide me with a travel plan."
+        },
+        "mapped": [
+          "destination",
+          "duration",
+          "single_person"
+        ],
+        "changes": [
+          "原始同行人数1，适配任务统一为单人；评分不声称等同原题",
+          "移除出发地及往返目的地交通",
+          "原题没有可直接提取的数字预算，显式新增1000元/天预算上限",
+          "原始约束程序仅作来源存档，不执行；除mapped列出的维度外，原始约束不纳入适配评分",
+          "新增三种交通模式、每日两个景点、夜间可休息、固定费用假设",
+          "如有requiredCategory，该约束为适配后新增，不宣称来自原题"
+        ]
+      }
+    },
+    {
+      "id": "CT28",
+      "split": "holdout",
+      "pilot": false,
+      "kind": "plan",
+      "expectedOutcome": "completed",
+      "input": {
+        "city": "深圳",
+        "days": 3,
+        "budget": 3000,
+        "travelMode": "walking",
+        "instruction": "单人目的地内3天，总预算上限3000元，不含往返目的地交通。每天上午、下午各安排一个不同景点，晚上可以住宿地休息。全行程至少有一个类型为【人文景观】的景点。"
+      },
+      "expect": {
+        "minimumAttractionsPerDay": 2,
+        "requiredCategory": "人文景观",
+        "maxDailyMinutes": 600,
+        "minimumAccommodation": 400,
+        "minimumFood": 240,
+        "minimumOther": 60
+      },
+      "provenance": {
+        "source": "ChinaTravel/easy",
+        "sourceUid": "t20241206211714066523",
+        "sourceRow": {
+          "uid": "t20241206211714066523",
+          "tag": "easy",
+          "start_city": "杭州",
+          "target_city": "深圳",
+          "days": "3",
+          "people_number": "1",
+          "limit_rooms": "False",
+          "limits_room_type": "False",
+          "hard_logic_py": "['result=(day_count(plan)==3)', 'result=(people_count(plan)==1)', \"intercity_transport_set=set()\\nfor activity in allactivities(plan):\\n  if activity_type(activity) in ['train', 'airplane']: intercity_transport_set.add(intercity_transport_type(activity))\\nresult=({'airplane'}==intercity_transport_set)\", \"result=True\\nfor activity in allactivities(plan):\\n  if activity_type(activity) in ['attraction', 'airplane', 'train'] and activity_tickets(activity)!=1: result=False\\n  if innercity_transport_type(activity_transports(activity))=='metro'and metro_tickets(activity_transports(activity))!=1: result=False\", \"result=True\\nfor activity in allactivities(plan):\\n  if innercity_transport_type(activity_transports(activity))=='taxi'and taxi_cars(activity_transports(activity))!=1: result=False\"]",
+          "nature_language": "当前位置杭州。我计划去深圳玩三天，选择飞机出行。请给我一个旅行规划。",
+          "nature_language_en": "Current location: Hangzhou. I am planning to visit Shenzhen for three days. I have chosen to travel by airplane. Please provide me with a travel itinerary."
+        },
+        "mapped": [
+          "destination",
+          "duration",
+          "single_person"
+        ],
+        "changes": [
+          "原始同行人数1，适配任务统一为单人；评分不声称等同原题",
+          "移除出发地及往返目的地交通",
+          "原题没有可直接提取的数字预算，显式新增1000元/天预算上限",
+          "原始约束程序仅作来源存档，不执行；除mapped列出的维度外，原始约束不纳入适配评分",
+          "新增三种交通模式、每日两个景点、夜间可休息、固定费用假设",
+          "如有requiredCategory，该约束为适配后新增，不宣称来自原题"
+        ]
+      }
+    },
+    {
+      "id": "CT29",
+      "split": "holdout",
+      "pilot": false,
+      "kind": "plan",
+      "expectedOutcome": "completed",
+      "input": {
+        "city": "重庆",
+        "days": 3,
+        "budget": 3000,
+        "travelMode": "transit",
+        "instruction": "单人目的地内3天，总预算上限3000元，不含往返目的地交通。每天上午、下午各安排一个不同景点，晚上可以住宿地休息。全行程至少有一个类型为【人文景观】的景点。"
+      },
+      "expect": {
+        "minimumAttractionsPerDay": 2,
+        "requiredCategory": "人文景观",
+        "maxDailyMinutes": 600,
+        "minimumAccommodation": 400,
+        "minimumFood": 240,
+        "minimumOther": 60
+      },
+      "provenance": {
+        "source": "ChinaTravel/easy",
+        "sourceUid": "m20241028164631458440",
+        "sourceRow": {
+          "uid": "m20241028164631458440",
+          "tag": "easy",
+          "start_city": "成都",
+          "target_city": "重庆",
+          "days": "3",
+          "people_number": "1",
+          "limit_rooms": "False",
+          "limits_room_type": "False",
+          "hard_logic_py": "['result=(day_count(plan)==3)', 'result=(people_count(plan)==1)', \"result=True\\nfor activity in allactivities(plan):\\n  if activity_type(activity) in ['attraction', 'airplane', 'train'] and activity_tickets(activity)!=1: result=False\\n  if innercity_transport_type(activity_transports(activity))=='metro'and metro_tickets(activity_transports(activity))!=1: result=False\", \"attraction_type_set=set()\\nfor activity in allactivities(plan):\\n  if activity_type(activity)=='attraction': attraction_type_set.add(attraction_type(activity, target_city(plan)))\\nresult=({'美术馆/艺术馆'}<=attraction_type_set)\", \"result=True\\nfor activity in allactivities(plan):\\n  if innercity_transport_type(activity_transports(activity))=='taxi'and taxi_cars(activity_transports(activity))!=1: result=False\"]",
+          "nature_language": "当前位置成都。我一个人想去重庆玩3天，想去参观一些美术馆，请给我一个旅行规划。",
+          "nature_language_en": "Sure! Here is the translation of your request into English:"
+        },
+        "mapped": [
+          "destination",
+          "duration",
+          "single_person"
+        ],
+        "changes": [
+          "原始同行人数1，适配任务统一为单人；评分不声称等同原题",
+          "移除出发地及往返目的地交通",
+          "原题没有可直接提取的数字预算，显式新增1000元/天预算上限",
+          "原始约束程序仅作来源存档，不执行；除mapped列出的维度外，原始约束不纳入适配评分",
+          "新增三种交通模式、每日两个景点、夜间可休息、固定费用假设",
+          "如有requiredCategory，该约束为适配后新增，不宣称来自原题"
+        ]
+      }
+    },
+    {
+      "id": "CT30",
+      "split": "holdout",
+      "pilot": false,
+      "kind": "plan",
+      "expectedOutcome": "completed",
+      "input": {
+        "city": "苏州",
+        "days": 3,
+        "budget": 3000,
+        "travelMode": "driving",
+        "instruction": "单人目的地内3天，总预算上限3000元，不含往返目的地交通。每天上午、下午各安排一个不同景点，晚上可以住宿地休息。全行程至少有一个类型为【历史古迹】的景点。"
+      },
+      "expect": {
+        "minimumAttractionsPerDay": 2,
+        "requiredCategory": "历史古迹",
+        "maxDailyMinutes": 600,
+        "minimumAccommodation": 400,
+        "minimumFood": 240,
+        "minimumOther": 60
+      },
+      "provenance": {
+        "source": "ChinaTravel/easy",
+        "sourceUid": "h20241204223651527057",
+        "sourceRow": {
+          "uid": "h20241204223651527057",
+          "tag": "easy",
+          "start_city": "重庆",
+          "target_city": "苏州",
+          "days": "3",
+          "people_number": "2",
+          "limit_rooms": "True",
+          "limits_room_type": "True",
+          "hard_logic_py": "['result=(day_count(plan)==3)', 'result=(people_count(plan)==2)', \"result=True\\nfor activity in allactivities(plan):\\n  if activity_type(activity) in ['attraction', 'airplane', 'train'] and activity_tickets(activity)!=2: result=False\\n  if innercity_transport_type(activity_transports(activity))=='metro'and metro_tickets(activity_transports(activity))!=2: result=False\", \"result=True\\nfor activity in allactivities(plan):\\n  if activity_type(activity)=='accommodation' and room_count(activity)!=1: result=False\", \"result=True\\nfor activity in allactivities(plan):\\n  if activity_type(activity)=='accommodation' and room_type(activity)!=1: result=False\", \"accommodation_type_set=set()\\nfor activity in allactivities(plan):\\n  if activity_type(activity) == 'accommodation': accommodation_type_set.add(accommodation_type(activity, target_city(plan)))\\nresult=({'儿童乐园'}<=accommodation_type_set)\", \"result=True\\nfor activity in allactivities(plan):\\n  if innercity_transport_type(activity_transports(activity))=='taxi'and taxi_cars(activity_transports(activity))!=1: result=False\"]",
+          "nature_language": "当前位置重庆。我带我孩子想去苏州玩3天，住一间大床房，酒店要有儿童乐园，请给我一个旅行规划。",
+          "nature_language_en": "Current location: Chongqing. I want to take my child to Suzhou for 3 days and stay in a big bed room. The hotel has a children's playground. Please give me a travel plan."
+        },
+        "mapped": [
+          "destination",
+          "duration"
+        ],
+        "changes": [
+          "原始同行人数2，适配任务统一为单人；评分不声称等同原题",
+          "移除出发地及往返目的地交通",
+          "原题没有可直接提取的数字预算，显式新增1000元/天预算上限",
+          "原始约束程序仅作来源存档，不执行；除mapped列出的维度外，原始约束不纳入适配评分",
+          "新增三种交通模式、每日两个景点、夜间可休息、固定费用假设",
+          "如有requiredCategory，该约束为适配后新增，不宣称来自原题"
+        ]
+      }
+    },
+    {
+      "id": "B01",
+      "split": "development",
+      "pilot": false,
+      "kind": "revise",
+      "expectedOutcome": "completed",
+      "input": {
+        "city": "杭州",
+        "days": 2,
+        "budget": 2000,
+        "travelMode": "walking",
+        "instruction": "单人目的地内2天，总预算上限2000元，不含往返目的地交通。每天上午、下午各安排一个不同景点，晚上可以住宿地休息。"
+      },
+      "revision": {
+        "day": 1,
+        "slot": "morning",
+        "instruction": "将所选时段改成【钱塘苏小小之墓】，其他时段内容保持原样；核对实际相邻路线与时间，预算上限不变。"
+      },
+      "basePlan": {
+        "success": true,
+        "city": "杭州",
+        "days": 2,
+        "travelMode": "walking",
+        "totalBudget": 2000,
+        "dailyItinerary": [
+          {
+            "day": 1,
+            "date": "第1天",
+            "morning": {
+              "spot": "中国印学博物馆",
+              "placeId": "CT-杭州-353",
+              "latitude": 30.257639,
+              "longitude": 120.145893,
+              "sourceUrl": "https://example.invalid/eval/CT-杭州-353",
+              "queriedAt": "2026-10-24T00:00:00Z",
+              "visitMinutes": 90,
+              "travelMinutes": 0,
+              "estimatedCost": 0.0,
+              "duration": "90分钟",
+              "description": "固定评测起始行程",
+              "ticket": "固定沙箱门票",
+              "transportation": "首站交通不计入固定路段"
+            },
+            "afternoon": {
+              "spot": "孤山",
+              "placeId": "CT-杭州-109",
+              "latitude": 30.257394,
+              "longitude": 120.146286,
+              "sourceUrl": "https://example.invalid/eval/CT-杭州-109",
+              "queriedAt": "2026-10-24T00:00:00Z",
+              "visitMinutes": 90,
+              "travelMinutes": 1,
+              "estimatedCost": 0.0,
+              "duration": "90分钟",
+              "description": "固定评测起始行程",
+              "ticket": "固定沙箱门票",
+              "transportation": "固定沙箱路线",
+              "route": {
+                "fromId": "CT-杭州-353",
+                "toId": "CT-杭州-109",
+                "profile": "walking",
+                "meters": 58,
+                "seconds": 60,
+                "source": "eval-frozen-v1",
+                "queriedAt": "2026-10-24T00:00:00Z",
+                "estimatedFare": 0
+              }
+            },
+            "evening": {
+              "spot": "酒店自由休息",
+              "rest": true,
+              "visitMinutes": 60,
+              "travelMinutes": 0,
+              "estimatedCost": 0,
+              "duration": "60分钟",
+              "ticket": "无新增门票",
+              "transportation": "无新增交通",
+              "description": "休息"
+            }
+          },
+          {
+            "day": 2,
+            "date": "第2天",
+            "morning": {
+              "spot": "西泠印社",
+              "placeId": "CT-杭州-113",
+              "latitude": 30.257083,
+              "longitude": 120.146125,
+              "sourceUrl": "https://example.invalid/eval/CT-杭州-113",
+              "queriedAt": "2026-10-24T00:00:00Z",
+              "visitMinutes": 120,
+              "travelMinutes": 0,
+              "estimatedCost": 0.0,
+              "duration": "120分钟",
+              "description": "固定评测起始行程",
+              "ticket": "固定沙箱门票",
+              "transportation": "首站交通不计入固定路段"
+            },
+            "afternoon": {
+              "spot": "西泠桥",
+              "placeId": "CT-杭州-338",
+              "latitude": 30.258151,
+              "longitude": 120.144885,
+              "sourceUrl": "https://example.invalid/eval/CT-杭州-338",
+              "queriedAt": "2026-10-24T00:00:00Z",
+              "visitMinutes": 120,
+              "travelMinutes": 3,
+              "estimatedCost": 0.0,
+              "duration": "120分钟",
+              "description": "固定评测起始行程",
+              "ticket": "固定沙箱门票",
+              "transportation": "固定沙箱路线",
+              "route": {
+                "fromId": "CT-杭州-113",
+                "toId": "CT-杭州-338",
+                "profile": "walking",
+                "meters": 210,
+                "seconds": 168,
+                "source": "eval-frozen-v1",
+                "queriedAt": "2026-10-24T00:00:00Z",
+                "estimatedFare": 0
+              }
+            },
+            "evening": {
+              "spot": "酒店自由休息",
+              "rest": true,
+              "visitMinutes": 60,
+              "travelMinutes": 0,
+              "estimatedCost": 0,
+              "duration": "60分钟",
+              "ticket": "无新增门票",
+              "transportation": "无新增交通",
+              "description": "休息"
+            }
+          }
+        ],
+        "budgetBreakdown": {
+          "accommodation": 200,
+          "food": 160,
+          "transportation": 30,
+          "tickets": 0.0,
+          "other": 40
+        },
+        "estimatedTotal": 430.0,
+        "remainingBudget": 1570.0
+      },
+      "expect": {
+        "minimumAttractionsPerDay": 2,
+        "requiredPlaceId": "CT-杭州-201",
+        "maxDailyMinutes": 600,
+        "minimumAccommodation": 200,
+        "minimumFood": 160,
+        "minimumOther": 40
+      },
+      "provenance": {
+        "source": "project-authored",
+        "reason": "局部修改与前后路段一致性"
+      }
+    },
+    {
+      "id": "B02",
+      "split": "development",
+      "pilot": false,
+      "kind": "revise",
+      "expectedOutcome": "completed",
+      "input": {
+        "city": "成都",
+        "days": 2,
+        "budget": 2000,
+        "travelMode": "transit",
+        "instruction": "单人目的地内2天，总预算上限2000元，不含往返目的地交通。每天上午、下午各安排一个不同景点，晚上可以住宿地休息。"
+      },
+      "revision": {
+        "day": 2,
+        "slot": "afternoon",
+        "instruction": "将所选时段改成【超级时空魔方(成都)元宇宙体验馆】，其他时段内容保持原样；核对实际相邻路线与时间，预算上限不变。"
+      },
+      "basePlan": {
+        "success": true,
+        "city": "成都",
+        "days": 2,
+        "travelMode": "transit",
+        "totalBudget": 2000,
+        "dailyItinerary": [
+          {
+            "day": 1,
+            "date": "第1天",
+            "morning": {
+              "spot": "悬空飞越剧场(春熙路茂业百货店)",
+              "placeId": "CT-成都-332",
+              "latitude": 30.663077,
+              "longitude": 104.085104,
+              "sourceUrl": "https://example.invalid/eval/CT-成都-332",
+              "queriedAt": "2026-10-24T00:00:00Z",
+              "visitMinutes": 90,
+              "travelMinutes": 0,
+              "estimatedCost": 39.9,
+              "duration": "90分钟",
+              "description": "固定评测起始行程",
+              "ticket": "固定沙箱门票",
+              "transportation": "首站交通不计入固定路段"
+            },
+            "afternoon": {
+              "spot": "成都悬空玻璃艺术馆",
+              "placeId": "CT-成都-98",
+              "latitude": 30.66311,
+              "longitude": 104.085116,
+              "sourceUrl": "https://example.invalid/eval/CT-成都-98",
+              "queriedAt": "2026-10-24T00:00:00Z",
+              "visitMinutes": 180,
+              "travelMinutes": 11,
+              "estimatedCost": 38.8,
+              "duration": "180分钟",
+              "description": "固定评测起始行程",
+              "ticket": "固定沙箱门票",
+              "transportation": "固定沙箱路线",
+              "route": {
+                "fromId": "CT-成都-332",
+                "toId": "CT-成都-98",
+                "profile": "transit",
+                "meters": 50,
+                "seconds": 610,
+                "source": "eval-frozen-v1",
+                "queriedAt": "2026-10-24T00:00:00Z",
+                "estimatedFare": 4
+              }
+            },
+            "evening": {
+              "spot": "酒店自由休息",
+              "rest": true,
+              "visitMinutes": 60,
+              "travelMinutes": 0,
+              "estimatedCost": 0,
+              "duration": "60分钟",
+              "ticket": "无新增门票",
+              "transportation": "无新增交通",
+              "description": "休息"
+            }
+          },
+          {
+            "day": 2,
+            "date": "第2天",
+            "morning": {
+              "spot": "成都失恋博物馆(春熙路旗舰店)",
+              "placeId": "CT-成都-299",
+              "latitude": 30.66328,
+              "longitude": 104.085207,
+              "sourceUrl": "https://example.invalid/eval/CT-成都-299",
+              "queriedAt": "2026-10-24T00:00:00Z",
+              "visitMinutes": 120,
+              "travelMinutes": 0,
+              "estimatedCost": 39.9,
+              "duration": "120分钟",
+              "description": "固定评测起始行程",
+              "ticket": "固定沙箱门票",
+              "transportation": "首站交通不计入固定路段"
+            },
+            "afternoon": {
+              "spot": "成都独角兽星空艺术馆",
+              "placeId": "CT-成都-161",
+              "latitude": 30.663499,
+              "longitude": 104.085168,
+              "sourceUrl": "https://example.invalid/eval/CT-成都-161",
+              "queriedAt": "2026-10-24T00:00:00Z",
+              "visitMinutes": 120,
+              "travelMinutes": 11,
+              "estimatedCost": 49.9,
+              "duration": "120分钟",
+              "description": "固定评测起始行程",
+              "ticket": "固定沙箱门票",
+              "transportation": "固定沙箱路线",
+              "route": {
+                "fromId": "CT-成都-299",
+                "toId": "CT-成都-161",
+                "profile": "transit",
+                "meters": 50,
+                "seconds": 610,
+                "source": "eval-frozen-v1",
+                "queriedAt": "2026-10-24T00:00:00Z",
+                "estimatedFare": 4
+              }
+            },
+            "evening": {
+              "spot": "酒店自由休息",
+              "rest": true,
+              "visitMinutes": 60,
+              "travelMinutes": 0,
+              "estimatedCost": 0,
+              "duration": "60分钟",
+              "ticket": "无新增门票",
+              "transportation": "无新增交通",
+              "description": "休息"
+            }
+          }
+        ],
+        "budgetBreakdown": {
+          "accommodation": 200,
+          "food": 160,
+          "transportation": 38,
+          "tickets": 168.5,
+          "other": 40
+        },
+        "estimatedTotal": 606.5,
+        "remainingBudget": 1393.5
+      },
+      "expect": {
+        "minimumAttractionsPerDay": 2,
+        "requiredPlaceId": "CT-成都-135",
+        "maxDailyMinutes": 600,
+        "minimumAccommodation": 200,
+        "minimumFood": 160,
+        "minimumOther": 40
+      },
+      "provenance": {
+        "source": "project-authored",
+        "reason": "局部修改与前后路段一致性"
+      }
+    },
+    {
+      "id": "B03",
+      "split": "development",
+      "pilot": false,
+      "kind": "revise",
+      "expectedOutcome": "completed",
+      "input": {
+        "city": "北京",
+        "days": 2,
+        "budget": 2000,
+        "travelMode": "driving",
+        "instruction": "单人目的地内2天，总预算上限2000元，不含往返目的地交通。每天上午、下午各安排一个不同景点，晚上可以住宿地休息。"
+      },
+      "revision": {
+        "day": 1,
+        "slot": "day",
+        "instruction": "将所选时段改成【太和殿】，其他时段内容保持原样；核对实际相邻路线与时间，预算上限不变。"
+      },
+      "basePlan": {
+        "success": true,
+        "city": "北京",
+        "days": 2,
+        "travelMode": "driving",
+        "totalBudget": 2000,
+        "dailyItinerary": [
+          {
+            "day": 1,
+            "date": "第1天",
+            "morning": {
+              "spot": "保和殿",
+              "placeId": "CT-北京-162",
+              "latitude": 39.924779,
+              "longitude": 116.403357,
+              "sourceUrl": "https://example.invalid/eval/CT-北京-162",
+              "queriedAt": "2026-10-24T00:00:00Z",
+              "visitMinutes": 150,
+              "travelMinutes": 0,
+              "estimatedCost": 0.0,
+              "duration": "150分钟",
+              "description": "固定评测起始行程",
+              "ticket": "固定沙箱门票",
+              "transportation": "首站交通不计入固定路段"
+            },
+            "afternoon": {
+              "spot": "中和殿",
+              "placeId": "CT-北京-172",
+              "latitude": 39.924221,
+              "longitude": 116.403387,
+              "sourceUrl": "https://example.invalid/eval/CT-北京-172",
+              "queriedAt": "2026-10-24T00:00:00Z",
+              "visitMinutes": 90,
+              "travelMinutes": 6,
+              "estimatedCost": 0.0,
+              "duration": "90分钟",
+              "description": "固定评测起始行程",
+              "ticket": "固定沙箱门票",
+              "transportation": "固定沙箱路线",
+              "route": {
+                "fromId": "CT-北京-162",
+                "toId": "CT-北京-172",
+                "profile": "driving",
+                "meters": 81,
+                "seconds": 313,
+                "source": "eval-frozen-v1",
+                "queriedAt": "2026-10-24T00:00:00Z",
+                "estimatedFare": null
+              }
+            },
+            "evening": {
+              "spot": "酒店自由休息",
+              "rest": true,
+              "visitMinutes": 60,
+              "travelMinutes": 0,
+              "estimatedCost": 0,
+              "duration": "60分钟",
+              "ticket": "无新增门票",
+              "transportation": "无新增交通",
+              "description": "休息"
+            }
+          },
+          {
+            "day": 2,
+            "date": "第2天",
+            "morning": {
+              "spot": "故宫博物院",
+              "placeId": "CT-北京-1",
+              "latitude": 39.924091,
+              "longitude": 116.403414,
+              "sourceUrl": "https://example.invalid/eval/CT-北京-1",
+              "queriedAt": "2026-10-24T00:00:00Z",
+              "visitMinutes": 90,
+              "travelMinutes": 0,
+              "estimatedCost": 0.0,
+              "duration": "90分钟",
+              "description": "固定评测起始行程",
+              "ticket": "固定沙箱门票",
+              "transportation": "首站交通不计入固定路段"
+            },
+            "afternoon": {
+              "spot": "乾清门",
+              "placeId": "CT-北京-333",
+              "latitude": 39.925575,
+              "longitude": 116.403468,
+              "sourceUrl": "https://example.invalid/eval/CT-北京-333",
+              "queriedAt": "2026-10-24T00:00:00Z",
+              "visitMinutes": 90,
+              "travelMinutes": 6,
+              "estimatedCost": 0.0,
+              "duration": "90分钟",
+              "description": "固定评测起始行程",
+              "ticket": "固定沙箱门票",
+              "transportation": "固定沙箱路线",
+              "route": {
+                "fromId": "CT-北京-1",
+                "toId": "CT-北京-333",
+                "profile": "driving",
+                "meters": 215,
+                "seconds": 333,
+                "source": "eval-frozen-v1",
+                "queriedAt": "2026-10-24T00:00:00Z",
+                "estimatedFare": null
+              }
+            },
+            "evening": {
+              "spot": "酒店自由休息",
+              "rest": true,
+              "visitMinutes": 60,
+              "travelMinutes": 0,
+              "estimatedCost": 0,
+              "duration": "60分钟",
+              "ticket": "无新增门票",
+              "transportation": "无新增交通",
+              "description": "休息"
+            }
+          }
+        ],
+        "budgetBreakdown": {
+          "accommodation": 200,
+          "food": 160,
+          "transportation": 40.29,
+          "tickets": 0.0,
+          "other": 40
+        },
+        "estimatedTotal": 440.29,
+        "remainingBudget": 1559.71
+      },
+      "expect": {
+        "minimumAttractionsPerDay": 2,
+        "requiredPlaceId": "CT-北京-45",
+        "maxDailyMinutes": 600,
+        "minimumAccommodation": 200,
+        "minimumFood": 160,
+        "minimumOther": 40
+      },
+      "provenance": {
+        "source": "project-authored",
+        "reason": "局部修改与前后路段一致性"
+      }
+    },
+    {
+      "id": "B04",
+      "split": "development",
+      "pilot": false,
+      "kind": "revise",
+      "expectedOutcome": "completed",
+      "input": {
+        "city": "上海",
+        "days": 2,
+        "budget": 2000,
+        "travelMode": "walking",
+        "instruction": "单人目的地内2天，总预算上限2000元，不含往返目的地交通。每天上午、下午各安排一个不同景点，晚上可以住宿地休息。"
+      },
+      "revision": {
+        "day": 2,
+        "slot": "morning",
+        "instruction": "将所选时段改成【上海大自然野生昆虫馆】，其他时段内容保持原样；核对实际相邻路线与时间，预算上限不变。"
+      },
+      "basePlan": {
+        "success": true,
+        "city": "上海",
+        "days": 2,
+        "travelMode": "walking",
+        "totalBudget": 2000,
+        "dailyItinerary": [
+          {
+            "day": 1,
+            "date": "第1天",
+            "morning": {
+              "spot": "东方明珠259米全透明悬空观光廊",
+              "placeId": "CT-上海-88",
+              "latitude": 31.245304,
+              "longitude": 121.506414,
+              "sourceUrl": "https://example.invalid/eval/CT-上海-88",
+              "queriedAt": "2026-10-24T00:00:00Z",
+              "visitMinutes": 90,
+              "travelMinutes": 0,
+              "estimatedCost": 0.0,
+              "duration": "90分钟",
+              "description": "固定评测起始行程",
+              "ticket": "固定沙箱门票",
+              "transportation": "首站交通不计入固定路段"
+            },
+            "afternoon": {
+              "spot": "263米主观光层",
+              "placeId": "CT-上海-155",
+              "latitude": 31.245306,
+              "longitude": 121.50642,
+              "sourceUrl": "https://example.invalid/eval/CT-上海-155",
+              "queriedAt": "2026-10-24T00:00:00Z",
+              "visitMinutes": 90,
+              "travelMinutes": 1,
+              "estimatedCost": 0.0,
+              "duration": "90分钟",
+              "description": "固定评测起始行程",
+              "ticket": "固定沙箱门票",
+              "transportation": "固定沙箱路线",
+              "route": {
+                "fromId": "CT-上海-88",
+                "toId": "CT-上海-155",
+                "profile": "walking",
+                "meters": 50,
+                "seconds": 60,
+                "source": "eval-frozen-v1",
+                "queriedAt": "2026-10-24T00:00:00Z",
+                "estimatedFare": 0
+              }
+            },
+            "evening": {
+              "spot": "酒店自由休息",
+              "rest": true,
+              "visitMinutes": 60,
+              "travelMinutes": 0,
+              "estimatedCost": 0,
+              "duration": "60分钟",
+              "ticket": "无新增门票",
+              "transportation": "无新增交通",
+              "description": "休息"
+            }
+          },
+          {
+            "day": 2,
+            "date": "第2天",
+            "morning": {
+              "spot": "上海城市历史发展陈列馆",
+              "placeId": "CT-上海-67",
+              "latitude": 31.245414,
+              "longitude": 121.506379,
+              "sourceUrl": "https://example.invalid/eval/CT-上海-67",
+              "queriedAt": "2026-10-24T00:00:00Z",
+              "visitMinutes": 90,
+              "travelMinutes": 0,
+              "estimatedCost": 0.0,
+              "duration": "90分钟",
+              "description": "固定评测起始行程",
+              "ticket": "固定沙箱门票",
+              "transportation": "首站交通不计入固定路段"
+            },
+            "afternoon": {
+              "spot": "申城观光双层巴士",
+              "placeId": "CT-上海-60",
+              "latitude": 31.245045,
+              "longitude": 121.507363,
+              "sourceUrl": "https://example.invalid/eval/CT-上海-60",
+              "queriedAt": "2026-10-24T00:00:00Z",
+              "visitMinutes": 180,
+              "travelMinutes": 2,
+              "estimatedCost": 49.0,
+              "duration": "180分钟",
+              "description": "固定评测起始行程",
+              "ticket": "固定沙箱门票",
+              "transportation": "固定沙箱路线",
+              "route": {
+                "fromId": "CT-上海-67",
+                "toId": "CT-上海-60",
+                "profile": "walking",
+                "meters": 128,
+                "seconds": 103,
+                "source": "eval-frozen-v1",
+                "queriedAt": "2026-10-24T00:00:00Z",
+                "estimatedFare": 0
+              }
+            },
+            "evening": {
+              "spot": "酒店自由休息",
+              "rest": true,
+              "visitMinutes": 60,
+              "travelMinutes": 0,
+              "estimatedCost": 0,
+              "duration": "60分钟",
+              "ticket": "无新增门票",
+              "transportation": "无新增交通",
+              "description": "休息"
+            }
+          }
+        ],
+        "budgetBreakdown": {
+          "accommodation": 200,
+          "food": 160,
+          "transportation": 30,
+          "tickets": 49.0,
+          "other": 40
+        },
+        "estimatedTotal": 479.0,
+        "remainingBudget": 1521.0
+      },
+      "expect": {
+        "minimumAttractionsPerDay": 2,
+        "requiredPlaceId": "CT-上海-42",
+        "maxDailyMinutes": 600,
+        "minimumAccommodation": 200,
+        "minimumFood": 160,
+        "minimumOther": 40
+      },
+      "provenance": {
+        "source": "project-authored",
+        "reason": "局部修改与前后路段一致性"
+      }
+    },
+    {
+      "id": "B05",
+      "split": "development",
+      "pilot": false,
+      "kind": "revise",
+      "expectedOutcome": "completed",
+      "input": {
+        "city": "南京",
+        "days": 2,
+        "budget": 2000,
+        "travelMode": "transit",
+        "instruction": "单人目的地内2天，总预算上限2000元，不含往返目的地交通。每天上午、下午各安排一个不同景点，晚上可以住宿地休息。"
+      },
+      "revision": {
+        "day": 1,
+        "slot": "afternoon",
+        "instruction": "将所选时段改成【文德桥】，其他时段内容保持原样；核对实际相邻路线与时间，预算上限不变。"
+      },
+      "basePlan": {
+        "success": true,
+        "city": "南京",
+        "days": 2,
+        "travelMode": "transit",
+        "totalBudget": 2000,
+        "dailyItinerary": [
+          {
+            "day": 1,
+            "date": "第1天",
+            "morning": {
+              "spot": "夫子庙秦淮风光带",
+              "placeId": "CT-南京-2",
+              "latitude": 32.026208,
+              "longitude": 118.795961,
+              "sourceUrl": "https://example.invalid/eval/CT-南京-2",
+              "queriedAt": "2026-10-24T00:00:00Z",
+              "visitMinutes": 90,
+              "travelMinutes": 0,
+              "estimatedCost": 0.0,
+              "duration": "90分钟",
+              "description": "固定评测起始行程",
+              "ticket": "固定沙箱门票",
+              "transportation": "首站交通不计入固定路段"
+            },
+            "afternoon": {
+              "spot": "秦淮河画舫",
+              "placeId": "CT-南京-8",
+              "latitude": 32.026295,
+              "longitude": 118.796311,
+              "sourceUrl": "https://example.invalid/eval/CT-南京-8",
+              "queriedAt": "2026-10-24T00:00:00Z",
+              "visitMinutes": 90,
+              "travelMinutes": 11,
+              "estimatedCost": 100.0,
+              "duration": "90分钟",
+              "description": "固定评测起始行程",
+              "ticket": "固定沙箱门票",
+              "transportation": "固定沙箱路线",
+              "route": {
+                "fromId": "CT-南京-2",
+                "toId": "CT-南京-8",
+                "profile": "transit",
+                "meters": 50,
+                "seconds": 610,
+                "source": "eval-frozen-v1",
+                "queriedAt": "2026-10-24T00:00:00Z",
+                "estimatedFare": 4
+              }
+            },
+            "evening": {
+              "spot": "酒店自由休息",
+              "rest": true,
+              "visitMinutes": 60,
+              "travelMinutes": 0,
+              "estimatedCost": 0,
+              "duration": "60分钟",
+              "ticket": "无新增门票",
+              "transportation": "无新增交通",
+              "description": "休息"
+            }
+          },
+          {
+            "day": 2,
+            "date": "第2天",
+            "morning": {
+              "spot": "泮池",
+              "placeId": "CT-南京-213",
+              "latitude": 32.026172,
+              "longitude": 118.796373,
+              "sourceUrl": "https://example.invalid/eval/CT-南京-213",
+              "queriedAt": "2026-10-24T00:00:00Z",
+              "visitMinutes": 150,
+              "travelMinutes": 0,
+              "estimatedCost": 0.0,
+              "duration": "150分钟",
+              "description": "固定评测起始行程",
+              "ticket": "固定沙箱门票",
+              "transportation": "首站交通不计入固定路段"
+            },
+            "afternoon": {
+              "spot": "南京夫子庙步行街",
+              "placeId": "CT-南京-66",
+              "latitude": 32.026106,
+              "longitude": 118.795516,
+              "sourceUrl": "https://example.invalid/eval/CT-南京-66",
+              "queriedAt": "2026-10-24T00:00:00Z",
+              "visitMinutes": 180,
+              "travelMinutes": 11,
+              "estimatedCost": 0.0,
+              "duration": "180分钟",
+              "description": "固定评测起始行程",
+              "ticket": "固定沙箱门票",
+              "transportation": "固定沙箱路线",
+              "route": {
+                "fromId": "CT-南京-213",
+                "toId": "CT-南京-66",
+                "profile": "transit",
+                "meters": 114,
+                "seconds": 623,
+                "source": "eval-frozen-v1",
+                "queriedAt": "2026-10-24T00:00:00Z",
+                "estimatedFare": 4
+              }
+            },
+            "evening": {
+              "spot": "酒店自由休息",
+              "rest": true,
+              "visitMinutes": 60,
+              "travelMinutes": 0,
+              "estimatedCost": 0,
+              "duration": "60分钟",
+              "ticket": "无新增门票",
+              "transportation": "无新增交通",
+              "description": "休息"
+            }
+          }
+        ],
+        "budgetBreakdown": {
+          "accommodation": 200,
+          "food": 160,
+          "transportation": 38,
+          "tickets": 100.0,
+          "other": 40
+        },
+        "estimatedTotal": 538.0,
+        "remainingBudget": 1462.0
+      },
+      "expect": {
+        "minimumAttractionsPerDay": 2,
+        "requiredPlaceId": "CT-南京-248",
+        "maxDailyMinutes": 600,
+        "minimumAccommodation": 200,
+        "minimumFood": 160,
+        "minimumOther": 40
+      },
+      "provenance": {
+        "source": "project-authored",
+        "reason": "局部修改与前后路段一致性"
+      }
+    },
+    {
+      "id": "B06",
+      "split": "development",
+      "pilot": false,
+      "kind": "revise",
+      "expectedOutcome": "completed",
+      "input": {
+        "city": "武汉",
+        "days": 2,
+        "budget": 2000,
+        "travelMode": "driving",
+        "instruction": "单人目的地内2天，总预算上限2000元，不含往返目的地交通。每天上午、下午各安排一个不同景点，晚上可以住宿地休息。"
+      },
+      "revision": {
+        "day": 2,
+        "slot": "day",
+        "instruction": "将所选时段改成【武汉观光游船】，其他时段内容保持原样；核对实际相邻路线与时间，预算上限不变。"
+      },
+      "basePlan": {
+        "success": true,
+        "city": "武汉",
+        "days": 2,
+        "travelMode": "driving",
+        "totalBudget": 2000,
+        "dailyItinerary": [
+          {
+            "day": 1,
+            "date": "第1天",
+            "morning": {
+              "spot": "晴川阁",
+              "placeId": "CT-武汉-1",
+              "latitude": 30.561283,
+              "longitude": 114.291314,
+              "sourceUrl": "https://example.invalid/eval/CT-武汉-1",
+              "queriedAt": "2026-10-24T00:00:00Z",
+              "visitMinutes": 120,
+              "travelMinutes": 0,
+              "estimatedCost": 0.0,
+              "duration": "120分钟",
+              "description": "固定评测起始行程",
+              "ticket": "固定沙箱门票",
+              "transportation": "首站交通不计入固定路段"
+            },
+            "afternoon": {
+              "spot": "三楚胜境",
+              "placeId": "CT-武汉-320",
+              "latitude": 30.561461,
+              "longitude": 114.291226,
+              "sourceUrl": "https://example.invalid/eval/CT-武汉-320",
+              "queriedAt": "2026-10-24T00:00:00Z",
+              "visitMinutes": 120,
+              "travelMinutes": 6,
+              "estimatedCost": 0.0,
+              "duration": "120分钟",
+              "description": "固定评测起始行程",
+              "ticket": "固定沙箱门票",
+              "transportation": "固定沙箱路线",
+              "route": {
+                "fromId": "CT-武汉-1",
+                "toId": "CT-武汉-320",
+                "profile": "driving",
+                "meters": 50,
+                "seconds": 308,
+                "source": "eval-frozen-v1",
+                "queriedAt": "2026-10-24T00:00:00Z",
+                "estimatedFare": null
+              }
+            },
+            "evening": {
+              "spot": "酒店自由休息",
+              "rest": true,
+              "visitMinutes": 60,
+              "travelMinutes": 0,
+              "estimatedCost": 0,
+              "duration": "60分钟",
+              "ticket": "无新增门票",
+              "transportation": "无新增交通",
+              "description": "休息"
+            }
+          },
+          {
+            "day": 2,
+            "date": "第2天",
+            "morning": {
+              "spot": "禹稷行宫",
+              "placeId": "CT-武汉-241",
+              "latitude": 30.561463,
+              "longitude": 114.291097,
+              "sourceUrl": "https://example.invalid/eval/CT-武汉-241",
+              "queriedAt": "2026-10-24T00:00:00Z",
+              "visitMinutes": 120,
+              "travelMinutes": 0,
+              "estimatedCost": 0.0,
+              "duration": "120分钟",
+              "description": "固定评测起始行程",
+              "ticket": "固定沙箱门票",
+              "transportation": "首站交通不计入固定路段"
+            },
+            "afternoon": {
+              "spot": "武汉大禹文化博物馆",
+              "placeId": "CT-武汉-280",
+              "latitude": 30.561025,
+              "longitude": 114.290996,
+              "sourceUrl": "https://example.invalid/eval/CT-武汉-280",
+              "queriedAt": "2026-10-24T00:00:00Z",
+              "visitMinutes": 120,
+              "travelMinutes": 6,
+              "estimatedCost": 0.0,
+              "duration": "120分钟",
+              "description": "固定评测起始行程",
+              "ticket": "固定沙箱门票",
+              "transportation": "固定沙箱路线",
+              "route": {
+                "fromId": "CT-武汉-241",
+                "toId": "CT-武汉-280",
+                "profile": "driving",
+                "meters": 65,
+                "seconds": 310,
+                "source": "eval-frozen-v1",
+                "queriedAt": "2026-10-24T00:00:00Z",
+                "estimatedFare": null
+              }
+            },
+            "evening": {
+              "spot": "酒店自由休息",
+              "rest": true,
+              "visitMinutes": 60,
+              "travelMinutes": 0,
+              "estimatedCost": 0,
+              "duration": "60分钟",
+              "ticket": "无新增门票",
+              "transportation": "无新增交通",
+              "description": "休息"
+            }
+          }
+        ],
+        "budgetBreakdown": {
+          "accommodation": 200,
+          "food": 160,
+          "transportation": 40.12,
+          "tickets": 0.0,
+          "other": 40
+        },
+        "estimatedTotal": 440.12,
+        "remainingBudget": 1559.88
+      },
+      "expect": {
+        "minimumAttractionsPerDay": 2,
+        "requiredPlaceId": "CT-武汉-52",
+        "maxDailyMinutes": 600,
+        "minimumAccommodation": 200,
+        "minimumFood": 160,
+        "minimumOther": 40
+      },
+      "provenance": {
+        "source": "project-authored",
+        "reason": "局部修改与前后路段一致性"
+      }
+    },
+    {
+      "id": "B07",
+      "split": "holdout",
+      "pilot": false,
+      "kind": "revise",
+      "expectedOutcome": "completed",
+      "input": {
+        "city": "广州",
+        "days": 2,
+        "budget": 2000,
+        "travelMode": "walking",
+        "instruction": "单人目的地内2天，总预算上限2000元，不含往返目的地交通。每天上午、下午各安排一个不同景点，晚上可以住宿地休息。"
+      },
+      "revision": {
+        "day": 1,
+        "slot": "morning",
+        "instruction": "将所选时段改成【正佳自然科学博物馆】，其他时段内容保持原样；核对实际相邻路线与时间，预算上限不变。"
+      },
+      "basePlan": {
+        "success": true,
+        "city": "广州",
+        "days": 2,
+        "travelMode": "walking",
+        "totalBudget": 2000,
+        "dailyItinerary": [
+          {
+            "day": 1,
+            "date": "第1天",
+            "morning": {
+              "spot": "正佳雨林生态植物园",
+              "placeId": "CT-广州-45",
+              "latitude": 23.137906,
+              "longitude": 113.333565,
+              "sourceUrl": "https://example.invalid/eval/CT-广州-45",
+              "queriedAt": "2026-10-24T00:00:00Z",
+              "visitMinutes": 180,
+              "travelMinutes": 0,
+              "estimatedCost": 98.0,
+              "duration": "180分钟",
+              "description": "固定评测起始行程",
+              "ticket": "固定沙箱门票",
+              "transportation": "首站交通不计入固定路段"
+            },
+            "afternoon": {
+              "spot": "正佳广场",
+              "placeId": "CT-广州-96",
+              "latitude": 23.137887,
+              "longitude": 113.333548,
+              "sourceUrl": "https://example.invalid/eval/CT-广州-96",
+              "queriedAt": "2026-10-24T00:00:00Z",
+              "visitMinutes": 90,
+              "travelMinutes": 1,
+              "estimatedCost": 0.0,
+              "duration": "90分钟",
+              "description": "固定评测起始行程",
+              "ticket": "固定沙箱门票",
+              "transportation": "固定沙箱路线",
+              "route": {
+                "fromId": "CT-广州-45",
+                "toId": "CT-广州-96",
+                "profile": "walking",
+                "meters": 50,
+                "seconds": 60,
+                "source": "eval-frozen-v1",
+                "queriedAt": "2026-10-24T00:00:00Z",
+                "estimatedFare": 0
+              }
+            },
+            "evening": {
+              "spot": "酒店自由休息",
+              "rest": true,
+              "visitMinutes": 60,
+              "travelMinutes": 0,
+              "estimatedCost": 0,
+              "duration": "60分钟",
+              "ticket": "无新增门票",
+              "transportation": "无新增交通",
+              "description": "休息"
+            }
+          },
+          {
+            "day": 2,
+            "date": "第2天",
+            "morning": {
+              "spot": "正佳广场商贸旅游区",
+              "placeId": "CT-广州-13",
+              "latitude": 23.137807,
+              "longitude": 113.333654,
+              "sourceUrl": "https://example.invalid/eval/CT-广州-13",
+              "queriedAt": "2026-10-24T00:00:00Z",
+              "visitMinutes": 180,
+              "travelMinutes": 0,
+              "estimatedCost": 0.0,
+              "duration": "180分钟",
+              "description": "固定评测起始行程",
+              "ticket": "固定沙箱门票",
+              "transportation": "首站交通不计入固定路段"
+            },
+            "afternoon": {
+              "spot": "正佳科学馆·正佳天文馆",
+              "placeId": "CT-广州-75",
+              "latitude": 23.138001,
+              "longitude": 113.333422,
+              "sourceUrl": "https://example.invalid/eval/CT-广州-75",
+              "queriedAt": "2026-10-24T00:00:00Z",
+              "visitMinutes": 90,
+              "travelMinutes": 1,
+              "estimatedCost": 0.0,
+              "duration": "90分钟",
+              "description": "固定评测起始行程",
+              "ticket": "固定沙箱门票",
+              "transportation": "固定沙箱路线",
+              "route": {
+                "fromId": "CT-广州-13",
+                "toId": "CT-广州-75",
+                "profile": "walking",
+                "meters": 50,
+                "seconds": 60,
+                "source": "eval-frozen-v1",
+                "queriedAt": "2026-10-24T00:00:00Z",
+                "estimatedFare": 0
+              }
+            },
+            "evening": {
+              "spot": "酒店自由休息",
+              "rest": true,
+              "visitMinutes": 60,
+              "travelMinutes": 0,
+              "estimatedCost": 0,
+              "duration": "60分钟",
+              "ticket": "无新增门票",
+              "transportation": "无新增交通",
+              "description": "休息"
+            }
+          }
+        ],
+        "budgetBreakdown": {
+          "accommodation": 200,
+          "food": 160,
+          "transportation": 30,
+          "tickets": 98.0,
+          "other": 40
+        },
+        "estimatedTotal": 528.0,
+        "remainingBudget": 1472.0
+      },
+      "expect": {
+        "minimumAttractionsPerDay": 2,
+        "requiredPlaceId": "CT-广州-49",
+        "maxDailyMinutes": 600,
+        "minimumAccommodation": 200,
+        "minimumFood": 160,
+        "minimumOther": 40
+      },
+      "provenance": {
+        "source": "project-authored",
+        "reason": "局部修改与前后路段一致性"
+      }
+    },
+    {
+      "id": "B08",
+      "split": "holdout",
+      "pilot": false,
+      "kind": "revise",
+      "expectedOutcome": "completed",
+      "input": {
+        "city": "深圳",
+        "days": 2,
+        "budget": 2000,
+        "travelMode": "transit",
+        "instruction": "单人目的地内2天，总预算上限2000元，不含往返目的地交通。每天上午、下午各安排一个不同景点，晚上可以住宿地休息。"
+      },
+      "revision": {
+        "day": 2,
+        "slot": "afternoon",
+        "instruction": "将所选时段改成【锦绣中华】，其他时段内容保持原样；核对实际相邻路线与时间，预算上限不变。"
+      },
+      "basePlan": {
+        "success": true,
+        "city": "深圳",
+        "days": 2,
+        "travelMode": "transit",
+        "totalBudget": 2000,
+        "dailyItinerary": [
+          {
+            "day": 1,
+            "date": "第1天",
+            "morning": {
+              "spot": "锦绣中华-少数民族民居",
+              "placeId": "CT-深圳-122",
+              "latitude": 22.537034,
+              "longitude": 113.99779,
+              "sourceUrl": "https://example.invalid/eval/CT-深圳-122",
+              "queriedAt": "2026-10-24T00:00:00Z",
+              "visitMinutes": 90,
+              "travelMinutes": 0,
+              "estimatedCost": 0.0,
+              "duration": "90分钟",
+              "description": "固定评测起始行程",
+              "ticket": "固定沙箱门票",
+              "transportation": "首站交通不计入固定路段"
+            },
+            "afternoon": {
+              "spot": "昭君墓",
+              "placeId": "CT-深圳-252",
+              "latitude": 22.538034,
+              "longitude": 113.99797,
+              "sourceUrl": "https://example.invalid/eval/CT-深圳-252",
+              "queriedAt": "2026-10-24T00:00:00Z",
+              "visitMinutes": 90,
+              "travelMinutes": 11,
+              "estimatedCost": 0.0,
+              "duration": "90分钟",
+              "description": "固定评测起始行程",
+              "ticket": "固定沙箱门票",
+              "transportation": "固定沙箱路线",
+              "route": {
+                "fromId": "CT-深圳-122",
+                "toId": "CT-深圳-252",
+                "profile": "transit",
+                "meters": 158,
+                "seconds": 632,
+                "source": "eval-frozen-v1",
+                "queriedAt": "2026-10-24T00:00:00Z",
+                "estimatedFare": 4
+              }
+            },
+            "evening": {
+              "spot": "酒店自由休息",
+              "rest": true,
+              "visitMinutes": 60,
+              "travelMinutes": 0,
+              "estimatedCost": 0,
+              "duration": "60分钟",
+              "ticket": "无新增门票",
+              "transportation": "无新增交通",
+              "description": "休息"
+            }
+          },
+          {
+            "day": 2,
+            "date": "第2天",
+            "morning": {
+              "spot": "锦绣中华-莫高窟",
+              "placeId": "CT-深圳-132",
+              "latitude": 22.5375,
+              "longitude": 113.996224,
+              "sourceUrl": "https://example.invalid/eval/CT-深圳-132",
+              "queriedAt": "2026-10-24T00:00:00Z",
+              "visitMinutes": 90,
+              "travelMinutes": 0,
+              "estimatedCost": 0.0,
+              "duration": "90分钟",
+              "description": "固定评测起始行程",
+              "ticket": "固定沙箱门票",
+              "transportation": "首站交通不计入固定路段"
+            },
+            "afternoon": {
+              "spot": "客家土楼(福建)",
+              "placeId": "CT-深圳-98",
+              "latitude": 22.535637,
+              "longitude": 113.998965,
+              "sourceUrl": "https://example.invalid/eval/CT-深圳-98",
+              "queriedAt": "2026-10-24T00:00:00Z",
+              "visitMinutes": 90,
+              "travelMinutes": 12,
+              "estimatedCost": 0.0,
+              "duration": "90分钟",
+              "description": "固定评测起始行程",
+              "ticket": "固定沙箱门票",
+              "transportation": "固定沙箱路线",
+              "route": {
+                "fromId": "CT-深圳-132",
+                "toId": "CT-深圳-98",
+                "profile": "transit",
+                "meters": 489,
+                "seconds": 698,
+                "source": "eval-frozen-v1",
+                "queriedAt": "2026-10-24T00:00:00Z",
+                "estimatedFare": 4
+              }
+            },
+            "evening": {
+              "spot": "酒店自由休息",
+              "rest": true,
+              "visitMinutes": 60,
+              "travelMinutes": 0,
+              "estimatedCost": 0,
+              "duration": "60分钟",
+              "ticket": "无新增门票",
+              "transportation": "无新增交通",
+              "description": "休息"
+            }
+          }
+        ],
+        "budgetBreakdown": {
+          "accommodation": 200,
+          "food": 160,
+          "transportation": 38,
+          "tickets": 0.0,
+          "other": 40
+        },
+        "estimatedTotal": 438.0,
+        "remainingBudget": 1562.0
+      },
+      "expect": {
+        "minimumAttractionsPerDay": 2,
+        "requiredPlaceId": "CT-深圳-53",
+        "maxDailyMinutes": 600,
+        "minimumAccommodation": 200,
+        "minimumFood": 160,
+        "minimumOther": 40
+      },
+      "provenance": {
+        "source": "project-authored",
+        "reason": "局部修改与前后路段一致性"
+      }
+    },
+    {
+      "id": "B09",
+      "split": "holdout",
+      "pilot": false,
+      "kind": "plan",
+      "expectedOutcome": "refused",
+      "input": {
+        "city": "杭州",
+        "days": 3,
+        "budget": 100,
+        "travelMode": "transit",
+        "instruction": "单人目的地内3天，总预算上限100元，不含往返目的地交通。每天上午、下午各安排一个不同景点，晚上可以住宿地休息。"
+      },
+      "expect": {
+        "refusalReason": "budget",
+        "refusalPattern": "预算|费用|不足|超出|超预算",
+        "proof": "最低住宿400+餐饮240+其他60=700元，已超过100元；未含门票与交通"
+      },
+      "provenance": {
+        "source": "project-authored",
+        "reason": "可证明不可行预算，单独统计正确拒绝"
+      }
+    },
+    {
+      "id": "B10",
+      "split": "holdout",
+      "pilot": false,
+      "kind": "plan",
+      "expectedOutcome": "refused",
+      "environment": {
+        "noTransit": true
+      },
+      "input": {
+        "city": "成都",
+        "days": 1,
+        "budget": 1000,
+        "travelMode": "transit",
+        "instruction": "单人目的地内1天，总预算上限1000元，不含往返目的地交通。每天上午、下午各安排一个不同景点，晚上可以住宿地休息。必须使用公交连接上午和下午两个景点；固定环境中没有可用公交方案，不得用步行替代。"
+      },
+      "expect": {
+        "refusalReason": "route",
+        "refusalPattern": "公交|路线|方案|不可达|无法",
+        "proof": "所有有向公交路段均无方案，任务要求两个不同景点以公交连接"
+      },
+      "provenance": {
+        "source": "project-authored",
+        "reason": "无公交方案且不得改用其他交通"
+      }
+    }
+  ]
+}

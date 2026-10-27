@@ -16,11 +16,14 @@ public class ActiveRequestCleanup {
   private final ObjectProvider<TravelService> travel;
   private final ObjectProvider<PlanningJobs> planning;
   private final ObjectProvider<RagQuestions> knowledge;
+  @org.springframework.beans.factory.annotation.Autowired
+  private ObjectProvider<org.example.traveljavaserver.agent.AgentJobs> agent;
 
   public void cancelUser(long owner) {
     attempt("chat", () -> travel.ifAvailable(service -> service.cancelUser(owner)));
     attempt("planning", () -> planning.ifAvailable(service -> service.cancelUser(owner)));
     attempt("knowledge", () -> knowledge.ifAvailable(service -> service.cancelUser(owner)));
+    attempt("agent", () -> { if (agent != null) agent.ifAvailable(service -> service.cancelUser(owner)); });
   }
 
   private void attempt(String activity, Runnable action) {
