@@ -1,0 +1,2761 @@
+{
+  "status": "passed",
+  "records_checked": 2000,
+  "official_phase2_evaluation_records": 100,
+  "unique_uids": 2000,
+  "unique_natural_language_queries": 2000,
+  "constraint_key_count": 53,
+  "constraint_key_counts": {
+    "accommodation_budget": 116,
+    "accommodation_exact_time": 299,
+    "accommodation_on_day": 196,
+    "accommodation_time_window": 219,
+    "attraction_budget": 84,
+    "attraction_count_on_day": 1017,
+    "attraction_duration_minimum": 434,
+    "attraction_exact_time": 450,
+    "attraction_on_day": 254,
+    "attraction_order": 706,
+    "attraction_pair_on_day": 866,
+    "attraction_time_window": 307,
+    "cross_category_order": 1889,
+    "daily_budget": 1037,
+    "distinct_accommodation_count": 366,
+    "either_requirement": 2735,
+    "forbidden_accommodation_names": 415,
+    "forbidden_accommodation_types": 356,
+    "forbidden_attraction_names": 372,
+    "forbidden_attraction_types": 444,
+    "forbidden_depart_transport": 337,
+    "forbidden_inner_transport_modes": 418,
+    "forbidden_restaurant_names": 407,
+    "forbidden_restaurant_types": 392,
+    "forbidden_return_transport": 358,
+    "free_attraction_count_minimum": 410,
+    "inner_transport_mode_count": 793,
+    "inner_transport_modes_subset": 111,
+    "innercity_budget": 145,
+    "innercity_travel_time_budget": 474,
+    "intercity_modes_include": 80,
+    "outbound_departure_deadline": 453,
+    "people_number": 2000,
+    "required_accommodation_names": 104,
+    "required_accommodation_types": 77,
+    "required_attraction_names": 127,
+    "required_attraction_types": 95,
+    "required_meals_on_day": 744,
+    "required_restaurant_names": 126,
+    "required_restaurant_types": 90,
+    "restaurant_budget": 151,
+    "restaurant_exact_time": 440,
+    "restaurant_on_day": 262,
+    "restaurant_time_window": 322,
+    "return_departure_earliest": 456,
+    "room_count": 52,
+    "room_type": 44,
+    "taxi_cars": 64,
+    "tickets_match_people": 2000,
+    "total_attraction_count": 434,
+    "total_budget": 121,
+    "trip_days": 2000,
+    "walking_distance_budget": 445
+  },
+  "overlapping_direct_entity_constraint_records": 254,
+  "overlapping_direct_entity_constraint_examples": {
+    "phase2_extended_20250320174446059265_01603": [
+      {
+        "entity_type": "accommodation",
+        "name": "Chengdu Yuehuimei Hotel",
+        "constraint_count": 2
+      }
+    ],
+    "phase2_extended_20250320174446059265_01604": [
+      {
+        "entity_type": "accommodation",
+        "name": "Chengdu Yuehuimei Hotel",
+        "constraint_count": 2
+      }
+    ],
+    "phase2_extended_20250320181941699936_01690": [
+      {
+        "entity_type": "attraction",
+        "name": "Nanjing University (Gulou Campus)",
+        "constraint_count": 2
+      }
+    ],
+    "phase2_extended_20250320185832139483_01204": [
+      {
+        "entity_type": "restaurant",
+        "name": "Ichiro Yakiniku · Japanese Cuisine (Jiefangbei Branch)",
+        "constraint_count": 2
+      }
+    ],
+    "phase2_extended_20250320191503128305_00976": [
+      {
+        "entity_type": "attraction",
+        "name": "Fuyang Dragon Scale Dam Scenic Area",
+        "constraint_count": 2
+      }
+    ],
+    "phase2_extended_20250320194255414830_01113": [
+      {
+        "entity_type": "accommodation",
+        "name": "Chengdu Yuehuimei Hotel",
+        "constraint_count": 2
+      }
+    ],
+    "phase2_extended_20250320225447126207_00785": [
+      {
+        "entity_type": "attraction",
+        "name": "Yangtze River Three Gorges - Century Legend Cruise",
+        "constraint_count": 2
+      }
+    ],
+    "phase2_extended_20250320233037024077_00162": [
+      {
+        "entity_type": "restaurant",
+        "name": "Overseas Chinese Town Nanyang Inn (Gankeng Ancient Town Shop)",
+        "constraint_count": 2
+      }
+    ],
+    "phase2_extended_20250320234449703819_00321": [
+      {
+        "entity_type": "restaurant",
+        "name": "Shenzhen Bolin Tianrui Sheraton Hotel · Tianrui Xuan · Cantonese Restaurant",
+        "constraint_count": 2
+      }
+    ],
+    "phase2_extended_20250321012512564936_00625": [
+      {
+        "entity_type": "restaurant",
+        "name": "Canton Jade Hilton Hotel Xiangxue Tower Chinese Restaurant",
+        "constraint_count": 2
+      }
+    ],
+    "phase2_extended_20250321022513013696_01389": [
+      {
+        "entity_type": "attraction",
+        "name": "Cloud-Crowned Peak",
+        "constraint_count": 2
+      }
+    ],
+    "phase2_extended_20250321030542725935_01981": [
+      {
+        "entity_type": "attraction",
+        "name": "Night Cruise on the Moat",
+        "constraint_count": 2
+      }
+    ],
+    "phase2_extended_20250321030542725935_01982": [
+      {
+        "entity_type": "accommodation",
+        "name": "Suzhou Huaxi Meishi Hotel (Heiyi Wujiang Branch)",
+        "constraint_count": 3
+      }
+    ],
+    "phase2_extended_20250321050822092894_01291": [
+      {
+        "entity_type": "restaurant",
+        "name": "Baiye Homestay (West Lake Branch)",
+        "constraint_count": 2
+      }
+    ],
+    "phase2_extended_20250321152015286634_01191": [
+      {
+        "entity_type": "accommodation",
+        "name": "Overseas Chinese Town Nanyang Inn (Gankeng Ancient Town Shop)",
+        "constraint_count": 2
+      }
+    ],
+    "phase2_extended_20250321155107635610_00007": [
+      {
+        "entity_type": "restaurant",
+        "name": "Imperial Banquet Chinese Restaurant",
+        "constraint_count": 2
+      }
+    ],
+    "phase2_extended_20250321180055038088_00218": [
+      {
+        "entity_type": "attraction",
+        "name": "Yangtze River Three Gorges - Century Legend Cruise",
+        "constraint_count": 2
+      }
+    ],
+    "phase2_extended_20250321210116163263_00825": [
+      {
+        "entity_type": "restaurant",
+        "name": "Courtyard Sips",
+        "constraint_count": 2
+      }
+    ],
+    "phase2_extended_20250321211721759889_01900": [
+      {
+        "entity_type": "restaurant",
+        "name": "Heji Spicy Hot Pot (Nanbin Road Branch)",
+        "constraint_count": 2
+      }
+    ],
+    "phase2_extended_20250321221347058179_01281": [
+      {
+        "entity_type": "restaurant",
+        "name": "Lotus Glade Hotel",
+        "constraint_count": 2
+      }
+    ]
+  },
+  "errors": [],
+  "warnings": [
+    "254 records contain compatible but overlapping direct constraints on the same entity"
+  ],
+  "wording_clarification_counts": {
+    "accommodation_budget": 116,
+    "accommodation_time_window": 219,
+    "attraction_budget": 84,
+    "attraction_duration_minimum": 434,
+    "attraction_time_window": 307,
+    "daily_budget": 1037,
+    "either_requirement": 2735,
+    "forbidden_inner_transport_modes": 418,
+    "inner_transport_mode_count": 793,
+    "inner_transport_modes_subset": 111,
+    "innercity_budget": 145,
+    "innercity_travel_time_budget": 474,
+    "restaurant_budget": 151,
+    "restaurant_time_window": 322,
+    "total_budget": 121
+  },
+  "wording_clarifications_total": 7467,
+  "redundant_or_constraints_removed": 930,
+  "records_with_redundant_or_removed": 776,
+  "redundant_or_original_indices_by_uid": {
+    "phase2_extended_20250322201643676309_00001": [
+      7
+    ],
+    "phase2_extended_20250323021732100207_00004": [
+      5
+    ],
+    "phase2_extended_20250321155107635610_00007": [
+      12
+    ],
+    "phase2_extended_t20241206211714064986_00011": [
+      10
+    ],
+    "phase2_extended_t20241206211714064986_00012": [
+      9
+    ],
+    "phase2_extended_e20241028160312706595_00013": [
+      8,
+      13,
+      15,
+      16
+    ],
+    "phase2_extended_e20241028160312706595_00014": [
+      7,
+      8,
+      9,
+      12,
+      13,
+      15
+    ],
+    "phase2_extended_m20241028164909526065_00017": [
+      11
+    ],
+    "phase2_extended_20250322100019318103_00019": [
+      10
+    ],
+    "phase2_extended_20250324091253666121_00022": [
+      8
+    ],
+    "phase2_extended_m20241028164754037833_00028": [
+      7
+    ],
+    "phase2_extended_20250323213814259246_00029": [
+      13
+    ],
+    "phase2_extended_20250323213814259246_00030": [
+      11
+    ],
+    "phase2_extended_20250322201313997965_00031": [
+      15
+    ],
+    "phase2_extended_20250322201313997965_00032": [
+      5,
+      7
+    ],
+    "phase2_extended_20250324222807389444_00040": [
+      5
+    ],
+    "phase2_extended_m20241028164807696509_00041": [
+      5
+    ],
+    "phase2_extended_20250322165053508050_00047": [
+      15
+    ],
+    "phase2_extended_20250322165053508050_00048": [
+      6,
+      7
+    ],
+    "phase2_extended_20250325015820363948_00056": [
+      11
+    ],
+    "phase2_extended_20250322132333453556_00057": [
+      12
+    ],
+    "phase2_extended_20250322190831212547_00060": [
+      6
+    ],
+    "phase2_extended_20250324215820528717_00064": [
+      4
+    ],
+    "phase2_extended_20250321092432118774_00065": [
+      8
+    ],
+    "phase2_extended_e20241028160324401047_00068": [
+      6
+    ],
+    "phase2_extended_20250322180946178753_00072": [
+      13
+    ],
+    "phase2_extended_20250322120414354584_00073": [
+      10
+    ],
+    "phase2_extended_20250324223617347694_00075": [
+      16
+    ],
+    "phase2_extended_20250324223617347694_00076": [
+      6
+    ],
+    "phase2_extended_20250323023056756713_00079": [
+      11
+    ],
+    "phase2_extended_20250323023056756713_00080": [
+      6
+    ],
+    "phase2_extended_20250322224203329023_00086": [
+      7,
+      12
+    ],
+    "phase2_extended_20250322195527737080_00089": [
+      8
+    ],
+    "phase2_extended_20250322195527737080_00090": [
+      7
+    ],
+    "phase2_extended_20250324221337458084_00091": [
+      4
+    ],
+    "phase2_extended_20250322235422616103_00093": [
+      15
+    ],
+    "phase2_extended_20250321144722221081_00095": [
+      5
+    ],
+    "phase2_extended_20250322181705089092_00099": [
+      14
+    ],
+    "phase2_extended_m20241028164819146853_00102": [
+      15
+    ],
+    "phase2_extended_m20241028164704059677_00108": [
+      10
+    ],
+    "phase2_extended_m20241028164648944630_00109": [
+      11
+    ],
+    "phase2_extended_20250321144415070996_00111": [
+      7
+    ],
+    "phase2_extended_20250321144415070996_00112": [
+      17
+    ],
+    "phase2_extended_m20241028164743925079_00113": [
+      5
+    ],
+    "phase2_extended_m20241028164743925079_00114": [
+      7
+    ],
+    "phase2_extended_20250324211534438316_00115": [
+      5
+    ],
+    "phase2_extended_20250322133725159261_00118": [
+      12
+    ],
+    "phase2_extended_m20241028165013851142_00125": [
+      10
+    ],
+    "phase2_extended_m20241028165013851142_00126": [
+      8
+    ],
+    "phase2_extended_20250322231025349400_00130": [
+      9
+    ],
+    "phase2_extended_20250323111946521607_00134": [
+      9,
+      15
+    ],
+    "phase2_extended_20250322220010000963_00136": [
+      12
+    ],
+    "phase2_extended_20250323011042997296_00138": [
+      12
+    ],
+    "phase2_extended_m20241028164622142080_00141": [
+      7
+    ],
+    "phase2_extended_t20241206211714065368_00144": [
+      8
+    ],
+    "phase2_extended_20250322203706070483_00149": [
+      4
+    ],
+    "phase2_extended_20250322123458076116_00154": [
+      15
+    ],
+    "phase2_extended_e20241028160442853706_00155": [
+      7
+    ],
+    "phase2_extended_20250323222907668212_00158": [
+      11
+    ],
+    "phase2_extended_20250322230555476611_00159": [
+      14
+    ],
+    "phase2_extended_20250320233037024077_00161": [
+      8,
+      13
+    ],
+    "phase2_extended_20250322122515270434_00163": [
+      5,
+      7
+    ],
+    "phase2_extended_20250322122515270434_00164": [
+      17
+    ],
+    "phase2_extended_20250324195510455666_00165": [
+      10,
+      12
+    ],
+    "phase2_extended_20250324195510455666_00166": [
+      14
+    ],
+    "phase2_extended_20250323002819854165_00170": [
+      10
+    ],
+    "phase2_extended_20250322170043869372_00171": [
+      4
+    ],
+    "phase2_extended_20250322155243052206_00173": [
+      12
+    ],
+    "phase2_extended_20250322155243052206_00174": [
+      9
+    ],
+    "phase2_extended_20250321003855699793_00176": [
+      4
+    ],
+    "phase2_extended_e20241028160421661493_00178": [
+      15
+    ],
+    "phase2_extended_20250324201000109109_00179": [
+      9
+    ],
+    "phase2_extended_20250324201000109109_00180": [
+      12
+    ],
+    "phase2_extended_20250324235618391024_00181": [
+      5
+    ],
+    "phase2_extended_20250324235618391024_00182": [
+      8
+    ],
+    "phase2_extended_m20241028164849883248_00183": [
+      4
+    ],
+    "phase2_extended_20250324212201667195_00185": [
+      5
+    ],
+    "phase2_extended_m20241028164627218521_00188": [
+      10
+    ],
+    "phase2_extended_20250323142722224243_00189": [
+      12
+    ],
+    "phase2_extended_20250324210009854182_00192": [
+      5
+    ],
+    "phase2_extended_20250322130318575994_00196": [
+      4
+    ],
+    "phase2_extended_20250324224613389068_00200": [
+      4,
+      7
+    ],
+    "phase2_extended_20250322193703879353_00202": [
+      4
+    ],
+    "phase2_extended_20250321185309089586_00203": [
+      16
+    ],
+    "phase2_extended_20250322192559565594_00206": [
+      4
+    ],
+    "phase2_extended_20250322124922163216_00210": [
+      6
+    ],
+    "phase2_extended_20250324224054899196_00211": [
+      5
+    ],
+    "phase2_extended_20250324224054899196_00212": [
+      9
+    ],
+    "phase2_extended_20250322144758000010_00214": [
+      9
+    ],
+    "phase2_extended_20250322043103580561_00219": [
+      5,
+      11
+    ],
+    "phase2_extended_20250322043103580561_00220": [
+      15
+    ],
+    "phase2_extended_20250322170953173480_00224": [
+      13
+    ],
+    "phase2_extended_m20241028164825618732_00226": [
+      7
+    ],
+    "phase2_extended_20250323020438958136_00227": [
+      4
+    ],
+    "phase2_extended_e20241028160441438118_00229": [
+      12
+    ],
+    "phase2_extended_e20241028160441438118_00230": [
+      15
+    ],
+    "phase2_extended_20250322164053425056_00233": [
+      7
+    ],
+    "phase2_extended_20250322164053425056_00234": [
+      7
+    ],
+    "phase2_extended_20250324075359626808_00239": [
+      9
+    ],
+    "phase2_extended_20250324195406101310_00241": [
+      16
+    ],
+    "phase2_extended_20250322225701184103_00243": [
+      7
+    ],
+    "phase2_extended_20250322133429276131_00248": [
+      12
+    ],
+    "phase2_extended_20250321225327900119_00249": [
+      5
+    ],
+    "phase2_extended_20250324224441233776_00252": [
+      7
+    ],
+    "phase2_extended_e20241028160435135251_00253": [
+      9
+    ],
+    "phase2_extended_e20241028160435135251_00254": [
+      4,
+      11
+    ],
+    "phase2_extended_20250322175142200099_00257": [
+      5
+    ],
+    "phase2_extended_20250323120319012899_00260": [
+      11
+    ],
+    "phase2_extended_20250322101301514741_00261": [
+      9,
+      12
+    ],
+    "phase2_extended_e20241028160251109186_00263": [
+      8
+    ],
+    "phase2_extended_20250322141801356206_00265": [
+      8
+    ],
+    "phase2_extended_20250322141801356206_00266": [
+      6,
+      8
+    ],
+    "phase2_extended_20250321180120537534_00267": [
+      5
+    ],
+    "phase2_extended_20250323112243256120_00269": [
+      14
+    ],
+    "phase2_extended_20250321025717139459_00271": [
+      12
+    ],
+    "phase2_extended_t20241206211714066934_00281": [
+      8
+    ],
+    "phase2_extended_20250322102104636925_00284": [
+      11
+    ],
+    "phase2_extended_m20241028164932051734_00287": [
+      4
+    ],
+    "phase2_extended_m20241028164932051734_00288": [
+      13
+    ],
+    "phase2_extended_20250324000345677129_00296": [
+      16
+    ],
+    "phase2_extended_20250323024117214403_00303": [
+      5
+    ],
+    "phase2_extended_m20241028164809233884_00314": [
+      11
+    ],
+    "phase2_extended_20250322101949422756_00315": [
+      4
+    ],
+    "phase2_extended_20250322101949422756_00316": [
+      6
+    ],
+    "phase2_extended_20250322234907857710_00317": [
+      10
+    ],
+    "phase2_extended_20250322154652839078_00320": [
+      15,
+      16
+    ],
+    "phase2_extended_20250320234449703819_00321": [
+      5
+    ],
+    "phase2_extended_20250320234449703819_00322": [
+      8
+    ],
+    "phase2_extended_20250322091934938296_00329": [
+      8
+    ],
+    "phase2_extended_20250324082131674535_00332": [
+      4
+    ],
+    "phase2_extended_20250322201024175211_00334": [
+      11
+    ],
+    "phase2_extended_m20241028164755130582_00335": [
+      5
+    ],
+    "phase2_extended_m20241028164755130582_00336": [
+      6
+    ],
+    "phase2_extended_m20241028164803818799_00337": [
+      8
+    ],
+    "phase2_extended_m20241028164803818799_00338": [
+      11
+    ],
+    "phase2_extended_20250324213459167945_00340": [
+      7,
+      12
+    ],
+    "phase2_extended_20250322223405842636_00341": [
+      9
+    ],
+    "phase2_extended_m20241028164925825092_00343": [
+      8
+    ],
+    "phase2_extended_20250322144735796883_00346": [
+      6
+    ],
+    "phase2_extended_20250323001701860855_00350": [
+      4,
+      5
+    ],
+    "phase2_extended_20250324212103777137_00352": [
+      10,
+      16
+    ],
+    "phase2_extended_20250324210121516169_00353": [
+      7,
+      9
+    ],
+    "phase2_extended_m20241028164728831122_00356": [
+      11
+    ],
+    "phase2_extended_m20241028164824112842_00359": [
+      11
+    ],
+    "phase2_extended_m20241028164824112842_00360": [
+      8
+    ],
+    "phase2_extended_20250322120628752145_00363": [
+      4
+    ],
+    "phase2_extended_20250322201135018625_00366": [
+      10
+    ],
+    "phase2_extended_20250324212135684279_00368": [
+      12,
+      14
+    ],
+    "phase2_extended_e20241028160306588034_00374": [
+      5,
+      9,
+      10,
+      13
+    ],
+    "phase2_extended_20250324212220275360_00376": [
+      6
+    ],
+    "phase2_extended_20250322115938401413_00380": [
+      9,
+      11
+    ],
+    "phase2_extended_m20241028164833637716_00382": [
+      9
+    ],
+    "phase2_extended_20250322060701352546_00383": [
+      11
+    ],
+    "phase2_extended_m20241028165000952381_00389": [
+      14
+    ],
+    "phase2_extended_20250322101722651305_00392": [
+      16
+    ],
+    "phase2_extended_20250322110313382570_00394": [
+      4,
+      15
+    ],
+    "phase2_extended_20250323031255302334_00397": [
+      16
+    ],
+    "phase2_extended_t20241206211714065864_00399": [
+      9
+    ],
+    "phase2_extended_20250322224207693525_00401": [
+      7
+    ],
+    "phase2_extended_20250322224207693525_00402": [
+      9
+    ],
+    "phase2_extended_20250322185047891707_00406": [
+      10
+    ],
+    "phase2_extended_20250321092540864955_00407": [
+      7
+    ],
+    "phase2_extended_20250321092540864955_00408": [
+      4
+    ],
+    "phase2_extended_20250323113838714458_00410": [
+      5,
+      12
+    ],
+    "phase2_extended_20250322121819113054_00418": [
+      5
+    ],
+    "phase2_extended_20250323184902457825_00420": [
+      12,
+      15
+    ],
+    "phase2_extended_m20241028164806059008_00421": [
+      11
+    ],
+    "phase2_extended_20250323001738086107_00426": [
+      4,
+      15
+    ],
+    "phase2_extended_20250324212406371235_00429": [
+      6
+    ],
+    "phase2_extended_20250321191110067884_00431": [
+      13
+    ],
+    "phase2_extended_20250323111825717964_00433": [
+      4
+    ],
+    "phase2_extended_20250323010327713880_00438": [
+      7
+    ],
+    "phase2_extended_20250325001144264324_00445": [
+      13
+    ],
+    "phase2_extended_20250325001144264324_00446": [
+      13
+    ],
+    "phase2_extended_m20241028164914972867_00449": [
+      14
+    ],
+    "phase2_extended_m20241028164914972867_00450": [
+      5,
+      6,
+      12
+    ],
+    "phase2_extended_m20241028164630109683_00452": [
+      5
+    ],
+    "phase2_extended_20250322183528292943_00453": [
+      15
+    ],
+    "phase2_extended_e20241028160303262666_00457": [
+      4
+    ],
+    "phase2_extended_20250322110525299680_00459": [
+      10
+    ],
+    "phase2_extended_20250322110525299680_00460": [
+      8
+    ],
+    "phase2_extended_20250322124519692875_00466": [
+      7
+    ],
+    "phase2_extended_20250324220943448144_00469": [
+      12
+    ],
+    "phase2_extended_t20241206211714066755_00476": [
+      5
+    ],
+    "phase2_extended_20250322132432715549_00479": [
+      4
+    ],
+    "phase2_extended_20250322132432715549_00480": [
+      10
+    ],
+    "phase2_extended_20250324200943774601_00481": [
+      4,
+      6
+    ],
+    "phase2_extended_20250320223538684841_00484": [
+      8
+    ],
+    "phase2_extended_m20241028164828899127_00485": [
+      7
+    ],
+    "phase2_extended_m20241028164828899127_00486": [
+      12
+    ],
+    "phase2_extended_20250322204425912419_00488": [
+      15
+    ],
+    "phase2_extended_t20241206171819321990_00492": [
+      9
+    ],
+    "phase2_extended_20250322190852845849_00494": [
+      15
+    ],
+    "phase2_extended_20250322002943090144_00495": [
+      5
+    ],
+    "phase2_extended_20250322105748349364_00497": [
+      8
+    ],
+    "phase2_extended_20250322105748349364_00498": [
+      9
+    ],
+    "phase2_extended_m20241028164906595512_00500": [
+      10
+    ],
+    "phase2_extended_20250321171346047220_00502": [
+      4
+    ],
+    "phase2_extended_m20241028164737668149_00505": [
+      5
+    ],
+    "phase2_extended_m20241028164737668149_00506": [
+      6,
+      11
+    ],
+    "phase2_extended_20250321170028537672_00507": [
+      11
+    ],
+    "phase2_extended_20250323131957769981_00509": [
+      7
+    ],
+    "phase2_extended_20250322123503517813_00513": [
+      12,
+      16
+    ],
+    "phase2_extended_20250322192820174120_00518": [
+      4
+    ],
+    "phase2_extended_20250323002425715014_00521": [
+      12
+    ],
+    "phase2_extended_20250322162846822521_00526": [
+      10
+    ],
+    "phase2_extended_20250322161141030810_00530": [
+      10,
+      15
+    ],
+    "phase2_extended_20250322114824594241_00532": [
+      6,
+      12
+    ],
+    "phase2_extended_20250323022540312612_00535": [
+      12
+    ],
+    "phase2_extended_m20241028164903025025_00538": [
+      6
+    ],
+    "phase2_extended_m20241028164631458440_00541": [
+      5
+    ],
+    "phase2_extended_m20241028164631458440_00542": [
+      10
+    ],
+    "phase2_extended_20250322192816741967_00545": [
+      4
+    ],
+    "phase2_extended_m20241028164655927567_00550": [
+      5,
+      10
+    ],
+    "phase2_extended_20250323095147120434_00551": [
+      15
+    ],
+    "phase2_extended_20250323110225523986_00553": [
+      9
+    ],
+    "phase2_extended_m20241028164913584976_00555": [
+      16
+    ],
+    "phase2_extended_m20241028164913584976_00556": [
+      5,
+      11
+    ],
+    "phase2_extended_20250323095651954320_00557": [
+      5
+    ],
+    "phase2_extended_20250323095651954320_00558": [
+      5
+    ],
+    "phase2_extended_20250324213904677942_00560": [
+      5
+    ],
+    "phase2_extended_t20241206211714065493_00564": [
+      12
+    ],
+    "phase2_extended_20250322141430543582_00565": [
+      12
+    ],
+    "phase2_extended_20250324211451036754_00569": [
+      4
+    ],
+    "phase2_extended_20250322194428456628_00571": [
+      5
+    ],
+    "phase2_extended_20250322194428456628_00572": [
+      10
+    ],
+    "phase2_extended_20250324211603832387_00574": [
+      11
+    ],
+    "phase2_extended_20250322220729859950_00575": [
+      6
+    ],
+    "phase2_extended_20250322220729859950_00576": [
+      14
+    ],
+    "phase2_extended_20250323114309992052_00588": [
+      4
+    ],
+    "phase2_extended_20250322213548089207_00589": [
+      7
+    ],
+    "phase2_extended_20250322213548089207_00590": [
+      5
+    ],
+    "phase2_extended_20250322190722684155_00593": [
+      5
+    ],
+    "phase2_extended_e20241028160500856634_00603": [
+      11
+    ],
+    "phase2_extended_20250322150411173164_00605": [
+      7
+    ],
+    "phase2_extended_20250324213114489746_00607": [
+      10
+    ],
+    "phase2_extended_20250323115531566412_00610": [
+      11
+    ],
+    "phase2_extended_20250322183205470139_00611": [
+      7
+    ],
+    "phase2_extended_20250324075524263993_00615": [
+      9,
+      11
+    ],
+    "phase2_extended_20250322183118666614_00617": [
+      4
+    ],
+    "phase2_extended_20250322183118666614_00618": [
+      4
+    ],
+    "phase2_extended_20250322165721791741_00621": [
+      9
+    ],
+    "phase2_extended_20250322165721791741_00622": [
+      5
+    ],
+    "phase2_extended_20250321114418474179_00624": [
+      10
+    ],
+    "phase2_extended_20250321012512564936_00625": [
+      14
+    ],
+    "phase2_extended_20250325011035187438_00628": [
+      12
+    ],
+    "phase2_extended_20250322131339902505_00629": [
+      6
+    ],
+    "phase2_extended_20250322131339902505_00630": [
+      7
+    ],
+    "phase2_extended_20250324212240978128_00632": [
+      13
+    ],
+    "phase2_extended_20250322212323798458_00633": [
+      4
+    ],
+    "phase2_extended_20250323111047892296_00637": [
+      7
+    ],
+    "phase2_extended_20250323111047892296_00638": [
+      7
+    ],
+    "phase2_extended_20250322124542050840_00640": [
+      4
+    ],
+    "phase2_extended_m20241028164843213370_00648": [
+      9
+    ],
+    "phase2_extended_20250323095128258988_00649": [
+      5,
+      6
+    ],
+    "phase2_extended_20250323015547134046_00654": [
+      5,
+      6,
+      10
+    ],
+    "phase2_extended_20250323003257249183_00657": [
+      10
+    ],
+    "phase2_extended_20250324215315199895_00665": [
+      13
+    ],
+    "phase2_extended_20250322143819451774_00668": [
+      13
+    ],
+    "phase2_extended_20250322220122821328_00669": [
+      12
+    ],
+    "phase2_extended_20250320193635303157_00671": [
+      4
+    ],
+    "phase2_extended_20250323190504274874_00679": [
+      7
+    ],
+    "phase2_extended_m20241028164837927103_00682": [
+      8
+    ],
+    "phase2_extended_20250324215549742196_00684": [
+      4
+    ],
+    "phase2_extended_20250322120737483309_00686": [
+      4,
+      15
+    ],
+    "phase2_extended_20250322180344489669_00689": [
+      11
+    ],
+    "phase2_extended_20250324221657096428_00694": [
+      15
+    ],
+    "phase2_extended_t20241206211714066694_00696": [
+      7
+    ],
+    "phase2_extended_20250322141123768673_00700": [
+      6
+    ],
+    "phase2_extended_e20241028160428605482_00705": [
+      7,
+      9,
+      12
+    ],
+    "phase2_extended_e20241028160428605482_00706": [
+      12
+    ],
+    "phase2_extended_20250324230340923488_00713": [
+      13
+    ],
+    "phase2_extended_20250322121642720041_00717": [
+      11
+    ],
+    "phase2_extended_20250323092305147660_00720": [
+      8
+    ],
+    "phase2_extended_20250324210728912485_00722": [
+      14
+    ],
+    "phase2_extended_20250322080938334036_00724": [
+      9,
+      12,
+      15
+    ],
+    "phase2_extended_20250323153745070648_00725": [
+      10
+    ],
+    "phase2_extended_20250322153546525570_00730": [
+      8
+    ],
+    "phase2_extended_20250323095940080796_00732": [
+      14
+    ],
+    "phase2_extended_20250323010606861643_00735": [
+      5
+    ],
+    "phase2_extended_20250323010606861643_00736": [
+      12
+    ],
+    "phase2_extended_20250322124744479898_00742": [
+      7
+    ],
+    "phase2_extended_20250322140202885673_00743": [
+      11
+    ],
+    "phase2_extended_m20241028164658228656_00745": [
+      11
+    ],
+    "phase2_extended_m20241028164658228656_00746": [
+      11
+    ],
+    "phase2_extended_20250322230225203985_00757": [
+      4,
+      11
+    ],
+    "phase2_extended_t20241206172028371509_00761": [
+      5
+    ],
+    "phase2_extended_20250322154633397704_00763": [
+      12
+    ],
+    "phase2_extended_20250322154633397704_00764": [
+      7
+    ],
+    "phase2_extended_20250323002958084846_00767": [
+      8
+    ],
+    "phase2_extended_20250323191102916438_00775": [
+      15
+    ],
+    "phase2_extended_20250323191102916438_00776": [
+      9
+    ],
+    "phase2_extended_20250325013003103611_00779": [
+      10
+    ],
+    "phase2_extended_20250325013003103611_00780": [
+      8
+    ],
+    "phase2_extended_20250322205724212077_00782": [
+      7
+    ],
+    "phase2_extended_20250322132807023622_00783": [
+      4
+    ],
+    "phase2_extended_20250320225447126207_00785": [
+      11
+    ],
+    "phase2_extended_20250323001735264616_00787": [
+      14
+    ],
+    "phase2_extended_20250324223916776179_00789": [
+      4,
+      11
+    ],
+    "phase2_extended_20250324213427488011_00792": [
+      11
+    ],
+    "phase2_extended_20250322073530635640_00794": [
+      10,
+      11
+    ],
+    "phase2_extended_20250322200428389154_00795": [
+      9
+    ],
+    "phase2_extended_20250322193334546588_00802": [
+      6
+    ],
+    "phase2_extended_20250323022823669346_00803": [
+      8
+    ],
+    "phase2_extended_20250324231432431007_00806": [
+      6
+    ],
+    "phase2_extended_20250323014604959765_00811": [
+      4,
+      16
+    ],
+    "phase2_extended_20250323014604959765_00812": [
+      15
+    ],
+    "phase2_extended_20250323123608743337_00813": [
+      9
+    ],
+    "phase2_extended_20250323123608743337_00814": [
+      10
+    ],
+    "phase2_extended_20250322181233866649_00816": [
+      11
+    ],
+    "phase2_extended_20250323230301166516_00817": [
+      9
+    ],
+    "phase2_extended_20250322183029000145_00821": [
+      6
+    ],
+    "phase2_extended_20250322183029000145_00822": [
+      8
+    ],
+    "phase2_extended_20250321210116163263_00825": [
+      12
+    ],
+    "phase2_extended_20250322172924249523_00828": [
+      8
+    ],
+    "phase2_extended_20250322173114414187_00830": [
+      5,
+      11
+    ],
+    "phase2_extended_20250323102250721169_00831": [
+      9
+    ],
+    "phase2_extended_20250323102250721169_00832": [
+      14
+    ],
+    "phase2_extended_20250322130502929756_00833": [
+      10
+    ],
+    "phase2_extended_m20241028164752783728_00836": [
+      6
+    ],
+    "phase2_extended_t20241206211714064921_00839": [
+      13
+    ],
+    "phase2_extended_t20241206211714064921_00840": [
+      11
+    ],
+    "phase2_extended_m20241028164827054321_00842": [
+      12
+    ],
+    "phase2_extended_20250322190341790638_00843": [
+      7
+    ],
+    "phase2_extended_20250321164925902716_00846": [
+      5
+    ],
+    "phase2_extended_e20241028160438025375_00850": [
+      7
+    ],
+    "phase2_extended_20250321210015834839_00852": [
+      11
+    ],
+    "phase2_extended_20250324214130372165_00854": [
+      7,
+      10
+    ],
+    "phase2_extended_t20241206171952305386_00855": [
+      13
+    ],
+    "phase2_extended_20250323003100968460_00859": [
+      12,
+      13
+    ],
+    "phase2_extended_20250323003100968460_00860": [
+      9
+    ],
+    "phase2_extended_t20241206211714066044_00864": [
+      15
+    ],
+    "phase2_extended_e20241028160317745984_00868": [
+      9
+    ],
+    "phase2_extended_t20241206211714064711_00871": [
+      14
+    ],
+    "phase2_extended_20250324210919785805_00873": [
+      11,
+      13
+    ],
+    "phase2_extended_20250325011544460956_00879": [
+      10
+    ],
+    "phase2_extended_20250322165143619477_00881": [
+      11
+    ],
+    "phase2_extended_20250322141846074861_00885": [
+      8,
+      10,
+      15
+    ],
+    "phase2_extended_20250322141846074861_00886": [
+      6,
+      7,
+      13
+    ],
+    "phase2_extended_t20241206171834406054_00888": [
+      6,
+      14
+    ],
+    "phase2_extended_e20241028160408419219_00890": [
+      6
+    ],
+    "phase2_extended_20250322195322522932_00891": [
+      10
+    ],
+    "phase2_extended_20250322220759086673_00893": [
+      5,
+      8
+    ],
+    "phase2_extended_20250323232515361347_00895": [
+      8
+    ],
+    "phase2_extended_20250323232515361347_00896": [
+      12
+    ],
+    "phase2_extended_20250322171831366188_00897": [
+      11
+    ],
+    "phase2_extended_20250322171831366188_00898": [
+      16
+    ],
+    "phase2_extended_20250323115217637961_00900": [
+      10
+    ],
+    "phase2_extended_20250322142320246128_00901": [
+      11
+    ],
+    "phase2_extended_20250323135305015682_00907": [
+      12
+    ],
+    "phase2_extended_20250323135305015682_00908": [
+      11
+    ],
+    "phase2_extended_20250323024847827162_00912": [
+      8,
+      14
+    ],
+    "phase2_extended_20250324214731716167_00915": [
+      5
+    ],
+    "phase2_extended_20250324214731716167_00916": [
+      12
+    ],
+    "phase2_extended_e20241028160323008998_00917": [
+      4
+    ],
+    "phase2_extended_20250323001134684343_00919": [
+      11
+    ],
+    "phase2_extended_m20241028165023656799_00922": [
+      11
+    ],
+    "phase2_extended_t20241206211714066811_00926": [
+      5,
+      16
+    ],
+    "phase2_extended_m20241028165003809657_00929": [
+      10
+    ],
+    "phase2_extended_20250321124345084418_00932": [
+      10
+    ],
+    "phase2_extended_t20241206172253793024_00934": [
+      5
+    ],
+    "phase2_extended_20250323003838929292_00936": [
+      11
+    ],
+    "phase2_extended_20250320210351777022_00937": [
+      9
+    ],
+    "phase2_extended_20250322153449598961_00941": [
+      7
+    ],
+    "phase2_extended_20250322153449598961_00942": [
+      6
+    ],
+    "phase2_extended_20250322100414149753_00945": [
+      14
+    ],
+    "phase2_extended_e20241028160430652306_00950": [
+      9
+    ],
+    "phase2_extended_m20241028164940013894_00953": [
+      8
+    ],
+    "phase2_extended_m20241028164940013894_00954": [
+      9
+    ],
+    "phase2_extended_20250322120502651567_00957": [
+      7
+    ],
+    "phase2_extended_e20241028160417133031_00961": [
+      16
+    ],
+    "phase2_extended_20250323094014524099_00967": [
+      11
+    ],
+    "phase2_extended_20250322230827338800_00969": [
+      10
+    ],
+    "phase2_extended_20250322230827338800_00970": [
+      8,
+      9
+    ],
+    "phase2_extended_20250322204343211249_00971": [
+      9
+    ],
+    "phase2_extended_20250320191503128305_00975": [
+      12
+    ],
+    "phase2_extended_20250322184221387020_00982": [
+      9
+    ],
+    "phase2_extended_20250325014133373159_00985": [
+      4
+    ],
+    "phase2_extended_20250325014133373159_00986": [
+      6
+    ],
+    "phase2_extended_20250324093019935797_00988": [
+      12
+    ],
+    "phase2_extended_m20241028164931151225_00990": [
+      5
+    ],
+    "phase2_extended_20250323001024103049_00991": [
+      14
+    ],
+    "phase2_extended_20250322143418765490_00993": [
+      5
+    ],
+    "phase2_extended_20250324220050355278_00995": [
+      4
+    ],
+    "phase2_extended_20250322115634478659_00999": [
+      14
+    ],
+    "phase2_extended_20250322122347515099_01001": [
+      11,
+      15
+    ],
+    "phase2_extended_20250320192106788056_01006": [
+      6
+    ],
+    "phase2_extended_20250321044802265544_01007": [
+      17
+    ],
+    "phase2_extended_20250321044802265544_01008": [
+      5
+    ],
+    "phase2_extended_20250322045046257075_01015": [
+      9
+    ],
+    "phase2_extended_20250322002701660383_01019": [
+      5
+    ],
+    "phase2_extended_20250322114351029690_01022": [
+      7
+    ],
+    "phase2_extended_20250324200936670796_01026": [
+      4
+    ],
+    "phase2_extended_m20241028164949891147_01027": [
+      5,
+      7
+    ],
+    "phase2_extended_20250324224234570779_01029": [
+      9
+    ],
+    "phase2_extended_m20241028165024514344_01031": [
+      12,
+      16
+    ],
+    "phase2_extended_20250321211519984127_01035": [
+      11
+    ],
+    "phase2_extended_20250321211519984127_01036": [
+      9
+    ],
+    "phase2_extended_20250323102650410293_01039": [
+      14
+    ],
+    "phase2_extended_m20241028164958963982_01041": [
+      13
+    ],
+    "phase2_extended_20250322194339530110_01043": [
+      9
+    ],
+    "phase2_extended_20250322194339530110_01044": [
+      12
+    ],
+    "phase2_extended_m20241028164821619599_01047": [
+      6
+    ],
+    "phase2_extended_20250322173604461973_01053": [
+      7
+    ],
+    "phase2_extended_20250323095837195053_01055": [
+      12
+    ],
+    "phase2_extended_20250322162034361396_01057": [
+      9
+    ],
+    "phase2_extended_20250322162034361396_01058": [
+      6
+    ],
+    "phase2_extended_20250323011607001269_01060": [
+      7
+    ],
+    "phase2_extended_t20241206211714064780_01063": [
+      14
+    ],
+    "phase2_extended_20250322162950781977_01066": [
+      7
+    ],
+    "phase2_extended_20250322185221319705_01067": [
+      17
+    ],
+    "phase2_extended_20250322181526790790_01069": [
+      10
+    ],
+    "phase2_extended_20250325000928313864_01075": [
+      7
+    ],
+    "phase2_extended_20250322174356811964_01077": [
+      4,
+      8
+    ],
+    "phase2_extended_20250322174356811964_01078": [
+      9
+    ],
+    "phase2_extended_20250322155015314757_01079": [
+      6
+    ],
+    "phase2_extended_20250322155015314757_01080": [
+      5
+    ],
+    "phase2_extended_20250322143017200261_01083": [
+      6
+    ],
+    "phase2_extended_m20241028164908007773_01094": [
+      14,
+      16
+    ],
+    "phase2_extended_20250323033538068543_01097": [
+      8,
+      11
+    ],
+    "phase2_extended_20250323033538068543_01098": [
+      7,
+      8
+    ],
+    "phase2_extended_20250325013440022985_01099": [
+      14
+    ],
+    "phase2_extended_20250322192126120666_01102": [
+      8
+    ],
+    "phase2_extended_20250324225233527561_01103": [
+      7
+    ],
+    "phase2_extended_20250324221227976846_01105": [
+      4,
+      7
+    ],
+    "phase2_extended_20250324221227976846_01106": [
+      5
+    ],
+    "phase2_extended_20250324213439013487_01117": [
+      8,
+      11
+    ],
+    "phase2_extended_20250324213439013487_01118": [
+      7
+    ],
+    "phase2_extended_m20241028164652533992_01120": [
+      6
+    ],
+    "phase2_extended_20250322111449530318_01122": [
+      5
+    ],
+    "phase2_extended_20250324222251083221_01123": [
+      16
+    ],
+    "phase2_extended_20250323131446507863_01125": [
+      13
+    ],
+    "phase2_extended_20250323131446507863_01126": [
+      11
+    ],
+    "phase2_extended_m20241028164756492413_01128": [
+      8,
+      11
+    ],
+    "phase2_extended_20250322224134564214_01129": [
+      6
+    ],
+    "phase2_extended_20250322185757698336_01132": [
+      6
+    ],
+    "phase2_extended_m20241028164626006100_01133": [
+      8
+    ],
+    "phase2_extended_m20241028164948918926_01136": [
+      8
+    ],
+    "phase2_extended_20250322160722953219_01137": [
+      4
+    ],
+    "phase2_extended_20250322160722953219_01138": [
+      7,
+      13
+    ],
+    "phase2_extended_20250323133346744540_01139": [
+      9,
+      10
+    ],
+    "phase2_extended_20250323133346744540_01140": [
+      8,
+      14
+    ],
+    "phase2_extended_20250322145122303953_01141": [
+      12
+    ],
+    "phase2_extended_20250322004458893638_01143": [
+      8
+    ],
+    "phase2_extended_20250323023116666286_01145": [
+      11
+    ],
+    "phase2_extended_20250323023116666286_01146": [
+      6
+    ],
+    "phase2_extended_20250325010937607077_01147": [
+      9
+    ],
+    "phase2_extended_20250325010937607077_01148": [
+      14
+    ],
+    "phase2_extended_20250322214317183573_01149": [
+      9,
+      12
+    ],
+    "phase2_extended_20250324234255286741_01153": [
+      10
+    ],
+    "phase2_extended_20250324234255286741_01154": [
+      4
+    ],
+    "phase2_extended_20250322123436596017_01158": [
+      6
+    ],
+    "phase2_extended_20250324222534656982_01159": [
+      11
+    ],
+    "phase2_extended_t20241206171855902412_01170": [
+      9
+    ],
+    "phase2_extended_e20241028160253742452_01173": [
+      15,
+      16
+    ],
+    "phase2_extended_e20241028160253742452_01174": [
+      12
+    ],
+    "phase2_extended_20250323022244580599_01183": [
+      11
+    ],
+    "phase2_extended_20250323022244580599_01184": [
+      9
+    ],
+    "phase2_extended_20250325013053234810_01185": [
+      15
+    ],
+    "phase2_extended_m20241028164651295246_01188": [
+      12
+    ],
+    "phase2_extended_m20241028164731140489_01189": [
+      13
+    ],
+    "phase2_extended_20250320195336101208_01197": [
+      15
+    ],
+    "phase2_extended_e20241028160401902010_01200": [
+      10,
+      15
+    ],
+    "phase2_extended_20250320185832139483_01204": [
+      7
+    ],
+    "phase2_extended_20250324083022806437_01207": [
+      11
+    ],
+    "phase2_extended_20250324083022806437_01208": [
+      17
+    ],
+    "phase2_extended_20250322151246790518_01211": [
+      8
+    ],
+    "phase2_extended_m20241028164705832439_01220": [
+      11
+    ],
+    "phase2_extended_20250322094132948833_01221": [
+      14
+    ],
+    "phase2_extended_20250323014205999250_01224": [
+      4
+    ],
+    "phase2_extended_20250324223414147830_01226": [
+      12
+    ],
+    "phase2_extended_20250324230442721134_01229": [
+      7,
+      12
+    ],
+    "phase2_extended_m20241028164820407247_01232": [
+      13
+    ],
+    "phase2_extended_e20241028160445320665_01234": [
+      6
+    ],
+    "phase2_extended_20250324095619880942_01236": [
+      4,
+      9
+    ],
+    "phase2_extended_20250322230745190268_01240": [
+      12
+    ],
+    "phase2_extended_20250324000430460073_01241": [
+      7
+    ],
+    "phase2_extended_20250324000430460073_01242": [
+      10
+    ],
+    "phase2_extended_20250324093942389148_01244": [
+      10
+    ],
+    "phase2_extended_e20241028160300570125_01246": [
+      11
+    ],
+    "phase2_extended_e20241028160321868761_01247": [
+      14,
+      16
+    ],
+    "phase2_extended_e20241028160321868761_01248": [
+      4
+    ],
+    "phase2_extended_20250325012624312800_01251": [
+      7
+    ],
+    "phase2_extended_20250322150025121412_01256": [
+      12
+    ],
+    "phase2_extended_20250322194656536194_01257": [
+      6
+    ],
+    "phase2_extended_20250322194656536194_01258": [
+      7
+    ],
+    "phase2_extended_e20241028160255878579_01270": [
+      7
+    ],
+    "phase2_extended_20250322175253813994_01271": [
+      11
+    ],
+    "phase2_extended_20250322072436176919_01273": [
+      7
+    ],
+    "phase2_extended_20250322072436176919_01274": [
+      14
+    ],
+    "phase2_extended_20250324205935312282_01276": [
+      4,
+      8,
+      9
+    ],
+    "phase2_extended_20250324205827860288_01279": [
+      5
+    ],
+    "phase2_extended_20250321221347058179_01281": [
+      13
+    ],
+    "phase2_extended_20250321221347058179_01282": [
+      11
+    ],
+    "phase2_extended_20250324211138125746_01290": [
+      14
+    ],
+    "phase2_extended_20250324210942766552_01293": [
+      14
+    ],
+    "phase2_extended_20250323000253558023_01295": [
+      12,
+      13
+    ],
+    "phase2_extended_20250322200936553702_01298": [
+      10
+    ],
+    "phase2_extended_20250323231203079565_01300": [
+      9
+    ],
+    "phase2_extended_20250321025409969139_01301": [
+      6
+    ],
+    "phase2_extended_20250321025409969139_01302": [
+      7
+    ],
+    "phase2_extended_e20241028160403455246_01308": [
+      5,
+      11
+    ],
+    "phase2_extended_t20241206211714066866_01309": [
+      7
+    ],
+    "phase2_extended_20250324090656198067_01313": [
+      4
+    ],
+    "phase2_extended_20250324090656198067_01314": [
+      5
+    ],
+    "phase2_extended_20250324212746758339_01318": [
+      4,
+      17
+    ],
+    "phase2_extended_20250323014548418503_01323": [
+      10,
+      13
+    ],
+    "phase2_extended_20250322101848527673_01326": [
+      6
+    ],
+    "phase2_extended_20250324220922612633_01327": [
+      7
+    ],
+    "phase2_extended_m20241028164724408368_01333": [
+      5,
+      14
+    ],
+    "phase2_extended_m20241028164724408368_01334": [
+      11
+    ],
+    "phase2_extended_20250323111211974734_01337": [
+      7
+    ],
+    "phase2_extended_20250322173912424125_01339": [
+      6
+    ],
+    "phase2_extended_20250322125846926791_01341": [
+      4
+    ],
+    "phase2_extended_20250322125846926791_01342": [
+      11
+    ],
+    "phase2_extended_20250323143649687803_01343": [
+      4,
+      5
+    ],
+    "phase2_extended_20250322145458685184_01353": [
+      11
+    ],
+    "phase2_extended_20250322145458685184_01354": [
+      11
+    ],
+    "phase2_extended_20250322201211446498_01356": [
+      7,
+      10
+    ],
+    "phase2_extended_20250322155307536039_01359": [
+      10
+    ],
+    "phase2_extended_20250324082112376174_01362": [
+      7
+    ],
+    "phase2_extended_20250324225201126494_01363": [
+      9,
+      13
+    ],
+    "phase2_extended_20250324225201126494_01364": [
+      11
+    ],
+    "phase2_extended_20250322200527074495_01365": [
+      12
+    ],
+    "phase2_extended_20250322200527074495_01366": [
+      14
+    ],
+    "phase2_extended_m20241028164911083678_01373": [
+      11
+    ],
+    "phase2_extended_m20241028164911083678_01374": [
+      8,
+      9
+    ],
+    "phase2_extended_20250322220423800679_01377": [
+      10
+    ],
+    "phase2_extended_20250324005732742485_01379": [
+      14
+    ],
+    "phase2_extended_20250324214846150403_01382": [
+      9
+    ],
+    "phase2_extended_20250322153429009474_01386": [
+      5
+    ],
+    "phase2_extended_20250321022513013696_01390": [
+      7
+    ],
+    "phase2_extended_20250322171545561241_01391": [
+      16
+    ],
+    "phase2_extended_20250324225441069035_01394": [
+      9
+    ],
+    "phase2_extended_e20241028160319013029_01396": [
+      4
+    ],
+    "phase2_extended_e20241028160407201457_01397": [
+      14
+    ],
+    "phase2_extended_20250322103652290807_01399": [
+      5
+    ],
+    "phase2_extended_20250322114916015057_01402": [
+      11
+    ],
+    "phase2_extended_20250322213332266396_01404": [
+      6
+    ],
+    "phase2_extended_20250322161651732417_01408": [
+      12
+    ],
+    "phase2_extended_m20241028164933359426_01410": [
+      6
+    ],
+    "phase2_extended_20250323093105778939_01412": [
+      6
+    ],
+    "phase2_extended_m20241028164928339245_01416": [
+      8
+    ],
+    "phase2_extended_20250322194013754977_01422": [
+      10
+    ],
+    "phase2_extended_20250324221359242434_01424": [
+      4,
+      5
+    ],
+    "phase2_extended_20250322161451522417_01425": [
+      6
+    ],
+    "phase2_extended_20250322022134656894_01429": [
+      8
+    ],
+    "phase2_extended_20250322113453008730_01439": [
+      7,
+      12
+    ],
+    "phase2_extended_m20241028164700651701_01441": [
+      9
+    ],
+    "phase2_extended_m20241028164700651701_01442": [
+      11
+    ],
+    "phase2_extended_m20241028164715213722_01443": [
+      12
+    ],
+    "phase2_extended_m20241028164702515882_01445": [
+      11,
+      14
+    ],
+    "phase2_extended_20250323011240987986_01452": [
+      8,
+      15
+    ],
+    "phase2_extended_20250322165324766437_01454": [
+      12
+    ],
+    "phase2_extended_20250324221115065158_01458": [
+      7
+    ],
+    "phase2_extended_20250322222015119954_01461": [
+      6
+    ],
+    "phase2_extended_20250322124927333956_01464": [
+      13
+    ],
+    "phase2_extended_20250322115115063568_01466": [
+      10,
+      12
+    ],
+    "phase2_extended_20250321040138918100_01468": [
+      11
+    ],
+    "phase2_extended_e20241028160342578788_01471": [
+      10,
+      11
+    ],
+    "phase2_extended_e20241028160342578788_01472": [
+      8,
+      9
+    ],
+    "phase2_extended_20250322015833002422_01475": [
+      11
+    ],
+    "phase2_extended_20250322124410608837_01479": [
+      5,
+      11
+    ],
+    "phase2_extended_20250322234352450008_01481": [
+      9
+    ],
+    "phase2_extended_20250322234352450008_01482": [
+      14,
+      15
+    ],
+    "phase2_extended_20250322145308697786_01483": [
+      14,
+      15
+    ],
+    "phase2_extended_20250322232442909552_01490": [
+      7
+    ],
+    "phase2_extended_m20241028164734359829_01491": [
+      6
+    ],
+    "phase2_extended_20250322120046083322_01493": [
+      7,
+      12
+    ],
+    "phase2_extended_20250322170301188396_01495": [
+      4,
+      13
+    ],
+    "phase2_extended_20250322170301188396_01496": [
+      14
+    ],
+    "phase2_extended_20250322235020671280_01501": [
+      4,
+      12
+    ],
+    "phase2_extended_m20241028164839232455_01505": [
+      10,
+      12
+    ],
+    "phase2_extended_m20241028164839232455_01506": [
+      9
+    ],
+    "phase2_extended_20250322114713495527_01508": [
+      7
+    ],
+    "phase2_extended_20250321003712724064_01515": [
+      9
+    ],
+    "phase2_extended_20250322233735562347_01518": [
+      13
+    ],
+    "phase2_extended_t20241206211714066523_01519": [
+      7
+    ],
+    "phase2_extended_20250322161001966540_01521": [
+      5,
+      8
+    ],
+    "phase2_extended_20250322161001966540_01522": [
+      16
+    ],
+    "phase2_extended_20250324223927257836_01524": [
+      11
+    ],
+    "phase2_extended_20250322232824114167_01525": [
+      7
+    ],
+    "phase2_extended_20250322232824114167_01526": [
+      4
+    ],
+    "phase2_extended_20250322121729768751_01527": [
+      9
+    ],
+    "phase2_extended_20250322163013425443_01531": [
+      4
+    ],
+    "phase2_extended_e20241028160440274536_01534": [
+      5,
+      8
+    ],
+    "phase2_extended_20250322165852544268_01537": [
+      11,
+      17
+    ],
+    "phase2_extended_20250322165852544268_01538": [
+      10
+    ],
+    "phase2_extended_20250321162658913613_01539": [
+      12,
+      16
+    ],
+    "phase2_extended_20250321162658913613_01540": [
+      4
+    ],
+    "phase2_extended_20250322130509959210_01546": [
+      7
+    ],
+    "phase2_extended_m20241028164759233559_01547": [
+      5
+    ],
+    "phase2_extended_20250324200212786306_01551": [
+      5,
+      6
+    ],
+    "phase2_extended_20250324200212786306_01552": [
+      4,
+      10
+    ],
+    "phase2_extended_20250322175856068707_01557": [
+      5
+    ],
+    "phase2_extended_20250322175856068707_01558": [
+      5
+    ],
+    "phase2_extended_20250322112200735337_01561": [
+      4
+    ],
+    "phase2_extended_20250322123719497159_01563": [
+      16
+    ],
+    "phase2_extended_20250324231203179035_01566": [
+      6
+    ],
+    "phase2_extended_20250323111100667956_01572": [
+      10
+    ],
+    "phase2_extended_20250323120657764969_01574": [
+      7
+    ],
+    "phase2_extended_20250322175216115859_01577": [
+      17
+    ],
+    "phase2_extended_m20241028165010342686_01579": [
+      6,
+      10
+    ],
+    "phase2_extended_m20241028165010342686_01580": [
+      13
+    ],
+    "phase2_extended_m20241028164954033603_01581": [
+      8,
+      9
+    ],
+    "phase2_extended_m20241028164954033603_01582": [
+      8,
+      11,
+      15
+    ],
+    "phase2_extended_20250322185638536572_01584": [
+      8
+    ],
+    "phase2_extended_t20241206211714065984_01586": [
+      8
+    ],
+    "phase2_extended_20250322122010666557_01588": [
+      15
+    ],
+    "phase2_extended_20250322144056684743_01590": [
+      6,
+      12
+    ],
+    "phase2_extended_20250323123736098947_01591": [
+      10
+    ],
+    "phase2_extended_20250323123736098947_01592": [
+      5,
+      12
+    ],
+    "phase2_extended_e20241028160332826857_01593": [
+      4
+    ],
+    "phase2_extended_e20241028160332826857_01594": [
+      15
+    ],
+    "phase2_extended_m20241028164922818260_01596": [
+      5
+    ],
+    "phase2_extended_20250322130904243309_01597": [
+      5
+    ],
+    "phase2_extended_20250322130904243309_01598": [
+      8
+    ],
+    "phase2_extended_t20241206211714066581_01601": [
+      11,
+      16
+    ],
+    "phase2_extended_t20241206211714066581_01602": [
+      6
+    ],
+    "phase2_extended_20250322233142794003_01605": [
+      15
+    ],
+    "phase2_extended_20250322233142794003_01606": [
+      8
+    ],
+    "phase2_extended_20250321043636382871_01613": [
+      9
+    ],
+    "phase2_extended_20250321090441108070_01615": [
+      7,
+      8,
+      17
+    ],
+    "phase2_extended_20250321090441108070_01616": [
+      5
+    ],
+    "phase2_extended_20250322152641976356_01618": [
+      9
+    ],
+    "phase2_extended_m20241028164944055132_01620": [
+      8,
+      11
+    ],
+    "phase2_extended_20250323094525024116_01621": [
+      17
+    ],
+    "phase2_extended_20250322141653938197_01628": [
+      5,
+      7
+    ],
+    "phase2_extended_20250324220517218632_01630": [
+      8
+    ],
+    "phase2_extended_m20241028164718765036_01631": [
+      7
+    ],
+    "phase2_extended_m20241028164718765036_01632": [
+      9
+    ],
+    "phase2_extended_20250324222155061941_01633": [
+      4
+    ],
+    "phase2_extended_20250322192236455047_01636": [
+      13
+    ],
+    "phase2_extended_20250322132240044802_01646": [
+      4,
+      8
+    ],
+    "phase2_extended_20250323012208528706_01647": [
+      10,
+      16
+    ],
+    "phase2_extended_20250323012208528706_01648": [
+      17
+    ],
+    "phase2_extended_20250323105430745790_01650": [
+      8
+    ],
+    "phase2_extended_m20241028165005397280_01651": [
+      8
+    ],
+    "phase2_extended_m20241028165005397280_01652": [
+      4,
+      7
+    ],
+    "phase2_extended_20250322113339255520_01653": [
+      13
+    ],
+    "phase2_extended_m20241028164840787934_01657": [
+      12
+    ],
+    "phase2_extended_20250321050543586542_01659": [
+      8
+    ],
+    "phase2_extended_t20241206211714064628_01661": [
+      4
+    ],
+    "phase2_extended_20250323000351959985_01663": [
+      6
+    ],
+    "phase2_extended_20250323000351959985_01664": [
+      14
+    ],
+    "phase2_extended_m20241028164742823033_01665": [
+      13
+    ],
+    "phase2_extended_20250322182643388445_01671": [
+      15
+    ],
+    "phase2_extended_20250322223531118414_01673": [
+      5
+    ],
+    "phase2_extended_20250322165556942772_01678": [
+      16
+    ],
+    "phase2_extended_20250322122731296343_01681": [
+      8
+    ],
+    "phase2_extended_20250322221525384425_01684": [
+      5
+    ],
+    "phase2_extended_20250322150046898510_01685": [
+      9,
+      12
+    ],
+    "phase2_extended_20250322150046898510_01686": [
+      9,
+      13
+    ],
+    "phase2_extended_20250320181941699936_01689": [
+      14
+    ],
+    "phase2_extended_20250320181941699936_01690": [
+      8
+    ],
+    "phase2_extended_20250323015426944847_01691": [
+      4
+    ],
+    "phase2_extended_20250323135039668314_01693": [
+      8
+    ],
+    "phase2_extended_20250323135039668314_01694": [
+      8
+    ],
+    "phase2_extended_20250322163054570144_01696": [
+      12
+    ],
+    "phase2_extended_20250323111609286639_01698": [
+      4
+    ],
+    "phase2_extended_20250322232117477314_01700": [
+      16
+    ],
+    "phase2_extended_t20241206171912934521_01702": [
+      8
+    ],
+    "phase2_extended_20250322182151167242_01706": [
+      5
+    ],
+    "phase2_extended_20250325015641074558_01707": [
+      8
+    ],
+    "phase2_extended_20250323140133824332_01712": [
+      7
+    ],
+    "phase2_extended_20250322151907102144_01715": [
+      14
+    ],
+    "phase2_extended_20250322204651832055_01717": [
+      10
+    ],
+    "phase2_extended_20250323002030174014_01722": [
+      15
+    ],
+    "phase2_extended_20250323001732883436_01723": [
+      9
+    ],
+    "phase2_extended_20250323001732883436_01724": [
+      7,
+      8,
+      12
+    ],
+    "phase2_extended_20250322114359077804_01726": [
+      9
+    ],
+    "phase2_extended_20250322130318792046_01729": [
+      12
+    ],
+    "phase2_extended_20250322130318792046_01730": [
+      9
+    ],
+    "phase2_extended_e20241028160355814749_01731": [
+      15
+    ],
+    "phase2_extended_20250324081037880601_01741": [
+      5
+    ],
+    "phase2_extended_t20241206172345246461_01743": [
+      12
+    ],
+    "phase2_extended_m20241028164741002971_01746": [
+      4
+    ],
+    "phase2_extended_20250321124425303150_01747": [
+      9
+    ],
+    "phase2_extended_20250321124425303150_01748": [
+      6
+    ],
+    "phase2_extended_m20241028164901591817_01750": [
+      10
+    ],
+    "phase2_extended_20250323002643728982_01757": [
+      6
+    ],
+    "phase2_extended_20250323002643728982_01758": [
+      7,
+      8,
+      9
+    ],
+    "phase2_extended_20250322114904523542_01761": [
+      13
+    ],
+    "phase2_extended_20250322203108551201_01764": [
+      8,
+      12
+    ],
+    "phase2_extended_20250322102815686483_01767": [
+      8
+    ],
+    "phase2_extended_20250322102815686483_01768": [
+      11
+    ],
+    "phase2_extended_20250323015624871024_01771": [
+      10
+    ],
+    "phase2_extended_20250323015624871024_01772": [
+      6,
+      10
+    ],
+    "phase2_extended_m20241028164802046283_01778": [
+      11
+    ],
+    "phase2_extended_20250322153759813190_01779": [
+      13
+    ],
+    "phase2_extended_m20241028164804685984_01788": [
+      4
+    ],
+    "phase2_extended_20250323185206369446_01790": [
+      8
+    ],
+    "phase2_extended_20250323094730230054_01800": [
+      8,
+      13
+    ],
+    "phase2_extended_20250322194612096186_01805": [
+      7
+    ],
+    "phase2_extended_20250322194612096186_01806": [
+      17
+    ],
+    "phase2_extended_20250324211915147935_01807": [
+      4
+    ],
+    "phase2_extended_20250324211915147935_01808": [
+      17
+    ],
+    "phase2_extended_20250322230928925177_01809": [
+      7
+    ],
+    "phase2_extended_e20241028160339524446_01814": [
+      13
+    ],
+    "phase2_extended_20250322162444175378_01822": [
+      4
+    ],
+    "phase2_extended_m20241028164634741822_01824": [
+      7
+    ],
+    "phase2_extended_t20241206171940092767_01826": [
+      13
+    ],
+    "phase2_extended_20250323121026096475_01827": [
+      10
+    ],
+    "phase2_extended_20250323121026096475_01828": [
+      14
+    ],
+    "phase2_extended_20250323112418445268_01830": [
+      6
+    ],
+    "phase2_extended_e20241028160424099199_01831": [
+      7
+    ],
+    "phase2_extended_20250322165435882231_01836": [
+      11
+    ],
+    "phase2_extended_20250323023934229609_01837": [
+      9
+    ],
+    "phase2_extended_20250323023934229609_01838": [
+      12
+    ],
+    "phase2_extended_20250323014035231483_01839": [
+      15
+    ],
+    "phase2_extended_20250321151937732597_01841": [
+      7
+    ],
+    "phase2_extended_20250322220526328769_01844": [
+      12
+    ],
+    "phase2_extended_t20241206211714065049_01848": [
+      8
+    ],
+    "phase2_extended_m20241028164810563611_01851": [
+      12
+    ],
+    "phase2_extended_e20241028160409480928_01854": [
+      10
+    ],
+    "phase2_extended_m20241028164847353449_01859": [
+      10
+    ],
+    "phase2_extended_e20241028160353644992_01862": [
+      5,
+      7
+    ],
+    "phase2_extended_20250322133354524714_01863": [
+      14
+    ],
+    "phase2_extended_m20241028164738811222_01865": [
+      12
+    ],
+    "phase2_extended_m20241028164738811222_01866": [
+      11,
+      12
+    ],
+    "phase2_extended_m20241028164633505983_01872": [
+      4
+    ],
+    "phase2_extended_20250322130339686185_01873": [
+      7
+    ],
+    "phase2_extended_20250322153344702263_01875": [
+      11
+    ],
+    "phase2_extended_20250322221022354837_01879": [
+      6
+    ],
+    "phase2_extended_20250322221022354837_01880": [
+      7
+    ],
+    "phase2_extended_m20241028165014731116_01882": [
+      10
+    ],
+    "phase2_extended_20250325014353614690_01884": [
+      4
+    ],
+    "phase2_extended_e20241028160415503132_01889": [
+      10
+    ],
+    "phase2_extended_e20241028160415503132_01890": [
+      6,
+      7
+    ],
+    "phase2_extended_20250322232258168762_01894": [
+      6,
+      9
+    ],
+    "phase2_extended_m20241028164935359794_01898": [
+      6
+    ],
+    "phase2_extended_20250321211721759889_01900": [
+      15
+    ],
+    "phase2_extended_m20241028164951181054_01903": [
+      13
+    ],
+    "phase2_extended_20250322224553925918_01906": [
+      10
+    ],
+    "phase2_extended_20250322173348599676_01907": [
+      11
+    ],
+    "phase2_extended_20250322173348599676_01908": [
+      12
+    ],
+    "phase2_extended_20250320200003918420_01912": [
+      15
+    ],
+    "phase2_extended_20250322131031099056_01915": [
+      7
+    ],
+    "phase2_extended_20250322131031099056_01916": [
+      10
+    ],
+    "phase2_extended_t20241206211714066351_01917": [
+      8
+    ],
+    "phase2_extended_20250322230031550699_01919": [
+      5
+    ],
+    "phase2_extended_20250322230031550699_01920": [
+      11
+    ],
+    "phase2_extended_m20241028164830108978_01922": [
+      9
+    ],
+    "phase2_extended_20250322163707816678_01923": [
+      4
+    ],
+    "phase2_extended_m20241028164732663326_01925": [
+      4,
+      13
+    ],
+    "phase2_extended_20250321225614363808_01929": [
+      10,
+      14
+    ],
+    "phase2_extended_t20241206211714065925_01931": [
+      10
+    ],
+    "phase2_extended_20250324075652034944_01935": [
+      5
+    ],
+    "phase2_extended_20250322221620733528_01940": [
+      5
+    ],
+    "phase2_extended_20250323011029779178_01941": [
+      13
+    ],
+    "phase2_extended_20250322114128358931_01944": [
+      16
+    ],
+    "phase2_extended_20250322130400129262_01947": [
+      4
+    ],
+    "phase2_extended_e20241028160433311881_01949": [
+      11
+    ],
+    "phase2_extended_e20241028160433311881_01950": [
+      7,
+      8,
+      14
+    ],
+    "phase2_extended_20250322164802003431_01951": [
+      10
+    ],
+    "phase2_extended_20250324195707870699_01953": [
+      7,
+      9,
+      16
+    ],
+    "phase2_extended_20250324195707870699_01954": [
+      8
+    ],
+    "phase2_extended_20250323095354874423_01956": [
+      9
+    ],
+    "phase2_extended_20250322035350348919_01958": [
+      4
+    ],
+    "phase2_extended_20250322101529129061_01959": [
+      9
+    ],
+    "phase2_extended_20250324223743493358_01962": [
+      11
+    ],
+    "phase2_extended_20250322133525270610_01964": [
+      8,
+      13
+    ],
+    "phase2_extended_20250323234459126349_01966": [
+      9
+    ],
+    "phase2_extended_20250322190941974828_01967": [
+      10
+    ],
+    "phase2_extended_20250322144536470773_01969": [
+      16
+    ],
+    "phase2_extended_20250322144536470773_01970": [
+      4
+    ],
+    "phase2_extended_m20241028164904164475_01974": [
+      15
+    ],
+    "phase2_extended_20250323014723204664_01976": [
+      4,
+      10
+    ],
+    "phase2_extended_20250324100015691007_01977": [
+      9
+    ],
+    "phase2_extended_20250321030542725935_01982": [
+      17
+    ],
+    "phase2_extended_20250322233035985367_01984": [
+      6
+    ],
+    "phase2_extended_e20241028160301887545_01987": [
+      9
+    ],
+    "phase2_extended_e20241028160301887545_01988": [
+      10
+    ],
+    "phase2_extended_20250322193339108904_01996": [
+      14
+    ],
+    "phase2_extended_20250320225931384033_01999": [
+      9
+    ],
+    "phase2_extended_20250320225931384033_02000": [
+      4
+    ]
+  },
+  "combined_query_feasible_set_changed": false,
+  "source_dataset": "TPC_IJCAI_2026_phase2_2000_extended_20260729",
+  "source_seed_plan_audit": {
+    "status": "passed",
+    "records_checked": 2000,
+    "unique_signatures": 2000,
+    "unique_source_plans": 1000,
+    "expected_constraint_key_count": 53,
+    "covered_constraint_key_count": 53,
+    "errors": [],
+    "warnings": []
+  },
+  "output_files": [
+    "phase2/part-00000.csv",
+    "phase2/part-00001.csv"
+  ],
+  "output_file_sha256": {
+    "phase2/part-00000.csv": "b29f83271a374a4131ed30254e36ccc700beae953350c34baeed2fd271f1f42c",
+    "phase2/part-00001.csv": "5dd3ed1f5a07a1d216f1a70d4b5d560fdf4e61d128de7d2f7eec56476348b5ef"
+  },
+  "canonical_jsonl_sha256": "3dbdfa6701a8512730496f295bd3447fc1f155a671cb509e7b871e7ca58d3306",
+  "list_field_encoding": "JSON text",
+  "public_fields": [
+    "uid",
+    "tag",
+    "start_city",
+    "target_city",
+    "days",
+    "people_number",
+    "hard_logic_py",
+    "hard_logic_nl",
+    "nature_language",
+    "constraint_keys",
+    "official_phase2_evaluation"
+  ],
+  "seed_plans_included": false,
+  "generation_paths_included": false,
+  "official_evaluation_export": {
+    "output_files": [
+      "competition_test.csv"
+    ],
+    "output_file_sha256": {
+      "competition_test.csv": "fbc3379e930c6fc22071bbd2fedaf7c4d34d47cc3a157e8db22cffeb99715447"
+    },
+    "canonical_jsonl_sha256": "e2cbf6f7db62390df5bfa872c1f51f5b29dd81519284e9fcbb73739362fde045",
+    "records": 100
+  }
+}

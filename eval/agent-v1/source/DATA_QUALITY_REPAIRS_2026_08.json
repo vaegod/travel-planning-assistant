@@ -1,0 +1,384 @@
+{
+  "schema_version": 1,
+  "release_date": "2026-08-20",
+  "summary": {
+    "phase1_changed_uids": 28,
+    "preference_derived_changed_uids": 0,
+    "total_changed_records": 28
+  },
+  "changes": [
+    {
+      "uid": "m20241028164704059677",
+      "split": "easy",
+      "changed_fields": [
+        "hard_logic_py",
+        "nature_language",
+        "nature_language_en"
+      ],
+      "reason": "Align the requested room type with the only photogenic hotel inventory."
+    },
+    {
+      "uid": "m20241028164707359057",
+      "split": "easy",
+      "changed_fields": [
+        "hard_logic_py",
+        "nature_language",
+        "nature_language_en"
+      ],
+      "reason": "Align the requested room type with the only couples-room inventory."
+    },
+    {
+      "uid": "m20241028164710182329",
+      "split": "easy",
+      "changed_fields": [
+        "hard_logic_py",
+        "nature_language",
+        "nature_language_en"
+      ],
+      "reason": "Align the requested room type with mountain-view hotel inventory."
+    },
+    {
+      "uid": "m20241028164714075557",
+      "split": "easy",
+      "changed_fields": [
+        "hard_logic_py",
+        "nature_language",
+        "nature_language_en"
+      ],
+      "reason": "Align the requested room type with Instagrammable-pool hotel inventory."
+    },
+    {
+      "uid": "m20241028164718765036",
+      "split": "easy",
+      "changed_fields": [
+        "hard_logic_py",
+        "nature_language",
+        "nature_language_en"
+      ],
+      "reason": "Align the requested room type with card-room hotel inventory."
+    },
+    {
+      "uid": "m20241028164809233884",
+      "split": "easy",
+      "changed_fields": [
+        "hard_logic_py",
+        "nature_language",
+        "nature_language_en"
+      ],
+      "reason": "Align the requested room type with e-sports hotel inventory."
+    },
+    {
+      "uid": "m20241028164819146853",
+      "split": "easy",
+      "changed_fields": [
+        "hard_logic_py",
+        "nature_language",
+        "nature_language_en"
+      ],
+      "reason": "Align the requested room type with smart-toilet hotel inventory."
+    },
+    {
+      "uid": "h20241029143506461809",
+      "split": "human",
+      "changed_fields": [
+        "hard_logic_py",
+        "nature_language",
+        "nature_language_en"
+      ],
+      "reason": "Remove an unsupported redundant riverside category while retaining natural scenery."
+    },
+    {
+      "uid": "h20241029143521646393",
+      "split": "human",
+      "changed_fields": [
+        "hard_logic_py",
+        "nature_language",
+        "nature_language_en"
+      ],
+      "reason": "Raise an impossible total budget above the minimum round-trip and lodging cost."
+    },
+    {
+      "uid": "h20241029143536587211",
+      "split": "human",
+      "changed_fields": [
+        "hard_logic_py"
+      ],
+      "reason": "Use the canonical sandbox name for Tongji University's Siping Road campus."
+    },
+    {
+      "uid": "h20241029143541319291",
+      "split": "human",
+      "changed_fields": [
+        "hard_logic_py"
+      ],
+      "reason": "Do not encode a vague dating request as a nonexistent attraction taxonomy value."
+    },
+    {
+      "uid": "h20241029143613424655",
+      "split": "human",
+      "changed_fields": [
+        "hard_logic_py",
+        "nature_language",
+        "nature_language_en"
+      ],
+      "reason": "Raise an impossible total budget above the minimum round-trip flight cost."
+    },
+    {
+      "uid": "h20241029143701815147",
+      "split": "human",
+      "changed_fields": [
+        "hard_logic_py",
+        "nature_language",
+        "nature_language_en"
+      ],
+      "reason": "Replace sea-specific labels with grounded river/nature labels and a feasible hotel ceiling."
+    },
+    {
+      "uid": "h20241029143709097610",
+      "split": "human",
+      "changed_fields": [
+        "hard_logic_py",
+        "nature_language",
+        "nature_language_en"
+      ],
+      "reason": "Remove an ungrounded photo-shoot label and replace a vague hotel label with lake view."
+    },
+    {
+      "uid": "h20241029143718654427",
+      "split": "human",
+      "changed_fields": [
+        "hard_logic_py",
+        "nature_language",
+        "nature_language_en"
+      ],
+      "reason": "Raise the hotel ceiling to cover the cheapest grounded Beijing accommodation."
+    },
+    {
+      "uid": "h20241029143720725398",
+      "split": "human",
+      "changed_fields": [
+        "hard_logic_py",
+        "nature_language",
+        "nature_language_en"
+      ],
+      "reason": "Remove a museum constraint contradicted by the query and an ungrounded location label."
+    },
+    {
+      "uid": "h20241029143733781691",
+      "split": "human",
+      "changed_fields": [
+        "nature_language",
+        "nature_language_en",
+        "start_city",
+        "target_city"
+      ],
+      "reason": "Correct a destination/required-POI city mismatch."
+    },
+    {
+      "uid": "h20241029143741942032",
+      "split": "human",
+      "changed_fields": [
+        "hard_logic_py"
+      ],
+      "reason": "Use the canonical sandbox name Tiananmen Square."
+    },
+    {
+      "uid": "h20241029143804839319",
+      "split": "human",
+      "changed_fields": [
+        "hard_logic_py",
+        "nature_language",
+        "nature_language_en"
+      ],
+      "reason": "Replace a nonexistent riverside type with a grounded cruise requested in natural language."
+    },
+    {
+      "uid": "h20241029143807949268",
+      "split": "human",
+      "changed_fields": [
+        "hard_logic_py"
+      ],
+      "reason": "Replace an undefined DSL variable with the public people_count concept."
+    },
+    {
+      "uid": "h20241029143814437710",
+      "split": "human",
+      "changed_fields": [
+        "hard_logic_py"
+      ],
+      "reason": "Replace an undefined DSL variable with the public people_count concept."
+    },
+    {
+      "uid": "h20241029143816266519",
+      "split": "human",
+      "changed_fields": [
+        "hard_logic_py",
+        "nature_language",
+        "nature_language_en"
+      ],
+      "reason": "Remove an unavailable flight requirement and encode the stated non-intercity budget."
+    },
+    {
+      "uid": "h20241029143828857993",
+      "split": "human",
+      "changed_fields": [
+        "hard_logic_py"
+      ],
+      "reason": "Replace an undefined DSL variable with the public people_count concept."
+    },
+    {
+      "uid": "h20241029143845365386",
+      "split": "human",
+      "changed_fields": [
+        "hard_logic_py"
+      ],
+      "reason": "Align the Oracle people and taxi-car counts with the five-person record."
+    },
+    {
+      "uid": "h20241029143920003060",
+      "split": "human",
+      "changed_fields": [
+        "hard_logic_py",
+        "nature_language",
+        "nature_language_en"
+      ],
+      "reason": "Use the grounded Beijing courtyard-hotel category."
+    },
+    {
+      "uid": "h20241029143925294432",
+      "split": "human",
+      "changed_fields": [
+        "hard_logic_py",
+        "nature_language",
+        "nature_language_en"
+      ],
+      "reason": "Correct an attraction-name literal that was encoded as an attraction type."
+    },
+    {
+      "uid": "m20241028164739786600",
+      "split": "easy",
+      "changed_fields": [
+        "hard_logic_py"
+      ],
+      "reason": "Use the canonical Chinese sandbox cuisine label while preserving diverse natural-language wording."
+    },
+    {
+      "uid": "h20241029143722458026",
+      "split": "human",
+      "changed_fields": [
+        "hard_logic_py"
+      ],
+      "reason": "Use the canonical Chinese sandbox cuisine label while preserving diverse natural-language wording."
+    }
+  ],
+  "file_hashes": {
+    "easy.csv": {
+      "before": "a74520d152c04c09f47850e1e313c2c285a679ed70ccc200592395085f74bf41",
+      "after": "cb0b7940defa8a9b260bac12bee3fb3254678883b40371c3ca8f33c5f37153e3"
+    },
+    "medium.csv": {
+      "before": "9cd49188a8f2a01b900abecc3f10263c257bcb761cf2635e5f0d4fb53d93f77b",
+      "after": "9cd49188a8f2a01b900abecc3f10263c257bcb761cf2635e5f0d4fb53d93f77b"
+    },
+    "human.csv": {
+      "before": "e6cfe692f2ad902ae075d55b005d7f8ff20cfbcd745da4f9c8e79ca69cb65fbe",
+      "after": "2f0d61e37665a345bd428732ace6e1ce9d6de2af8d292047bcf5cc1c4f9cfc78"
+    }
+  },
+  "public_query_audit": {
+    "status": "passed",
+    "csv_file_count": 14,
+    "row_count": 4054,
+    "constraint_count": 33815,
+    "hard_logic_parse_errors": 0,
+    "noncanonical_shanghai_cuisine_dsl_count": 0,
+    "undefined_people_number_dsl_count": 0,
+    "files": {
+      "easy.csv": {
+        "rows": 300,
+        "constraints": 1579,
+        "sha256": "cb0b7940defa8a9b260bac12bee3fb3254678883b40371c3ca8f33c5f37153e3"
+      },
+      "human.csv": {
+        "rows": 154,
+        "constraints": 683,
+        "sha256": "2f0d61e37665a345bd428732ace6e1ce9d6de2af8d292047bcf5cc1c4f9cfc78"
+      },
+      "human1000.csv": {
+        "rows": 1000,
+        "constraints": 0,
+        "sha256": "9fca5b9044fb351619f47e1573320cc512259fd3539d08937c62c560a54a7f05"
+      },
+      "medium.csv": {
+        "rows": 150,
+        "constraints": 1264,
+        "sha256": "9cd49188a8f2a01b900abecc3f10263c257bcb761cf2635e5f0d4fb53d93f77b"
+      },
+      "phase2/competition_test.csv": {
+        "rows": 100,
+        "constraints": 1375,
+        "sha256": "fbc3379e930c6fc22071bbd2fedaf7c4d34d47cc3a157e8db22cffeb99715447"
+      },
+      "phase2/part-00000.csv": {
+        "rows": 1000,
+        "constraints": 13599,
+        "sha256": "b29f83271a374a4131ed30254e36ccc700beae953350c34baeed2fd271f1f42c"
+      },
+      "phase2/part-00001.csv": {
+        "rows": 1000,
+        "constraints": 13495,
+        "sha256": "5dd3ed1f5a07a1d216f1a70d4b5d560fdf4e61d128de7d2f7eec56476348b5ef"
+      },
+      "preference0_base50.csv": {
+        "rows": 50,
+        "constraints": 260,
+        "sha256": "a9b6d327e39f280735a181f2d169b8c7c0feeab9c8a67dedcc7a7f1d00c0d356"
+      },
+      "preference1_base50.csv": {
+        "rows": 50,
+        "constraints": 260,
+        "sha256": "d190734cb22e19359c9a116bc2f4d2e7a86ed29f3dcbb9cec986203ee3389fdb"
+      },
+      "preference2_base50.csv": {
+        "rows": 50,
+        "constraints": 260,
+        "sha256": "7ea3c22a899b28ec3e29b5947f22cd6e5ee57009e1ca3a435dcc82ca153bbced"
+      },
+      "preference3_base50.csv": {
+        "rows": 50,
+        "constraints": 260,
+        "sha256": "b44a2d0c39db6f881173f7ea09fe2b4cc6b5b1b47015b3cc252c7fbfaa99ee20"
+      },
+      "preference4_base50.csv": {
+        "rows": 50,
+        "constraints": 260,
+        "sha256": "feb8fc2c0b8ff308e29e17a6c004bf870d4ac5fbb8cd8fce5e82f52fe866e075"
+      },
+      "preference5_base50.csv": {
+        "rows": 50,
+        "constraints": 260,
+        "sha256": "9f8e2b7d2a8aa5fa4f97e62aead559f08a0ec955d09a4c5ddcadb0a82f34a076"
+      },
+      "preference_base50.csv": {
+        "rows": 50,
+        "constraints": 260,
+        "sha256": "3c83ea677c3d312e1d5d792b3e379c7d0d0ec90fc91ea1d161877f2f6bae7331"
+      }
+    }
+  },
+  "formal_phase1_validation": {
+    "query_count": 604,
+    "schema_commonsense_hard_passed": 604,
+    "MicEPR": 100.0,
+    "MacEPR": 100.0,
+    "C-LPR": 100.0,
+    "FPR": 100.0
+  },
+  "correction_history": [
+    {
+      "release": "2026.08.2",
+      "changed_records": 11,
+      "policy": "Chinese executable DSL and the Chinese sandbox use 本帮菜; natural-language wording is intentionally unchanged."
+    }
+  ]
+}

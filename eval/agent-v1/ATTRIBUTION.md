@@ -17,6 +17,7 @@ This is a project-specific adapted evaluation, not an official ChinaTravel leade
   License: https://creativecommons.org/licenses/by/4.0/
 
 Original dataset cards are retained in source/README.md and source/sandbox-README.md.
+The linked upstream release notes and audit files are included for reference; they were not used as evaluation inputs.
 Raw CSV/parquet inputs, repository metadata and file SHA256s are retained for verification.
 Original hard_logic_py text is stored as provenance data only and is never executed.
 
