@@ -1,7 +1,9 @@
 package org.example.traveljavaserver.agent;
 
 import static org.junit.jupiter.api.Assertions.*;
+import java.io.IOException;
 import java.math.BigDecimal;
+import java.net.InetAddress;
 import java.util.*;
 import java.util.concurrent.*;
 import okhttp3.mockwebserver.*;
@@ -56,6 +58,7 @@ class AgentModelTransportTests {
       assertEquals(2,run.modelRounds);assertEquals(1,run.recoveryAttempts);assertEquals(2,run.modelCalls.size());
       assertEquals("MODEL_TIMEOUT",run.modelCalls.get(0).status());
       assertNotNull(run.modelCalls.get(1).recoveryOf());assertTrue(run.modelCalls.get(1).durationMs()>=0);
+      assertRecoveryOnFreshConnection(server);
     }
   }
   @Test void connectionLossWhileReadingTheBodyIsDiagnosedAndRecoveredBeforeAnyToolDispatch() throws Exception {
@@ -68,6 +71,7 @@ class AgentModelTransportTests {
       assertEquals(1,run.recoveryAttempts);var failed=run.modelCalls.get(0);
       assertEquals("MODEL_CONNECTION_ERROR",failed.status());assertTrue(failed.responseStarted());
       assertEquals("response_body",failed.phase());assertNotNull(failed.exceptionType());
+      assertRecoveryOnFreshConnection(server);
     }
   }
   @Test void recoveryIsLimitedToOnePerJobAndCountsAgainstTheOriginalRoundLimit() throws Exception {
@@ -157,9 +161,22 @@ class AgentModelTransportTests {
       }
     }
   }
+  static void assertRecoveryOnFreshConnection(MockWebServer server) throws InterruptedException {
+    var original=server.takeRequest(2,TimeUnit.SECONDS);
+    var recovered=server.takeRequest(2,TimeUnit.SECONDS);
+    assertNotNull(original);assertNotNull(recovered);
+    assertEquals("127.0.0.1:"+server.getPort(),original.getHeader("Host"));
+    assertEquals(0,recovered.getSequenceNumber(),"Recovery must open a fresh connection");
+    assertEquals(original.getHeader("X-Travel-Model-Attempt"),recovered.getHeader("X-Travel-Model-Recovery-Of"));
+  }
+  static String loopbackUrl(MockWebServer server) throws IOException {
+    // Bind and address the same numeric loopback; localhost may also resolve to an unbound IPv6 address.
+    server.start(InetAddress.getByName("127.0.0.1"),0);
+    return server.url("/").newBuilder().host("127.0.0.1").build().toString();
+  }
   static class ClosingLLM extends LLMutils implements AutoCloseable {
-    ClosingLLM(MockWebServer server){super("fixture-secret-key",server.url("/").toString(),"fixture-model",10);}
-    ClosingLLM(MockWebServer server,okhttp3.OkHttpClient client){super("fixture-secret-key",server.url("/").toString(),"fixture-model",client);}
+    ClosingLLM(MockWebServer server) throws IOException {super("fixture-secret-key",loopbackUrl(server),"fixture-model",10);}
+    ClosingLLM(MockWebServer server,okhttp3.OkHttpClient client) throws IOException {super("fixture-secret-key",loopbackUrl(server),"fixture-model",client);}
     @Override public void close(){super.close();}
   }
   static class ClosingMaps extends AgentMaps implements AutoCloseable {
